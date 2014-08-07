@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>交费信息变更</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//选择事件
+	(function(){
+		var $select = $("select.kinds_list");
+		var $span = $select.parent().find("span");
+		$select.off().on("change",function(){
+			var index = $(this).get(0).selectedIndex;
+			$span.html($(this).find("option").eq(index).text());
+		});
+	})();
+	//弹框功能模块
+	(function(){
+		var $button = $("input[value='提 交']");
+		var $window = $("div.hint_over");
+		var $oMark = $("<div id='mark'></div>");
+		$button.off().on("touchend click",function(){
+			$window.show();
+			$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+			if($("#mark").size()){
+				$("#mark").show().css("position","fixed");
+				
+			}else{
+				$oMark.appendTo($("body"));
+				$("#mark").css({"position":"fixed","display":"block"});
+			}
+			setTimeout(function(){
+				$("#mark").hide();
+				$window.fadeOut();
+			},1500);
+		});
+		// 窗口大小改变时，弹出层的位置也相应改变
+		$(window).on("resize",function(){
+			$oMark.css({
+				width : Math.max($('body').width(),$(window).width()) + 'px' ,
+				height: Math.max($('body').height(),$(window).height()) + 'px'
+			});
+			$window.css({
+				marginTop: -$window.height()/2 + 'px' , 
+				marginLeft: -$window.width()/2 + 'px'  
+			});
+		});
+		//点击取消 关闭弹层	
+		$("#btn_closed").on("touchend click",function(){
+			$oMark.hide();
+			$window.hide();
+		});
+	})();
+	//手机验证模块
+	(function(){
+		var $phone = $("input[value='确 定']");
+		var $phoneDiv = $("div.phone");	
+		$phone.on("touchend click",function(){
+			$(this).parent(".lc_btn").hide();
+			$phoneDiv.show();
+		});
+	})();
+});
+</script>
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>交费信息变更</div>
+    <!--content-->
+    <div class="main cf">
+    	<div class="details_list">
+        	<h4>保单账户信息</h4>
+            <ul>              
+                <li><span>保单号码</span><i>8026000002532998</i></li>
+                <li><span>被保险人</span><i>张小飞</i></li>
+                <li><span>主险名称</span><i>阳光人寿金色阳光888两全保险（分红型）</i></li>
+                <li><span>生效日期</span><i>2013-03-20</i></li>
+                <li><span>保单状态</span><i>有效</i></li>
+                <li><span>下次交费对应日</span><i>2013-06-20</i></li>
+            </ul>
+        </div>
+    	<div class="details_list">
+            <div class="ltx_info">
+                <dl class="check gray_input2 cf">
+                    <dt>交费形式</dt>
+                    <dd><input type="text" class="text_left borderBox" value="银行转账" disabled></dd>
+                </dl>
+                <dl class="check gray_input2 cf">
+                    <dt>户名</dt>
+                    <dd><input type="text" class="text_left borderBox" value="张小飞"></dd>
+                </dl>
+                <dl class="check gray_input2 cf">
+                    <dt>银行名称</dt>
+                    <dd class="kindsDD2 margin_0">
+                        <span> &mdash; &mdash;请选择&mdash; &mdash;</span>
+                        <select class="kinds_list">
+                            <option value="">北京分公司-通联-农业银行[农业]</option>
+                            <option value="">其他</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="check gray_input2 cf">
+                    <dt id="toTop">银行账号</dt>
+                    <dd><input type="text" class="text_left borderBox"></dd>
+                </dl>
+
+            </div>
+        </div>
+        <p class="lc_btn"><input type="button" value="确 定" onClick="window.location.href='#toTop'"></p>
+        <div class="phone">
+            <div class="details_list">
+                <h4><a>手机验证</a></h4>
+                <div class="lc_sb">
+                    <p class="f_12">已向138****1380发送手机验证码，请注意查收！</p>
+                    <dl class="check gray_input cf">
+                        <dd><input type="text" class="text_left borderBox" /></dd>
+                        <dd><button>(<em>60</em>)秒后重新发送</button></dd>
+                        
+                    </dl>
+                    <p class="f_12">如1分钟内没收到，请点击发送验证码重新获取。</p>
+                </div>
+            </div>
+            <p class="red_color">验证码输入错,误请重新输入!</p>
+            <p class="lc_btn"><input type="button" value="提 交"></p>
+        </div>
+        <dl class="lc_tips">
+        	<dt>操作特别提示：</dt>
+            <dd>1）账户所有人须以投保人本人的真实姓名开立结算账户，并自愿授权本公司使用指定银行结算账户划扣投保人的保单所需支付的各期保险费。</dd>
+            <dd>2）续期保险费转账时间为各年度保单周年日起至宽限期结束为止。</dd>
+            <dd>3）账户所有人保证此账户有足够的金额支付应交保险费，本公司不承担因账户内余额不足或其他非本公司原因导致转账不成功，致使合同不能持续有效而引起的相关责任。</dd>
+        </dl>
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--提示弹框-->
+    <div class="hint_over">
+        <div class="hint_cont center_align">
+			提交成功！
+        </div>
+    </div>
+    <!--提示弹框2-->
+	<div class="hint_register">
+        <div class="hint_cont center_align">
+            是否进行本次操作？确定后将向139****2365发送手机验证码，如果此手机号码不使用，请您到我公司客服门店变更新的手机号码后，再重新操作。
+        </div>
+        <input type="button" value="确 定" />
+        <input type="button" value="返 回" id="btn_closed" />
+    </div>
+</body>
+</html>

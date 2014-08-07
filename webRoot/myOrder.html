@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>我的订单</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//删除 功能模块
+	(function(){
+		var $button = $(".delete_icon");
+		var $window = $("div.hint_register");
+		var $oMark = $("<div id='mark'></div>");
+		$button.off().on("touchend click",function(){
+			$window.show();
+			$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+			if($("#mark").size()){
+				$("#mark").show().css("position","fixed");
+				
+			}else{
+				$oMark.appendTo($("body"));
+				$("#mark").css("position","fixed");
+			}
+		});
+		// 窗口大小改变时，弹出层的位置也相应改变
+		$(window).on("resize",function(){
+			$oMark.css({
+				width : Math.max($('body').width(),$(window).width()) + 'px' ,
+				height: Math.max($('body').height(),$(window).height()) + 'px'
+			});
+			$window.css({
+				marginTop: -$window.height()/2 + 'px' , 
+				marginLeft: -$window.width()/2 + 'px'  
+			});
+		});
+		//点击取消 关闭弹层	
+		$("#btn_closed").on("touchend click",function(){
+			$oMark.hide();
+			$window.hide();
+		});
+	})();
+});
+</script>
+
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>我的订单</div>
+    <div class="header">
+    	<div class="butt_wrap">
+            <h3 class="current">待支付</h3>
+            <h3 class="">待完善</h3>
+        </div>
+    </div>
+    <!--content-->
+    <div class="main cf margin_t_minus"> 
+    	<div class="tab_div show_div">
+            <div class="whole_list">
+                <div>
+                    <a href="javascript:;" class="delete_icon"></a>
+                    <h4 class="order_title">阳光人寿债券型投资连结账户</h4>
+                    <p>订单号：86002P0182013015922</p>
+                    <p>订单状态：<em class="red_color">待支付</em></p>
+                    <p>提交时间：2010-03-26 10：08：42</p>
+                    <p class="orange_color">请到官网（<a class="blue2" href="#" style="display:inline-block;">www.sinosig.com</a>）查看订单</p>
+                    <input type="button" onfocus="this.blur()" value="查看详情"><input class="red_btn" type="button" value="支 付" onfocus="this.blur()" />
+                </div>
+            </div>
+            <div class="whole_list">
+                <div>
+                    <a href="javascript:;" class="delete_icon"></a>
+                    <h4 class="order_title">阳光人寿债券型投资连结账户</h4>
+                    <p>订单号：86002P0182013015922</p>
+                    <p>订单状态：<em class="red_color">待支付</em></p>
+                    <p>提交时间：2010-03-26 10：08：42</p>
+                    <input type="button" onfocus="this.blur()" value="查看详情"><input class="red_btn" type="button" value="支 付" onfocus="this.blur()" />
+                </div>
+            </div>
+            <div class="whole_list">
+                <div>
+                    <a href="javascript:;" class="delete_icon"></a>
+                    <h4 class="order_title">阳光人寿债券型投资连结账户</h4>
+                    <p>订单号：86002P0182013015922</p>
+                    <p>订单状态：<em class="red_color">待支付</em></p>
+                    <p>提交时间：2010-03-26 10：08：42</p>
+                    <input type="button" onfocus="this.blur()" value="查看详情"><input class="red_btn" type="button" value="支 付" onfocus="this.blur()" />
+                </div>
+            </div>
+            <div class="whole_list">
+                <div>
+                    <a href="javascript:;" class="delete_icon"></a>
+                    <h4 class="order_title">阳光人寿债券型投资连结账户</h4>
+                    <p>订单号：86002P0182013015922</p>
+                    <p>订单状态：<em class="red_color">待支付</em></p>
+                    <p>提交时间：2010-03-26 10：08：42</p>
+                    <input type="button" onfocus="this.blur()" value="查看详情"><input class="red_btn" type="button" value="支 付" onfocus="this.blur()" />
+                </div>
+            </div>
+            <p class="center_align">
+                <button>上一页</button>
+                <span class="page">
+                    <em>1 / 3</em>
+                    <select class="page_select">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </span>
+                <button>下一页</button>
+            </p>
+        </div>
+        <div class="tab_div">
+        	<div class="whole_list">
+                <div>
+                    <a href="javascript:;" class="delete_icon"></a>
+                    <h4 class="order_title">阳光人寿债券型投资连结账户</h4>
+                    <p>订单号：</p>
+                    <p>订单状态：<em class="red_color">待完善</em></p>
+                    <p>提交时间：2010-03-26 10：08：42</p>
+                    <input class="red_btn" type="button" onfocus="this.blur()" value="完善信息">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--提示弹框-->
+	<div class="hint_register">
+        <div class="hint_cont center_align">
+            确定要删除此订单吗？
+        </div>
+        <input type="button" value="确 定" />
+        <input type="button" value="取 消" id="btn_closed" />
+    </div>
+</body>
+</html>

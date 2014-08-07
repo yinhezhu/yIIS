@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>修改常用联系人</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<link rel="stylesheet" href="css/dateTouch.css"/>
+<script>
+	$(function(){
+		//性别改变事件
+		(function(){
+			var $div = $("div.sex_bg").parent();
+			var $i = $("i.curr_sex");
+			$div.on("touchend click",function(){
+				if(parseInt($i.css("left")) < 0){
+					$i.css("left","28px");
+				}else{
+					$i.css("left","-1px");
+				}
+				return false;
+			});
+		})();
+		
+		//选择事件
+		(function(){
+			var $select = $("select.kinds_list");
+			$select.off().on("change",function(){
+				var index = $(this).get(0).selectedIndex;
+				$(this).prev().html($(this).find("option").eq(index).text());
+			});
+		})();
+	});
+</script>
+</head>
+<body>
+    <!--top-->
+<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a><a href="javascript:;" class="delete_icon2"></a>修改常用联系人</div>
+    <!--content-->
+    <div class="pc_main cf"> 
+        <div class="pc_box">
+        	<div class="lc_box">
+                <dl class="pc_dl cf">
+                    <dt>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</dt>
+                    <dd><input type="text" value="黎明" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>证件类型</dt>
+                    <dd class="pc_w3">
+                    	<div class="kindsDD">
+                    	<span>身份证</span>
+                    	<select class="kinds_list">
+                        	<option value="01">身份证</option>
+                            <option value="02">护照</option>
+                        </select>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>证件号码</dt>
+                    <dd><input type="text" value="452419563214563256" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</dt>
+                    <dd>
+                    	<div class="sex_bg">
+                        	<i class="curr_sex"></i>
+                        	<span>男</span><span>女</span>
+                        </div>
+                        <span class="gray_color">必填</span>
+                    </dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</dt>
+                    <dd class="dataDD js_date_3"></dd>
+                </dl>
+                
+                <dl class="pc_dl cf">
+                    <dt>手机号码</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>固定电话</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>电子邮箱</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>邮政编码</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>与您关系</dt>
+                    <dd class="pc_w3">
+                    	<div class="kindsDD">
+                    	<span> &mdash; &mdash;请选择&mdash; &mdash;</span>
+                    	<select class="kinds_list">
+                        	<option value="">父母</option>
+                            <option value="">姐妹</option>
+                        </select>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>联系地址</dt>
+                    <dd class="pc_w4">
+                    	<div class="kindsDD date_width">
+                            <span>请选择</span>
+                            <select class="kinds_list">
+                                <option value="">北京</option>
+                            </select>
+                        </div>
+                        省
+                        <div class="kindsDD date_width">
+                            <span>请选择</span>
+                            <select class="kinds_list">
+                                <option value="">北京</option>
+                            </select>
+                        </div>
+                        市
+                    </dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>详细地址</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+            </div>
+            <div class="pc_btn"><input type="checkbox">设为默认</div>
+        </div>
+        <p class="pc_btn"><input type="button" value="保 存"></p>
+        
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--日期选择器 开始 -->
+    <div class="data_layer" style="display:none;">
+        <h2>2012-12-12</h2> 
+        <dl class="date_wrapper">
+            <dt>
+                <span>年</span><span>月</span><span>日</span>
+            </dt>
+            <dd>
+                <div class="date_bg">
+                    <span class="date_mask">ss</span>
+                    <div class="handle_1"></div>
+                    <div class="handle_2"></div>
+                    <div class="handle_3"></div>
+                    <ul class="data_list cf">
+                        <li>
+                            <div class="move_list">
+                                <span>2013</span>
+                                <span>2014</span>
+                                <span>2015</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="move_list">
+                                <span>01</span>
+                                <span>02</span>
+                                <span>03</span>
+                                <span>04</span>
+                                <span>05</span>
+                                <span>06</span>
+                                <span>07</span>
+                                <span>08</span>
+                                <span>09</span>
+                                <span>10</span>
+                                <span>11</span>
+                                <span>12</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="move_list">
+                                <span>11</span>
+                                <span>12</span>
+                                <span>01</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <p class="btn"><button>确定</button>&nbsp;<button>取消</button></p>
+    </div>
+    <script src="js/sea.js"></script>
+    <script>
+		//载入时间选择器入口模块
+        seajs.use("./js/touchDate/dateIndex.js")
+    </script>
+    <!-- 日期选择器 结束 -->
+</body>
+</html>

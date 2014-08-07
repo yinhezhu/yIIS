@@ -1,0 +1,94 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>理财一号-投保告知</title>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//是 否 选择功能模块
+	(function(){
+		var $ems = $("span.lc_choose").find("em");
+		$ems.off().on("touchend",function(){
+			$ems.removeClass("on");
+			$(this).addClass("on");
+		});
+	})();
+	
+	//单击下一步 功能模块
+	(function(){
+		var $ems = $("span.lc_choose").find("em");
+		var $button = $("input[value='下一步']");
+		var $window = $("div.hint_over");
+		var $oMark = $("<div id='mark'></div>");
+		$button.off().on("touchend",function(){
+			if($ems.eq(0).hasClass("on")){
+				$window.fadeIn();
+				$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+				if($("#mark").size()){
+					$("#mark").show().css("position","fixed");
+					
+				}else{
+					$oMark.appendTo($("body"));
+					$("#mark").css("position","fixed");
+				}
+				setTimeout(function(){
+					$("#mark").hide();
+					$window.fadeOut();
+				},1500);	
+			}
+		});
+	})();
+});
+</script>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>投保告知</div>
+    <!--content-->
+    <div class="main cf">
+        <div class="pc">
+            <p>1）您是否曾经或目前患有下列疾病：精神疾病、智力障碍、恶性肿瘤、冠心病、心绞痛、心律失常、先天性心脏病、风湿性心脏病、心肌病、心力衰竭、心肌梗塞、脑血管疾病、重症肌无力、多发性硬化、呼吸衰竭、肺心病、帕金森氏病、肝硬化、肾功能不全、慢性肾炎、再生障碍性贫血、白血病、淋巴瘤、癫痫、慢性酒精中毒、系统性红斑狼疮、阿尔兹海默氏病(老年痴呆症)、肢体残疾、遗传性疾病、艾滋病或艾滋病毒携带者、曾经或正在吸毒。</p>  
+            <p>2）您是否从事如潜水、跳伞、滑翔、攀岩、探险、武术比赛、摔跤比赛、特技表演、赛马、赛车、私人性质飞行活动（乘客身份搭乘民航客机除外）等任何带有危险性的活动或有此类嗜好。</p> 
+            <p>3）您是否在投保本公司或其他保险公司产品时曾被拒保或延期承保。</p> 
+            <p>4）您是否:</p> 
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;a) 职业涉及或接触任何危险物（化学物质、爆炸物、有毒物质）；</p> 
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;b）涉及高空作业、空中或海上作业、潜水或水下作业、隧道坑道或井下作业、特技演员、驯兽员、爆破人员、战地记者、机械加工业搬运工、电讯电台及电力部门天线设施的制造、安装、维修人员；</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;c）是现役军、警人员中的下列人员：地面部队人员、海军陆战队人员、水兵、空军飞行员、前线军人、特种部队人员、防爆警察及负有特殊任务者；</p> 
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;d）是曲棍球、橄榄球球员、滑雪教练、滑雪运动员；</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;e）正在或计划参加私人飞行、赛车、竞马、潜水、登山攀岩或从事危险性运动。</p>            
+        </div>
+        <div class="center_align">
+        	<span class="lc_choose">
+            	<em>是</em><em>否</em>
+            </span>
+        </div>
+        <p class="btn_wrapper btn_width"><input class="gray_btn" type="button" value="上一步"><input class="gray_btn" type="button" value="下一步"></p>
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+    	<p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a href="#" class="help_icon">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--错误提示框-->
+    <div class="hint_over">
+    	<div class="hint_cont center_align">不符合投保条件！</div>
+    </div> 
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>车险-填写资料</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<link rel="stylesheet" href="css/dateTouch.css"/>
+<script>
+	$(function(){
+		//性别改变事件
+		(function(){
+			var $div = $("div.sex_bg").parent();
+			var $i = $("i.curr_sex");
+			var $show = $("dl.js_d_witch");
+			$div.on("touchend click",function(){
+				if(parseInt($i.css("left")) < 0){
+					$i.css("left","28px");
+					$show.show();
+				}else{
+					$i.css("left","-1px");
+					$show.hide();
+				}
+				return false;
+			});
+		})();
+	});
+</script>
+</head>
+<body>
+    <!--top-->
+<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>车险资料补充</div>
+    <!--content-->
+    <div class="pc_main cf">
+        <div class="pc_box">
+			<p class="padding_b10"><span class="gray_color">为了帮您计算最合理的保费，请完善您的车辆信息。</span></p>
+        	<div class="mohu_div" style="display:none;">
+            	<p>斯柯达 1  基本信息 内容展示 最多为两行内容具体内容见接口</p>
+                <p>斯柯达 1  基本信息 内容展示 最多为两行内容具体内容见接口</p>
+                <p>斯柯达 1  基本信息 内容展示 最多为两行内容具体内容见接口</p>
+                <p>斯柯达 1  基本信息 内容展示 最多为两行内容具体内容见接口</p>
+                <p>斯柯达 1  基本信息 内容展示 最多为两行内容具体内容见接口</p>
+                <p>斯柯达 1  基本信息 内容展示 最多为两行内容具体内容见接口</p>
+            </div>
+        	<div class="lc_box">
+                <p class="lc_box_p">请根据行驶证填写以下信息：</p>
+                <dl class="pc_dl_sp">
+                	<dt><img src="images/upload/xingshizheng.png" ></dt>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                  <dt>品牌型号</dt>
+                    <dd class="pc_w3"><div class="k_w pst"><input type="search" placeholder="请输入品牌型号进行搜索" /><a class="car_closeIcon" href="javascript:;"></a></div></dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>发动机号</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>车架号</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>注册登记日期</dt>
+                    <dd class="dataDD js_date_3 pc_w5"></dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>是否过户车</dt>
+                    <dd class="pc_w3">
+                    	<div class="sex_bg">
+                        	<i class="curr_sex"></i>
+                        	<span>是</span><span>否</span>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf js_d_witch" style="display:none;">
+                    <dt>过户日期</dt>
+                    <dd class="dataDD js_date_0 pc_w3"></dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>车主</dt>
+                    <dd class="pc_w4">
+                    	<input type="text" />
+                    </dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>身份证号码</dt>
+                    <dd class="pc_w3"><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>商业险起保日期</dt>
+                    <dd class="dataDD js_date_1 pc_w5"></dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>交强险起保日期</dt>
+                    <dd class="dataDD js_date_2 pc_w5"></dd>
+                </dl>
+            </div>
+        </div>
+        <p class="pc_btn"><input type="button" value="提交"></p>
+        
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--日期选择器 开始 -->
+    <div class="data_layer" style="display:none;">
+        <h2>2012-12-12</h2> 
+        <dl class="date_wrapper">
+            <dt>
+                <span>年</span><span>月</span><span>日</span>
+            </dt>
+            <dd>
+                <div class="date_bg">
+                    <span class="date_mask">ss</span>
+                    <div class="handle_1"></div>
+                    <div class="handle_2"></div>
+                    <div class="handle_3"></div>
+                    <ul class="data_list cf">
+                        <li>
+                            <div class="move_list">
+                                <span>2013</span>
+                                <span>2014</span>
+                                <span>2015</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="move_list">
+                                <span>01</span>
+                                <span>02</span>
+                                <span>03</span>
+                                <span>04</span>
+                                <span>05</span>
+                                <span>06</span>
+                                <span>07</span>
+                                <span>08</span>
+                                <span>09</span>
+                                <span>10</span>
+                                <span>11</span>
+                                <span>12</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="move_list">
+                                <span>11</span>
+                                <span>12</span>
+                                <span>01</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <p class="btn"><button>确定</button>&nbsp;<button>取消</button></p>
+    </div>
+    <script src="js/sea.js"></script>
+    <script>
+		//载入时间选择器入口模块
+        seajs.use("./js/touchDate/dateIndexLimitA.js")
+    </script>
+    <!-- 日期选择器 结束 -->
+</body>
+</html>

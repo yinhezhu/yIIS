@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>账户价值试算-连投险</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//弹框功能模块
+		(function(){
+			var $button = $("input[value='提 交']");
+			var $window = $("div.hint_register");
+			var $oMark = $("<div id='mark'></div>");
+			$button.off().on("touchend click",function(){
+				$window.show();
+				$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+				if($("#mark").size()){
+					$("#mark").show().css("position","fixed");
+					
+				}else{
+					$oMark.appendTo($("body"));
+					$("#mark").css("position","fixed");
+				}
+			});
+			// 窗口大小改变时，弹出层的位置也相应改变
+			$(window).on("resize",function(){
+				$oMark.css({
+					width : Math.max($('body').width(),$(window).width()) + 'px' ,
+					height: Math.max($('body').height(),$(window).height()) + 'px'
+				});
+				$window.css({
+					marginTop: -$window.height()/2 + 'px' , 
+					marginLeft: -$window.width()/2 + 'px'  
+				});
+			});
+			//点击取消 关闭弹层	
+			$("#btn_closed").on("touchend click",function(){
+				$oMark.hide();
+				$window.hide();
+			});
+		})();
+		//手机验证模块
+		(function(){
+			var $phone = $("h4:contains('手机验证')");
+			var $phoneDiv = $("div.lc_sb");	
+			$phone.on("touchend click",function(){
+				$phoneDiv.show();
+			});
+		})();
+});
+</script>
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>账户价值试算</div>
+    <!--content-->
+    <div class="main cf">
+    	<div class="details_list">
+        	<h4>保单账户信息</h4>
+            <ul>              
+                <li><span>最近单位价格</span><i>1000.00</i></li>
+                <li><span>追加保费金额</span><i>1000.00</i></li>
+                <li><span>追加单位数估算</span><i>1000.00</i></li>
+                <li class="gray_color">以上单位数的估算仅供参考，实际单位数以结算后的单位数为准，谢谢！</li>
+            </ul>
+        </div>
+        <p class="lc_btn"><!--<input type="button" value="返回修改">--><input type="button" value="提 交"></p>
+       
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--提示弹框1-->
+	<div class="hint_register">
+        <div class="hint_cont center_align">
+            如您因各种原因未支付成功，24小时候我们将自动撤销您的本次申请。在此期间，该单不能进行任何保全操作，敬请谅解。<br>您确认追加投资吗？
+        </div>
+        <input type="button" value="确 定" />
+        <input type="button" value="取 消" id="btn_closed" />
+    </div>
+</body>
+</html>

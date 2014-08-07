@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>理财一号-支付</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script>
+	$(function(){
+		//选择事件
+		(function(){
+			var $select = $("select.kinds_list");
+			var $span = $select.parent().find("span");
+			$select.off().on("change",function(){
+				var index = $(this).get(0).selectedIndex;
+				$(this).prev().html($(this).find("option").eq(index).text());
+			});
+		})();
+		//弹框功能模块
+		(function(){
+			var $button = $("input[value='确认支付']");
+			var $window = $("div.hint_over");
+			var $content = $("div.hint_cont");
+			var $oMark = $("<div id='mark'></div>");
+			var $check  = $("#check");
+			$button.off().on("touchend click",function(){
+				$window.show();
+				if($check.attr("checked")=="checked"){
+					$content.html("我公司将会从您的账户中自动扣款，请保证该账户有足够的金额。");
+				}else{
+					$content.html("请选择同意声明！");
+				}
+				$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+				if($("#mark").size()){
+					$("#mark").show().css("position","fixed");
+					
+				}else{
+					$oMark.appendTo($("body"));
+					$("#mark").css("position","fixed");
+				}
+			});
+			// 窗口大小改变时，弹出层的位置也相应改变
+			$(window).on("resize",function(){
+				$oMark.css({
+					width : Math.max($('body').width(),$(window).width()) + 'px' ,
+					height: Math.max($('body').height(),$(window).height()) + 'px'
+				});
+				$window.css({
+					marginTop: -$window.height()/2 + 'px' , 
+					marginLeft: -$window.width()/2 + 'px'  
+				});
+			});
+			//点击取消 关闭弹层	
+			$("#btn_closed").on("touchend click",function(){
+				$oMark.hide();
+				$window.hide();
+			});
+		})();
+	});
+</script>
+</head>
+<body>
+    <!--top-->
+<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>支付</div>
+    <!--content-->
+    <div class="pc_main cf">
+        <h2 class="pc_title">支付信息</h2>
+        <div class="pc_box">
+            <dl class="pc_dl cf">
+                <dt>订&nbsp;&nbsp;单&nbsp;&nbsp;号</dt>
+                <dd>SMG201310781229886105887</dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品</dt>
+                <dd>理财一号</dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>支付金额</dt>
+                <dd>5657元</dd>
+            </dl>
+        </div>
+        <h2 class="pc_title">支付银行</h2>
+        <div class="pc_box">
+            <dd class="kindsDD">
+                <span> &mdash; &mdash; &mdash;请选择支付银行&mdash; &mdash; &mdash;</span>
+                <select class="kinds_list">
+                    <option value="01">中国农业银行</option>
+                    <option value="02">中国建设银行</option>
+                </select>
+            </dd>
+            <div class="lc_box" style="margin-top:14px;">
+            	<dl class="pc_dl pc_7 cf">
+                    <dt>支付账号</dt>
+                    <dd><input type="text" placeholder="请输入支付账号"></dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>开户行所在地</dt>
+                    <dd class="kindsDD pc_w2">
+                        <span>&mdash; &mdash;请选择&mdash; &mdash;</span>
+                        <select class="kinds_list">
+                            <option value="">北京</option>
+                            <option value="">广州</option>
+                        </select>
+                    </dd>
+                </dl>
+            </div>
+            <p class="gray_color">请使用本人的借记卡进行支付</p>
+        </div>
+        <div class="pc_btn"><input type="checkbox" id="check" />同意<a class="blue" href="javascript:;">《保险费自动转账授权声明》</a></div>
+        <p class="pc_btn"><input type="button" value="确认支付"></p>
+        
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--提示弹框-->
+	<div class="hint_over">
+        <div class="hint_cont center_align">
+
+        </div>
+        <input type="button" value="确 定" id="btn_closed" />
+    </div>
+</body>
+</html>

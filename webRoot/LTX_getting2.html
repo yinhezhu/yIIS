@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>部分领取2-连投险</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+		//弹框功能模块
+		(function(){
+			var $window = $("div.hint_over");
+			var $oMark = $("<div id='mark'></div>");
+			
+				$window.show();
+				$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+				if($("#mark").size()){
+					$("#mark").show().css("position","fixed");
+					
+				}else{
+					$oMark.appendTo($("body"));
+					$("#mark").css("position","fixed");
+				}
+			
+			// 窗口大小改变时，弹出层的位置也相应改变
+			$(window).on("resize",function(){
+				$oMark.css({
+					width : Math.max($('body').width(),$(window).width()) + 'px' ,
+					height: Math.max($('body').height(),$(window).height()) + 'px'
+				});
+				$window.css({
+					marginTop: -$window.height()/2 + 'px' , 
+					marginLeft: -$window.width()/2 + 'px'  
+				});
+			});
+			//点击取消 关闭弹层	
+			$("#btn_closed").on("touchend click",function(){
+				$oMark.hide();
+				$window.hide();
+			});
+		})();
+		//单选框
+		(function(){
+			var $radioBtn = $(".radio_btn");
+				$radioBtn.off().on("touchend click",function(){
+					var $this = $(this);
+					if($this.attr("class")=="radio_btn"){
+						$this.attr("class","radio_btn_on")	
+					}else{
+						$this.attr("class","radio_btn")	
+					}
+				});
+		})();
+		//手机验证模块
+		(function(){
+			var $phone = $("input[value='获取手机验证码']");
+			var $phoneDiv = $("div.phone");	
+			$phone.on("touchend click",function(){
+				$(this).parent(".lc_btn").hide();
+				$phoneDiv.show();
+			});
+		})();
+});
+</script>
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>部分领取</div>
+    <!--content-->
+    <div class="main cf">
+    	<div class="details_list">
+        	<h4>保单账户信息</h4>
+            <ul>              
+            	<li><span>现有单位数</span><i>1000.00</i></li>
+                <li><span>本次领取单位数</span><i>1000.00</i></li>
+                <li><span>领取后单位数</span><i>1000.00</i></li>
+                <li><span>手续费</span><i>1000.00<br><em class="gray_color">（注：为领取账户价值的0.5%）</em></i></li>
+                <li><span>领取后账户价值估算</span><i>900</i></li>
+                <li class="gray_color">(以上金额仅供参考，实际账户价值以结算后的金额为准)</li>
+            </ul>
+        </div>
+        <div class="details_list">
+        	<h4 class="no_border_b">缴费银行账号</h4>
+            <div class="service_table">
+                <table class="table_list margin_t">
+                    <colgroup>
+                        <col class="w_20">
+                        <col class="w_30">
+                        <col class="w_50">
+                    </colgroup>
+                    <tbody><tr>   
+                        <th>选择</th>
+                        <th>开户户名</th>
+                        <th>缴费账号</th>
+                    </tr>
+                    <!--列表数据循环开始-->
+                    <tr>
+                        <td><em class="radio_btn"></em></td>
+                        <td>张小飞</td>
+                        <td>7894345002343254</td>
+                    </tr>
+                    <tr>
+                        <td><em class="radio_btn"></em></td>
+                        <td>张小飞</td>
+                        <td>7894345002343254</td>
+                    </tr>
+                    <tr>
+                        <td><em class="radio_btn"></em></td>
+                        <td>张小飞</td>
+                        <td>7894345002343254</td>
+                    </tr>
+                    <!--列表数据循环结束-->
+                </tbody></table>
+                <em class="gray_color" id="toTop">部分领取/退保的资金只能退到您首次缴费及追加缴费所使用过的您本人的银行账号。</em>  
+            </div>
+            
+        </div>
+        <p class="lc_btn"><input type="button" value="获取手机验证码" onClick="window.location.href='#toTop'"></p>
+        <div class="phone">
+            <div class="details_list">
+                <h4><a>手机验证</a></h4>
+                <div class="lc_sb">
+                    <p class="f_12">已向138****1380发送手机验证码，请注意查收！</p>
+                    <dl class="check gray_input cf">
+                        <dd><input type="text" class="text_left borderBox" /></dd>
+                        <dd><button>(<em>60</em>)秒后重新发送</button></dd>
+                        
+                    </dl>
+                    <p class="f_12">如1分钟内没收到，请点击发送验证码重新获取。</p>
+                </div>
+            </div>
+            <p class="red_color">验证码输入错,误请重新输入!</p>
+            <p class="lc_btn"><input type="button" value="提 交"></p>
+        </div>
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--提示弹框-->
+    <div class="hint_over">
+        <div class="hint_cont center_align">
+			尊敬的客户，您好。如果您不急于使用资金，建议您长期投资，长期投资不仅能够避免波段操作失误带来的风险，也有利于获取收益。
+        </div>
+        <input type="button" value="继 续" id="btn_closed" />
+    </div>
+</body>
+</html>

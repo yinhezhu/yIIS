@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>特惠版-支付</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<link rel="stylesheet" href="css/dateTouch.css"/>
+<script>
+	$(function(){
+		//性别改变事件
+		(function(){
+			var $div = $("div.sex_bg").parent();
+			var $i = $("i.curr_sex");
+			$div.on("touchend click",function(){
+				if(parseInt($i.css("left")) < 0){
+					$i.css("left","28px");
+				}else{
+					$i.css("left","-1px");
+				}
+				return false;
+			});
+		})();
+		
+		//证件选择事件
+		(function(){
+			var $select = $("select.kinds_list");
+			var $span = $select.parent().find("span");
+			$select.off().on("change",function(){
+				var index = $(this).get(0).selectedIndex;
+				$span.html($(this).find("option").eq(index).text());
+			});
+		})();
+	});
+</script>
+</head>
+<body>
+    <!--top-->
+<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>支付</div>
+    <!--content-->
+    <div class="pc_main cf">
+        <h2 class="pc_title">支付信息</h2>
+        <div class="pc_box">
+            <dl class="pc_dl cf">
+                <dt>订&nbsp;&nbsp;单&nbsp;&nbsp;号</dt>
+                <dd><a href="#">SMG201310781229886105887</a></dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品</dt>
+                <dd>10 份</dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>支付金额</dt>
+                <dd>5657元</dd>
+            </dl>
+        </div>
+        <h2 class="pc_title">请您输入支付信息</h2>
+        <div class="pc_box">
+        	<div class="lc_box">
+                <dl class="pc_dl pc_7 cf">
+                    <dt>信用卡卡号</dt>
+                    <dd><input type="text" placeholder="请输入信用卡卡号" /></dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>有效期</dt>
+                    <dd class="pc_w1">
+                    	<div class="kindsDD date_width">
+                            <span>有效期月</span>
+                            <select class="kinds_list">
+                                <option value="">1</option>
+                            </select>
+                        </div>
+                        月
+                        <div class="kindsDD date_width">
+                            <span>有效期年</span>
+                            <select class="kinds_list">
+                                <option value="">2013</option>
+                            </select>
+                        </div>
+                        年
+                        <p class="gray_color">示例12月2013年</p>
+                    </dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>CVV2</dt>
+                    <dd><input type="text" placeholder="信用卡背面后三位" /></dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>持卡人姓名</dt>
+                    <dd><input type="text" placeholder="请输入持卡人姓名" /></dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>持卡人证件类型</dt>
+                    <dd class="kindsDD pc_w2">
+                        <span>&mdash; &mdash;请选择&mdash; &mdash;</span>
+                        <select class="kinds_list">
+                            <option value="01">身份证</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="pc_dl pc_7 cf">
+                    <dt>持卡人证件号</dt>
+                    <dd class="pc_w3"><input type="text" placeholder="请输入持卡人证件号" /></dd>
+                </dl>
+            </div>
+        </div>
+        <p class="pc_btn"><input type="button" value="确认支付"></p>
+        
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+</body>
+</html>

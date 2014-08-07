@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>关注阳光保险微信公众平台</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script>
+	$(function(){
+
+		//弹框功能模块
+		(function(){
+			var $button = $("#code");
+			var $window = $(".weixin_layer");
+			var $oMark = $("<div id='mark'></div>");
+			$button.off().on("touchend click",function(){
+				$window.show();
+				$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+				if($("#mark").size()){
+					$("#mark").show().css("position","fixed");
+					
+				}else{
+					$oMark.appendTo($("body"));
+					$("#mark").css("position","fixed");
+				}
+			});
+			// 窗口大小改变时，弹出层的位置也相应改变
+			$(window).on("resize",function(){
+				$oMark.css({
+					width : Math.max($('body').width(),$(window).width()) + 'px' ,
+					height: Math.max($('body').height(),$(window).height()) + 'px'
+				});
+				$window.css({
+					marginTop: -$window.height()/2 + 'px' , 
+					marginLeft: -$window.width()/2 + 'px'  
+				});
+			});
+			// 关闭弹层	
+			$("#mark,.weixin_layer").on("touchend click",function(){
+				$("#mark").hide();
+				$window.hide();
+			});
+		})();
+	});
+</script>
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>关注阳光保险微信公众平台</div>
+    <!--content-->
+    <div class="pc_main cf">
+    	<div class="pc_box">
+        	<p class="pc_txt">扫描二维码关注<span class="orange_color">阳光保险</span>微信公众账号。</p>	
+            <p class="pc_txt center_align"><img src="images/upload/code.jpg" id="code" /></p>
+            <dl class="lc_tips">
+                <dt class="wb">关注方法：</dt>
+                <dd>1、打开微信-----添加朋友----查找微信公众账号输入："<span class="orange_color">阳光保险官网</span>"即可查找</dd>
+                <dd>2、打开微信------上方二维码-----扫一扫</dd>
+                <dd>3、打开微信------添加朋友-----搜号码输入"<span class="orange_color">阳光保险官网</span>"</dd>
+            </dl>
+        </div>	
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--提示弹框-->
+    <div id="mark"></div>
+	<div class="weixin_layer">
+		<img src="images/upload/code_big.jpg" />
+    </div>
+</body>
+</html>

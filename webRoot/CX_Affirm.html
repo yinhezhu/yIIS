@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>车险信息确认</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script>
+	$(function(){
+		//选择事件
+		(function(){
+			var $select = $("select.kinds_list");
+			$select.off().on("change",function(){
+				var index = $(this).get(0).selectedIndex;
+				$(this).prev().html($(this).find("option").eq(index).text());
+			});
+		})();
+	});
+</script>
+</head>
+<body>
+    <!--top-->
+<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>信息确认</div>
+    <!--content-->
+    <div class="pc_main cf">
+    	
+        <div class="pc_box">
+        	<h2 class="cx_title">车主信息</h2>
+        	<div class="lc_box">
+                <dl class="pc_dl cf">
+                    <dt>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>证件号码</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>手机号码</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+            </div>
+            <h2 class="cx_title">投保人信息&nbsp;&nbsp;<input type="checkbox"><span class="gray_color">同车主信息</span></h2>
+        	<div class="lc_box">
+                <dl class="pc_dl cf">
+                    <dt>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>证件号码</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>手机号码</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+            </div>
+             <h2 class="cx_title">被保险人信息&nbsp;&nbsp;<input type="checkbox"><span class="gray_color">同车主信息</span></h2>
+             <p class="gray_color">被保险人通常是车主，赔款将支付给被保险人</p>
+             <h2 class="cx_title">投保信息</h2>
+             <table class="cx_table">
+                <colgroup>
+                    <col class="w_40" />
+                    <col class="w_60" />
+                </colgroup>
+                <tr>
+                    <th>险种</th>
+                    <th>保险期间</th>
+                </tr>
+                <tr>
+                    <td>商业险</td>
+                    <td>2013年9月23日 0时 起 至<br>2014年9月22日24时 止</td>
+                </tr>
+                <tr>
+                    <td>交强险</td>
+                    <td>2013年9月23日 0时 起 至<br>2014年9月22日24时 止</td>
+                </tr>
+            </table>
+            <h2 class="cx_title">保单配送信息</h2>
+            <p class="gray_color">在您支付完成后，服务专员将按此地址为您上门递送保单和发票</p>
+            <div class="lc_box">
+            	<dl class="pc_dl cf">
+                    <dt>配送地址</dt>
+                    <dd class="pc_w4">
+                    	<div class="kindsDD date_width">
+                            <span>请选择</span>
+                            <select class="kinds_list">
+                                <option value="">北京</option>
+                            </select>
+                        </div>
+                        省
+                        <div class="kindsDD date_width">
+                            <span>请选择</span>
+                            <select class="kinds_list">
+                                <option value="">北京</option>
+                            </select>
+                        </div>
+                        市
+                    </dd>
+                </dl>
+            </div>
+			<p class="cx_pay_section"><input type="text" placeholder="请输入详细地址" class="pay_input borderBox"></p>
+        </div>
+        <p class="pc_btn"><input type="button" value="下一步"></p>
+        
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>理财一号-填写资料</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<link rel="stylesheet" href="css/dateTouch.css"/>
+<script>
+	$(function(){
+		//性别改变事件
+		(function(){
+			var $div = $("div.sex_bg").parent();
+			var $i = $("i.curr_sex");
+			$div.on("touchend click",function(){
+				if(parseInt($i.css("left")) < 0){
+					$i.css("left","28px");
+				}else{
+					$i.css("left","-1px");
+				}
+				return false;
+			});
+		})();
+		
+		//证件选择事件
+		(function(){
+			var $select = $("select.kinds_list");
+			var $span = $select.parent().find("span");
+			$select.off().on("change",function(){
+				var index = $(this).get(0).selectedIndex;
+				$span.html($(this).find("option").eq(index).text());
+			});
+		})();
+		
+		//删除 功能模块
+	(function(){
+		var $button = $("input[value='保 存']");
+		var $window = $("div.hint_register");
+		var $oMark = $("<div id='mark'></div>");
+		$button.off().on("touchend click",function(){
+			$window.show();
+			$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+			if($("#mark").size()){
+				$("#mark").show().css("position","fixed");
+				
+			}else{
+				$oMark.appendTo($("body"));
+				$("#mark").css("position","fixed");
+			}
+		});
+		// 窗口大小改变时，弹出层的位置也相应改变
+		$(window).on("resize",function(){
+			$oMark.css({
+				width : Math.max($('body').width(),$(window).width()) + 'px' ,
+				height: Math.max($('body').height(),$(window).height()) + 'px'
+			});
+			$window.css({
+				marginTop: -$window.height()/2 + 'px' , 
+				marginLeft: -$window.width()/2 + 'px'  
+			});
+		});
+		//点击取消 关闭弹层	
+		$("#btn_closed").on("touchend click",function(){
+			$oMark.hide();
+			$window.hide();
+		});
+	})();
+	});
+</script>
+</head>
+<body>
+    <!--top-->
+<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>填写资料</div>
+    <!--content-->
+    <div class="pc_main cf">
+        <h2 class="pc_title">投保产品信息</h2>
+        <div class="pc_box">
+            <dl class="pc_dl cf">
+                <dt>产品名称</dt>
+                <dd>理财一号</dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>购买份数</dt>
+                <dd>10 份</dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;费</dt>
+                <dd><span class="red_color">10000.00</span>元</dd>
+            </dl>
+            <span class="pc_bold">保险生效日期</span>
+			<p>期投保成功后第2天零时生效<span class="gray_color">（付款成功后次日零时生效）</span></p>
+
+        </div>
+        <h2 class="pc_title">您(投保人暨被保险人)的个人信息</h2>
+        <div class="pc_box">
+        	<div class="lc_box">
+                <dl class="pc_dl cf">
+                    <dt>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>手机号码</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>电子邮箱</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>身份证号</dt>
+                    <dd><input type="text" placeholder="需与支付账号开户时提供信息一致" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>通讯地址</dt>
+                    <dd class="pc_w4">
+                    	<div class="kindsDD date_width">
+                            <span>请选择省</span>
+                            <select class="kinds_list">
+                                <option value="">北京</option>
+                            </select>
+                        </div>&nbsp;
+                        <div class="kindsDD date_width">
+                            <span>请选择市</span>
+                            <select class="kinds_list">
+                                <option value="">北京</option>
+                            </select>
+                        </div>
+                        
+                    </dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>详细地址</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+                <dl class="pc_dl cf">
+                    <dt>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编</dt>
+                    <dd><input type="text" /></dd>
+                </dl>
+            </div>
+        </div>
+        <h2 class="pc_title">受益人信息：法定</h2>
+        <div class="pc_box">
+            <div class="pc_notice">
+            	<p>您(投保人)是否患有或存在《<a href="#" class="blue2">健康及其他声明信息</a>》中所询问事项</p>
+                <div class="h_34">
+                <div class="sex_bg">
+                    <i class="curr_sex"></i>
+                    <span>是</span><span>否</span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <p class="pc_btn btn_width"><input type="button" value="保 存"><input type="button" value="下一步"></p>
+        
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--日期选择器 开始 -->
+    <div class="data_layer" style="display:none;">
+        <h2>2012-12-12</h2> 
+        <dl class="date_wrapper">
+            <dt>
+                <span>年</span><span>月</span><span>日</span>
+            </dt>
+            <dd>
+                <div class="date_bg">
+                    <span class="date_mask">ss</span>
+                    <div class="handle_1"></div>
+                    <div class="handle_2"></div>
+                    <div class="handle_3"></div>
+                    <ul class="data_list cf">
+                        <li>
+                            <div class="move_list">
+                                <span>2013</span>
+                                <span>2014</span>
+                                <span>2015</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="move_list">
+                                <span>01</span>
+                                <span>02</span>
+                                <span>03</span>
+                                <span>04</span>
+                                <span>05</span>
+                                <span>06</span>
+                                <span>07</span>
+                                <span>08</span>
+                                <span>09</span>
+                                <span>10</span>
+                                <span>11</span>
+                                <span>12</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="move_list">
+                                <span>11</span>
+                                <span>12</span>
+                                <span>01</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <p class="btn"><button>确定</button>&nbsp;<button>取消</button></p>
+    </div>
+    <script src="js/sea.js"></script>
+    <script>
+		//载入时间选择器入口模块
+        seajs.use("./js/touchDate/dateIndex.js")
+    </script>
+    <!-- 日期选择器 结束 -->
+    <!--提示弹框-->
+	<div class="hint_register">
+        <div class="hint_cont center_align">
+            确认保存离开吗？
+        </div>
+        <input type="button" value="确 定" />
+        <input type="button" value="取 消" id="btn_closed" />
+    </div>
+</body>
+</html>

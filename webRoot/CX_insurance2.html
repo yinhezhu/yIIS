@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>选择商业险</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script>
+	$(function(){
+		//性别改变事件
+		(function(){
+			var $div = $("div.sex_bg2");
+			$div.on("touchend click",function(){
+				var $i = $(this).find(".curr_sex2");
+				if(parseInt($i.css("left")) < 0){
+					$i.css("left","49px");
+				}else{
+					$i.css("left","-1px");
+				}
+				return false;
+			});
+		})();
+		
+		//选择事件
+		(function(){
+			var $select = $("select.kinds_list");
+			$select.off().on("change",function(){
+				var index = $(this).get(0).selectedIndex;
+				$(this).prev().html($(this).find("option").eq(index).text());
+			});
+		})();
+	});
+</script>
+</head>
+<body>
+    <!--top-->
+<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>选择商业险</div>
+    <!--content-->
+    <div class="pc_main cf">
+    	
+        <div class="pc_box">
+			 <h2 class="cx_title">
+            	<span class="left">商业险(基本险)</span>
+                <span class="right">单位(元)</span>
+             </h2>
+             <table class="cx_table">
+                <colgroup>
+                    <col class="w_40" />
+                    <col class="w_40" />
+                    <col class="w_20" />
+                </colgroup>
+                <tr>
+                    <th>险种</th>
+                    <th>保额</th>
+                    <th>保费</th>
+                </tr>
+                <tr>
+                    <td>机动车损失保险</td>
+                    <td>
+                    	<div class="kindsDD">
+                            <span>请选择</span>
+                            <select class="kinds_list">
+                                <option value="">1000</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>1500</td>
+                </tr>
+                <tr>
+                    <td>第三者责任险</td>
+                    <td>
+                    	<div class="kindsDD">
+                            <span>请选择</span>
+                            <select class="kinds_list">
+                                <option value="">1000</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>500</td>
+                </tr>
+                <tr>
+                    <td>司机责任险</td>
+                    <td>
+                    	<div class="kindsDD">
+                            <span>请选择</span>
+                            <select class="kinds_list">
+                                <option value="">1000</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>800</td>
+                </tr>
+                <tr>
+                    <td>乘客责任险</td>
+                    <td>
+                    	<div class="kindsDD">
+                            <span>请选择</span>
+                            <select class="kinds_list">
+                                <option value="">1000</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>800</td>
+                </tr>
+            </table>
+            <h2 class="cx_title">基本险不计免赔</h2>
+        	<div class="lc_box">
+                <dl class="pc_dl cf cx_w">
+                    <dt>车辆损失险</dt>
+                    <dd>
+                    	<div class="sex_bg2">
+                        	<i class="curr_sex2"></i>
+                        	<span>投保</span><span>不投保</span>
+                        </div>
+                        <span>0</span>
+                    </dd>
+                </dl>
+                <dl class="pc_dl cf cx_w">
+                    <dt>商业第三者责任险</dt>
+                    <dd>
+                    	<div class="sex_bg2">
+                        	<i class="curr_sex2"></i>
+                        	<span>投保</span><span>不投保</span>
+                        </div>
+                        <span>500</span>
+                    </dd>
+                </dl>
+                <dl class="pc_dl cf cx_w">
+                    <dt>司机座位责任险</dt>
+                    <dd>
+                    	<div class="sex_bg2">
+                        	<i class="curr_sex2"></i>
+                        	<span>投保</span><span>不投保</span>
+                        </div>
+                        <span>0</span>
+                    </dd>
+                </dl>
+                <dl class="pc_dl cf cx_w">
+                    <dt>乘客座位责任险</dt>
+                    <dd>
+                    	<div class="sex_bg2">
+                        	<i class="curr_sex2"></i>
+                        	<span>投保</span><span>不投保</span>
+                        </div>
+                        <span>800</span>
+                    </dd>
+                </dl>
+               
+            </div>
+            <h2 class="cx_title">
+            	<span class="left">商业险(附加险)</span>
+                <span class="right">单位(元)</span>
+             </h2>
+             <table class="cx_table">
+                <colgroup>
+                    <col class="w_40" />
+                    <col class="w_40" />
+                    <col class="w_20" />
+                </colgroup>
+                <tr>
+                    <th>险种</th>
+                    <th>保额</th>
+                    <th>保费</th>
+                </tr>
+                <tr>
+                    <td>机动车损失保险</td>
+                    <td>
+                    	<div class="kindsDD">
+                            <span>请选择</span>
+                            <select class="kinds_list">
+                                <option value="">1000</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>1500</td>
+                </tr>
+                <tr>
+                    <td>第三者责任险</td>
+                    <td>
+                    	<div class="kindsDD">
+                            <span>请选择</span>
+                            <select class="kinds_list">
+                                <option value="">1000</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>500</td>
+                </tr>
+                <tr>
+                    <td>全车盗抢险</td>
+                    <td>
+                    	<div class="kindsDD">
+                            <span>请选择</span>
+                            <select class="kinds_list">
+                                <option value="">1000</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>800</td>
+                </tr>
+                <tr>
+                    <td>车上人员责任险</td>
+                    <td>
+                    	<div class="kindsDD">
+                            <span>请选择</span>
+                            <select class="kinds_list">
+                                <option value="">1000</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>800</td>
+                </tr>
+            </table>
+            <h2 class="cx_title">交强险</h2>
+        	<div class="lc_box">
+                <dl class="pc_dl cf">
+                    <dd class="pc_w6">
+                    	<div class="sex_bg2">
+                        	<i class="curr_sex2"></i>
+                        	<span>投保</span><span>不投保</span>
+                        </div>&nbsp;
+                        交强险<span>950.00</span>&nbsp;车船税<span>350.00</span>
+
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <p class="cx_prise">市场价：36926.00 <span class="red_color">￥16925.00</span><input type="button" onfocus="this.blur()" value="计算保费" class="cx_btn right" /></p>
+        <p class="pc_btn"><input type="button" value="提交"></p>
+        
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+</body>
+</html>

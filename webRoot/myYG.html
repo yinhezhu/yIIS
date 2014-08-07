@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>我的阳光</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script>
+	//我的阳光选项卡
+	$(function(){
+		var $lis = $("ul.gy_list").children("li");
+		var $divs = $("div.gy_nr");
+		$lis.on("click",function(){
+			if($(this).hasClass("gray")){
+				return;
+			}
+			if($(this).hasClass("on")){
+				$(this).removeClass("on");
+				$divs.hide();
+			}else{
+				$lis.removeClass("on");
+				$(this).addClass("on");
+				var index = $(this).index();
+				$divs.hide();
+				$divs.eq(index).show();
+			}
+			
+		});
+	});
+</script>
+
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>我的阳光<a href="#" class="set_icon"></a></div>
+    <!--content-->
+    <div class="main cf">
+    	<dl class="info_wrapper cf">
+        	<dt>
+            	<img src="images/upload/img.jpg"/>
+            </dt>
+            <dd>
+            	<h3>小凡</h3>
+                <!--
+                <p>客户积分：<span>5660</span></p>
+                <p><span class="rate"><em style="width:60%;"></em></span>&nbsp;&nbsp;<span>80%</span></p>
+                --><!-- 一期隐藏 -->
+                
+            </dd>
+        </dl>
+    	<div class="info_box">
+        	<h2 class="yg_title">通知提醒</h2>
+            <div class="yg_txt">
+            	<div><p>恭喜您，张小凡先生/女士，庄娟华于2013年08月01日购买了您推荐的房产财产保险产品，您获得120积分！</p></div>
+                <div style="display:none;"><p>恭喜您，张小凡先生/女士，庄娟华于2013年08月01日购买了您推荐的房产财产保险产品，您获得120积分！</p></div>
+                <div style="display:none;"><p>恭喜您，张小凡先生/女士，庄娟华于2013年08月01日购买了您推荐的房产财产保险产品，您获得120积分！</p></div>
+                <div id="toTop"></div>
+                <div class="yg_btn">
+                    <span class="sel"></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+        <ul class="gy_list cf">
+                <li>
+                    <a href="#toTop">
+                        <span class="yg_num">2</span>
+                        <em class="p_icon1"></em>
+                        <span>我的保单</span> 
+                    </a>
+                </li> 
+                <li>
+                	<a href="#toTop">
+                        <em class="p_icon2"></em>
+                        <span>我的赔案</span> 
+                    </a>
+                </li>
+                <li>
+                    <a href="#toTop">
+                    	<span class="yg_num">2</span>
+                        <em class="p_icon3"></em>
+                        <span>我的订单</span> 
+                    </a>
+                </li>
+                <li>
+                    <a href="#toTop">
+                        <em class="p_icon4"></em>
+                        <span>缴纳续期保费</span> 
+                    </a>
+                </li>
+            </ul>
+            <div class="gy_nr gy_dis1" style="display:none;">
+            	<div>您可以轻松查询及变更您的保单信息：<br>
+                    <p>* 查询保单信息：了解您的保单基本信息、分红险红利、万能险账户、生存保险金及交费记录等信息。</p>
+                    <p>* 变更保单信息：可变更您的联系资料、交费方式等信息，办理保单还款、生存金转账授权、保单挂失等业务。</p>
+                </div>
+                <p class="center_align"><button>查看我的保单(3)</button></p>
+            </div>
+            <div class="gy_nr gy_dis2" style="display:none;">
+            	<p class="center_align" style="display:none;">暂无赔案信息！</p>
+                <div>
+                    <dl class="gy_dl">
+                        <dt>赔案号：</dt>
+                        <dd>86002P0182013015922</dd>
+                    </dl>
+                    <dl class="gy_dl">
+                        <dt>安心旅行综合意外险</dt>
+                    </dl>
+                    <dl class="gy_dl">
+                        <dt>理赔状态：</dt>
+                        <dd><span class="red_color">审核中</span></dd>
+                    </dl>
+                </div>
+                <p class="center_align"><button>查看全部(2)</button></p>
+            </div>
+            <div class="gy_nr gy_dis3" style="display:none;">
+            	<div>
+                    <a class="delete_icon" href="javascript:;"></a>
+                    <strong>安心旅行保险</strong><br>
+                    <dl class="gy_dl">
+                    	<dt>订单号：</dt>
+                        <dd>86002P0182013015922</dd>
+                    </dl>
+                    <dl class="gy_dl">
+                    	<dt>订单状态：</dt>
+                        <dd><span class="red_color">待支付</span></dd>
+                    </dl>
+                    <dl class="gy_dl">
+                    	<dt>提交时间：</dt>
+                        <dd>2010-03-26 10:08:42</dd>
+                    </dl>
+                    <p class="yg_section"><button>查看详情</button><button class="btn_red">支付</button><!--<button class="btn_brown">删除</button>--></p>
+                </div>
+               		<p class="center_align"><button>查看全部(2)</button></p>
+            </div>
+            <div class="gy_nr gy_dis4" style="display:none;">
+            	<div>
+                	<a class="delete_icon" href="javascript:;"></a>
+                    <strong>安心旅行保险</strong><br>
+                    <dl class="gy_dl">
+                    	<dt>保单号：</dt>
+                        <dd>86002P0182013015922</dd>
+                    </dl>
+                    <dl class="gy_dl">
+                    	<dt>保费：</dt>
+                        <dd><span class="red_color">0.20</span>元</dd>
+                    </dl>
+                    <dl class="gy_dl">
+                    	<dt>订单状态：</dt>
+                        <dd><span class="red_color">待支付</span></dd>
+                    </dl>
+                    <dl class="gy_dl">
+                    	<dt>提交时间：</dt>
+                        <dd>2010-03-26 10:08:42</dd>
+                    </dl>
+                    <p class="yg_section"><button>查看详情</button><button class="btn_red">支付</button><!--<button class="btn_brown">删除</button>--></p>
+                </div>
+               		<p class="center_align"><button>查看全部(2)</button></p>
+            </div>
+        
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+</body>
+</html>

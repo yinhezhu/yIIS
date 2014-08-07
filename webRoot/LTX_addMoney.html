@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>追加保费-连投险</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 弹框
+	(function(){
+		var $button = $("input[value='提 交']");
+		var $window = $("div.hint_register,.hint_over");
+		var $oMark = $("<div id='mark'></div>");
+		$button.off().on("touchend click",function(){
+			$window.show();
+			$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+			if($("#mark").size()){
+				$("#mark").show().css("position","fixed");
+				
+			}else{
+				$oMark.appendTo($("body"));
+				$("#mark").css("position","fixed");
+			}
+		});
+		// 窗口大小改变时，弹出层的位置也相应改变
+		$(window).on("resize",function(){
+			$oMark.css({
+				width : Math.max($('body').width(),$(window).width()) + 'px' ,
+				height: Math.max($('body').height(),$(window).height()) + 'px'
+			});
+			$window.css({
+				marginTop: -$window.height()/2 + 'px' , 
+				marginLeft: -$window.width()/2 + 'px'  
+			});
+		});
+		//点击取消 关闭弹层	
+		$("#btn_closed").on("touchend click",function(){
+			$oMark.hide();
+			$window.hide();
+		});
+	})();
+});
+</script>
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>追加保费</div>
+    <!--content-->
+    <div class="main cf">
+    	<div class="details_list">
+        	<h4>保单账户信息</h4>
+            <ul>              
+                <li><span>投保人</span><i>张小飞</i></li>
+                <li><span>保单号码</span><i>8026000002532998</i></li>
+                <li><span>险种名称</span><i>阳光人寿稳操胜券投资连结保险</i></li>
+                <li><span>生效日期</span><i>2013-03-20</i></li>
+                <li><span>账户名称</span><i>阳光人寿债券型投资连结账户</i></li>
+                <li><span>账户金额（元）</span><i>13498.00</i></li>
+            </ul>
+        </div>
+        <div class="details_list">
+            <div class="ltx_info lc_get">
+                <dl class="check gray_input cf">
+                    <dt>追加保费(元)</dt>
+                    <dd><input type="text" class="text_left borderBox" /></dd>
+                </dl>
+                <p class="padding_b10">追加保费初始费用扣除比例：0.00%</p>
+                <p class="padding_b10">追加保费初始费用扣除金额（元）： ---</p>
+            </div>
+        </div>
+        <p class="lc_btn"><input type="button" value="提 交"></p>
+        <dl class="lc_tips">
+        	<dt>操作特别提示：</dt>
+            <dd>1）您每次追加的保费金额最低为1000元，且为500的整数倍。</dd>
+            <dd>2）本公司将按照受理日下一个评估日的投资单位价格，计算本保单的账户价值。</dd>
+        </dl>
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--提示弹框1-->
+	<div class="hint_register">
+        <div class="hint_cont center_align">
+            温馨提示：如您因各种原因未支付成功，24小时之后我们将自动撤销您的本次申请。在此期间，该单不能进行任何保全操作，敬请谅解。<br>您确认追加投资吗？
+        </div>
+        <input type="button" value="确 定" />
+        <input type="button" value="取 消" id="btn_closed" />
+    </div>
+    <!--提示弹框2-->
+	<div class="hint_over">
+        <div class="hint_cont">
+			<dl class="ltx_import cf">
+            	<dt>最新价格单位：</dt>
+                <dd>1.111</dd>
+            </dl>
+            <dl class="ltx_import cf">
+            	<dt>追加保费金额：</dt>
+                <dd>1.111</dd>
+            </dl>
+            <dl class="ltx_import cf">
+            	<dt>追加单位数估算：</dt>
+                <dd>1.111</dd>
+            </dl>
+            <p class="center_align">以上单位数的估算仅供参考，实际单位数以结算后的单位数为准，谢谢。</p>
+        </div>
+        <input type="button" value="确 定" id="btn_closed" />
+    </div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>万能险利率和投连险价格查询</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script>
+$(function(){
+	
+	//万能险利率和投连险价格查询   切换
+	(function(){
+		$(".tab_wrap h4").on("tap click",function(){
+			$(this).addClass("curr_h4").siblings("h4").removeClass("curr_h4");
+			$(".allPowerful_tab_div").eq($(this).index()).addClass("allPowerful_show_div").siblings("div").removeClass("allPowerful_show_div");
+		});
+	})();
+});
+</script>
+
+<link rel="stylesheet" href="css/dateTouch.css"/>
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>万能险利率和投连险价格查询</div>
+    <!--content-->
+    <div class="main cf">
+    	<div class="tab_wrap">
+        	<h4 class="curr_h4">万能险利率查询</h4>
+            <h4>投连险价格查询</h4>
+        </div>
+    	<div class="allPowerful_tab_div allPowerful_show_div">
+            <p class="kinds margin_top10"></p>
+            <label>
+                <dl class="allPowerful_dl js_date_1">
+                    <dt>请选择时间</dt>
+                    <dd class="js_date_0"></dd>
+                    <dd class="js_date_0"></dd>
+                </dl>
+            </label>
+        </div>
+        <div class="allPowerful_tab_div">
+            <p class="kinds margin_top10">投资账户类型：</p>
+            <p class="kinds radio_bg">债券型 &nbsp;&nbsp;   债券型账户投资资讯</p>
+            <label>
+                <dl class="allPowerful_dl js_date_1">
+                    <dt>开始时间</dt>
+                    <dd class="js_date_1"></dd>
+                    <dd class="js_date_1"></dd>
+                </dl>
+            </label>
+            <label>
+                <dl class="allPowerful_dl">
+                    <dt style="float:none;width:100%; text-align:left;color:red;">温馨提示：只能查询一个月以内的相关信息</dt>
+                </dl>
+            </label>
+        </div>
+
+        <p class="btn_wrapper"><input type="button" value="确 定" /></p>
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--日期选择器 开始 -->
+    <div class="data_layer" style="display:none;">
+        <h2>2012-12-12</h2> 
+        <dl class="date_wrapper">
+            <dt>
+                <span>年</span><span>月</span><span>日</span>
+            </dt>
+            <dd>
+                <div class="date_bg">
+                    <span class="date_mask">ss</span>
+                    <div class="handle_1"></div>
+                    <div class="handle_2"></div>
+                    <div class="handle_3"></div>
+                    <ul class="data_list cf">
+                        <li>
+                            <div class="move_list">
+                                <span>2013</span>
+                                <span>2014</span>
+                                <span>2015</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="move_list">
+                                <span>01</span>
+                                <span>02</span>
+                                <span>03</span>
+                                <span>04</span>
+                                <span>05</span>
+                                <span>06</span>
+                                <span>07</span>
+                                <span>08</span>
+                                <span>09</span>
+                                <span>10</span>
+                                <span>11</span>
+                                <span>12</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="move_list">
+                                <span>11</span>
+                                <span>12</span>
+                                <span>01</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <p class="btn"><button>确定</button>&nbsp;<button>取消</button></p>
+    </div>
+    <script src="js/sea.js"></script>
+    <script>
+		//载入时间选择器入口模块
+        seajs.use("./js/touchDate/dateIndexC.js")
+    </script>
+    <!-- 日期选择器 结束 -->
+    
+    <div class="hint_register" style="margin-top: -44px; margin-left: -427px; display: none; z-index: 200;">
+        <div class="hint_cont center_align">
+            确定要删除此订单吗？
+        </div>
+        <input type="button" value="确 定">
+        <input type="button" id="btn_closed" value="取 消">
+    </div>
+</body>
+</html>

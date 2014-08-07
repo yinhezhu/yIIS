@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>产品详情</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//保险期间  日期选择功能模块
+	(function(){
+		$spans = $("dd.pc_choose").find("span");
+		$spans.off().on("touchend",function(){
+			$spans.removeClass("on");
+			$(this).addClass("on");
+		});
+	})();
+});
+</script>
+</head>
+<body>
+    <!--top-->
+<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>产品详情</div>
+    <!--content-->
+    <div class="pc_main cf">
+        <h2 class="pc_title">短期交通意外保险特惠版</h2>
+        <div class="pc_box cf">
+        	<p class="pc_txt">全面涵盖公共交通工具，同时提供高额航空意外保障，为短期商务出差、旅游出行人士定制。</p>
+            <dl class="pc_dl cf">
+                <dt>保障项目</dt>
+                <dd>意外身故/残疾</dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>交通工具</dt>
+                <dd>飞机、火车(含地铁、轻轨)、汽车(含出租车)</dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt class="pt_5px">保险期间</dt>
+                <dd class="pc_choose"><span>7天</span><span class="on">30天</span></dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价</dt>
+                <dd><span class="red_color">￥5.00</span></dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>购买份数</dt>
+                <dd><span class="cut_icon1"></span><input class="num_input" type="text" value="1" /><span class="add_icon1"></span></dd>
+            </dl>
+            <p class="padding_t10"><input type="button" value="立即购买"></p>
+        </div>
+        <h2 class="pc_title">保障利益</h2>
+        <div class="pc_box cf">
+        	<p class="pc_txt">飞机乘客意外伤害身故及残疾&nbsp;&nbsp;50万;</p>
+            <p class="pc_txt">轨道交通乘客意外伤害身故及残疾&nbsp;&nbsp;20万;</p>
+            <p class="pc_txt">营运汽车乘客意外伤害身故及残疾&nbsp;&nbsp;5万</p>    
+        </div>
+        <h2 class="pc_title">投保流程</h2>
+        <div class="pc_box cf">
+        	<div class="flow_pic">
+            	<span>1<br>填写资料</span>
+                <span>2<br>确认资料</span>
+                <span>3<br>完成支付</span>
+            </div>    
+        </div>        
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+</body>
+</html>

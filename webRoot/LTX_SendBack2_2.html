@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>犹豫期退保2-连投险</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//弹框功能模块
+		(function(){
+			var $button = $("input[value='提 交']");
+			var $window = $("div.hint_over");
+			var $oMark = $("<div id='mark'></div>");
+			$button.off().on("touchend click",function(){
+				$window.show();
+				$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+				if($("#mark").size()){
+					$("#mark").show().css("position","fixed");
+					
+				}else{
+					$oMark.appendTo($("body"));
+					$("#mark").css("position","fixed");
+				}
+				setTimeout(function(){
+					$("#mark").hide();
+					$window.fadeOut();
+				},1500);
+			});
+			// 窗口大小改变时，弹出层的位置也相应改变
+			$(window).on("resize",function(){
+				$oMark.css({
+					width : Math.max($('body').width(),$(window).width()) + 'px' ,
+					height: Math.max($('body').height(),$(window).height()) + 'px'
+				});
+				$window.css({
+					marginTop: -$window.height()/2 + 'px' , 
+					marginLeft: -$window.width()/2 + 'px'  
+				});
+			});
+		})();
+		//手机验证模块
+		(function(){
+			var $phone = $("input[value='获取手机验证码']");
+			var $phoneDiv = $("div.phone");	
+			$phone.on("touchend click",function(){
+				$(this).parent(".lc_btn").hide();
+				$phoneDiv.show();
+			});
+		})();
+});
+</script>
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>犹豫期退保</div>
+    <!--content-->
+    <div class="main cf">
+    	<div class="details_list">
+        	<h4>保单账户信息</h4>
+            <ul>              
+                <li><span>最近单位价格</span><i>6000</i></li>
+                <li><span>账户价值估算</span><i>900</i></li>
+                <li class="gray_color">(以上金额仅供参考，实际退费金额以结算后的退费金额为准)</li>
+            </ul>
+        </div>
+        <div class="details_list">
+        	<h4>银行账户信息</h4>
+            <ul>              
+            	<li><span>缴费银行</span><i>招商银行</i></li>
+                <li><span>开户名称</span><i>张小飞</i></li>
+                <li><span>账号</span><i>7894345002343254</i><em id="toTop"></em></li>
+            </ul>
+        </div>
+        <p class="lc_btn"><input type="button" value="获取手机验证码" onClick="window.location.href='#toTop'"></p>
+        <div class="phone">
+            <div class="details_list">
+                <h4><a href="#toTop">手机验证</a></h4>
+                <div class="lc_sb">
+                    <p class="f_12">已向138****1380发送手机验证码，请注意查收！</p>
+                    <dl class="check gray_input cf">
+                        <dd><input type="text" class="text_left borderBox" /></dd>
+                        <dd><button>(<em>60</em>)秒后重新发送</button></dd>
+                        
+                    </dl>
+                    <p class="f_12">如1分钟内没收到，请点击发送验证码重新获取。</p>
+                </div>
+            </div>
+            <p class="red_color">验证码输入错,误请重新输入!</p>
+            <p class="lc_btn"><input type="button" value="提 交"></p>
+        </div>
+        <dl class="lc_tips">
+        	<dt>操作特别提示：</dt>
+            <dd>1）为了保证您的资金安全，请务必仔细核对您的银行账号，如有问题请您到所在当地营业部进行变更。</dd>
+            <dd>2）您的资金将在受理日后10个工作日内退还到您的银行账户，请注意查收。</dd>
+            <dd>如有疑问可拨打<span class="red_color">95510</span>进行咨询</dd>
+        </dl>
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--提示弹框-->
+	<div class="hint_over">
+        <div class="hint_cont center_align">
+			提交成功！
+        </div>
+    </div>
+</body>
+</html>

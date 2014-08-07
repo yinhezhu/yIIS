@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>投保人资料变更1</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//性别改变事件
+	(function(){
+		var $div = $("div.sex_bg").parent();
+		var $i = $("i.curr_sex");
+		$div.on("touchend click",function(){
+			if(parseInt($i.css("left")) < 0){
+				$i.css("left","28px");
+			}else{
+				$i.css("left","-1px");
+			}
+			return false;
+		});
+	})();
+	//复选框
+	(function(){
+		var $check = $(".all_wrap").find("i");
+		$check.on("touchend click",function(){
+			var $this =$(this); 
+			if($this.attr("class")=="check_icon"){
+				$this.attr("class","check_icon_on");	
+			}else{
+				$this.attr("class","check_icon");
+			}
+		});
+	})();
+	//弹框功能模块
+	(function(){
+		var $button = $("input[value='确 定']");
+		var $window = $("div.hint_over");
+		var $oMark = $("<div id='mark'></div>");
+		$button.off().on("touchend click",function(){
+			$window.show();
+			$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+			if($("#mark").size()){
+				$("#mark").show().css("position","fixed");
+				
+			}else{
+				$oMark.appendTo($("body"));
+				$("#mark").css("position","fixed");
+			}
+			setTimeout(function(){
+				$("#mark").hide();
+				$window.fadeOut();
+			},1500);
+		});
+		// 窗口大小改变时，弹出层的位置也相应改变
+		$(window).on("resize",function(){
+			$oMark.css({
+				width : Math.max($('body').width(),$(window).width()) + 'px' ,
+				height: Math.max($('body').height(),$(window).height()) + 'px'
+			});
+			$window.css({
+				marginTop: -$window.height()/2 + 'px' , 
+				marginLeft: -$window.width()/2 + 'px'  
+			});
+		});
+	})();
+})
+</script>
+</head>
+<body>
+    <!--top-->
+<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>投保人资料变更</div>
+    <!--content-->
+    <div class="main cf">
+    	<div class="pc_notice padding_b10">
+            <span class="orange_color">是否将变更同步到以下保单</span>
+            <div class="sex_bg">
+                <i class="curr_sex"></i>
+                <span>是</span><span>否</span>
+            </div>
+        </div>
+    	<div class="details_list">
+        	<div class="all_wrap">
+                <div>
+                    <p>投连险<i class="check_icon_on"></i></p>
+                    <p>保单号：<em>86002P0182013015922</em></p>
+                    <p>投保人：<em>张小飞</em></p>
+                    <p>保额（元）：<em>450.00</em></p>
+                    <p>生效日期：<em>2013-12-12 11：36</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="details_list">
+        	<div class="all_wrap">
+                <div>
+                    <p>投连险<i class="check_icon"></i></p>
+                    <p>保单号：<em>86002P0182013015922</em></p>
+                    <p>投保人：<em>张小飞</em></p>
+                    <p>保额（元）：<em>450.00</em></p>
+                    <p>生效日期：<em>2013-12-12 11：36</em></p>
+                </div>
+            </div>
+        </div>
+        <p class="lc_btn"><input type="button" value="确 定"></p>
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript：void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--提示弹框-->
+	<div class="hint_over">
+        <div class="hint_cont center_align">
+			提交成功！
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>投保人资料变更-连投险</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//弹框功能模块
+	(function(){
+		var $button = $("input[value='提 交']");
+		var $window = $("div.hint_over");
+		var $oMark = $("<div id='mark'></div>");
+		$button.off().on("touchend click",function(){
+			$window.show();
+			$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+			if($("#mark").size()){
+				$("#mark").show().css("position","fixed");
+				
+			}else{
+				$oMark.appendTo($("body"));
+				$("#mark").css("position","fixed");
+			}
+			/*setTimeout(function(){
+				$("#mark").hide();
+				$window.fadeOut();
+			},1500);*/
+		});
+		// 窗口大小改变时，弹出层的位置也相应改变
+		$(window).on("resize",function(){
+			$oMark.css({
+				width : Math.max($('body').width(),$(window).width()) + 'px' ,
+				height: Math.max($('body').height(),$(window).height()) + 'px'
+			});
+			$window.css({
+				marginTop: -$window.height()/2 + 'px' , 
+				marginLeft: -$window.width()/2 + 'px'  
+			});
+		});
+		//点击取消 关闭弹层	
+		$("#btn_closed").on("touchend click",function(){
+			$oMark.hide();
+			$window.hide();
+		});
+	})();
+	//手机验证模块
+	(function(){
+		var $phone = $("input[value='确定']");
+		var $phoneDiv = $("div.phone");	
+		$phone.on("touchend click",function(){
+			$(this).parent(".lc_btn").hide();
+			$phoneDiv.show();
+		});
+	})();
+});
+</script>
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>投保人资料变更</div>
+    <!--content-->
+    <div class="main cf">
+    	<div class="details_list">
+        	<h4>投保人资料</h4>
+            <div class="ltx_info">
+                <dl class="check gray_input2 cf">
+                    <dt>通讯地址</dt>
+                    <dd><input type="text" class="text_left borderBox"></dd>
+                </dl>
+                <dl class="check gray_input2 cf">
+                    <dt>邮编</dt>
+                    <dd><input type="text" class="text_left borderBox"></dd>
+                </dl>
+                <dl class="check gray_input2 cf">
+                    <dt>E-mail</dt>
+                    <dd><input type="text" class="text_left borderBox"></dd>
+                </dl>
+                <dl class="check gray_input2 cf">
+                    <dt></dt>
+                    <dd><input type="checkbox" />家庭地址为通讯地址</dd>
+                </dl>
+                <dl class="check gray_input2 cf">
+                    <dt>家庭地址</dt>
+                    <dd><input type="text" class="text_left borderBox"></dd>
+                </dl>
+                <dl class="check gray_input2 cf">
+                    <dt>邮编</dt>
+                    <dd><input type="text" class="text_left borderBox"></dd>
+                </dl>
+                <p><em class="orange_color">注：</em>以上是您在我公司登记的当前联系信息，我们将根据这些联系资料为您提供交费提醒、文件资料邮寄等后续服务。固定电话与移动电话的变更，请用您投保时保留的电话拨打<em class="red_color">95510</em>进行办理，或者到您所在地的我公司客户服务中心进行办理。</p>
+            </div>
+        </div>
+        <p class="lc_btn"><input type="button" value="确定" onClick="window.location.href='#toTop'"></p>
+        <div class="phone">
+            <div class="details_list">
+                <h4><a>手机验证</a></h4>
+                <div class="lc_sb">
+                    <p class="f_12">已向138****1380发送手机验证码，请注意查收！</p>
+                    <dl class="check gray_input cf">
+                        <dd><input type="text" class="text_left borderBox" /></dd>
+                        <dd><button>(<em>60</em>)秒后重新发送</button></dd>
+                        
+                    </dl>
+                    <p class="f_12">如1分钟内没收到，请点击发送验证码重新获取。</p>
+                </div>
+            </div>
+            <p class="red_color">验证码输入错,误请重新输入!</p>
+            <p class="lc_btn"><input type="button" value="提 交"></p>
+        </div>
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--提示成功弹框-->
+	<!--<div class="hint_over">
+        <div class="hint_cont center_align">
+			提交成功！
+        </div>
+    </div>-->
+    <!--提示弹框-->
+    <div class="hint_over">
+        <div class="hint_cont center_align">
+			您的保单已终止，不能进行投保人联系资料变更，如有疑问请拨打<span class="red_color">95510</span>进行咨询。
+        </div>
+        <input type="button" value="确 定" id="btn_closed" />
+    </div>
+</body>
+</html>

@@ -1,202 +1,218 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<link type="text/css" href="css/style.css" rel="stylesheet"/>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/other.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>登录</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
 <script>
-<!--登录验证 start-->
-function loginCheck(mobileNum,passw,yanzm){
+$(function(){
+	/*登录框获得焦点*/
+	(function(){
+		$(".login_wrapper input").on("focus",function(){
+			$(this).siblings("em").addClass("on_1");
+			$(this).parent().addClass("login_wrapper_on");
+		}).on("blur",function(){
+			$(this).siblings("em").removeClass("on_1");
+			$(this).parent().removeClass("login_wrapper_on");
+		});
+	})();
 	
-	//自动聚焦
-	function focusBlur(obj){
-		var oldV=obj.value;
-		obj.onfocus=function(){
-					if(obj.value==oldV){
-					obj.value='';
-					
-					};
-			}
-			obj.onblur=function(){
-				if(obj.value==""){
-					obj.value=oldV;
-				}
-			}
+	(function(){
+		var $Mobile = $("#mobileNomber");
+		var $PassWord = $("#passWord");
+		//var $Again = $("#again");
+		var $hint_over = $(".hint_over");
+		var $oMark = $("<div id='mark'></div>");
+		var $hint_cont = $(".hint_cont");
+		var $hint_register = $(".hint_register");
 		
-	}
-	
-	window.onload=function(){
-			var oPhone=document.getElementById('phoneNum');
-			var oPass=document.getElementById('passW');
-			var oYzm=document.getElementById('yanzhengma');
-			var oBtn=document.getElementById('loginBtn');
-			var oBtn=document.getElementById('loginBtn');
-			var oPhoneTip=document.getElementById('phoneTip');
-			oPhoneTip.innerHTML='';
-			var PhoneoldV=oPhone.value;
-			var passoldV=oPass.value;
-			var yzmOldV=oYzm.value;
-			focusBlur(oPhone);
-			focusBlur(oPass);
-			focusBlur(oYzm);
-			
-			
-			//用户名，密码检测
-	
-			loginCheck(oBtn,oPhone,phoneTip);
-			var timer=null;
-	
-			//手机号只能输入数字	
-			oPhone.onkeydown=function(ev){
-				document.title=ev.keyCode;
-				
-				//Tab
-				if(ev.keyCode==9){
-					oPass.focus();
-				}
-				//0  48,96
-				//9  57,105
-				if(ev.keyCode==13){
-				alert('登录信息有误！');		
-				}
-				if((ev.keyCode<48 || ev.keyCode>57) && ev.keyCode!=8 &&(ev.keyCode<96 || ev.keyCode>105 && ev.keyCode!=13 && ev.keyCode!=9)){
-					console.log(123);
-					return false;	
-				}
-				
-			}
-			//手机号最多输入11个
-			
-			oPhone.onfocus=function(){
-				if(oPhone.value==PhoneoldV){
-					oPhone.value='';
-					};
-					oPhone.maxLength=11;
-	
-			}
-			//密码最多输入18个
 		
-			oPass.onkeydown=function(ev){
-				if(ev.keyCode==13){
-				alert('登录信息有误！');		
-				}
-				if(oPass.value==passoldV){
-					oPass.value='';
-					};
-					oPass.maxLength=15;
-	
-			}
-			//验证码最多输入5个
-			oYzm.onkeydown=function(ev){
-				if(ev.keyCode==13){
-				alert('登录信息有误！');		
-				}
-				oYzm.maxLength=5;	
-			}
+		//手机号验证 正则
+		var reg1 = /^1[3|4|5|8][0-9]\d{8}$/ ;
+		//邮箱验证 正则
+		//var reg2 = preg_match("/^[0-9a-zA-Z]+@(([0-9a-zA-Z]+)[.])+[a-z]{2,4}$/i",$email ) ;
+		var reg2 = /^([a-z0-9]+[_\-\.]?)*[a-z0-9]+@([a-z0-9]+[_\-\.]?)*[a-z0-9]+\.[a-z]{2,4}$/ig ;
+		
+		// 手机号 验证
+		$Mobile.on("blur",function(){
 			
-
-			oBtn.onclick=function(){
-				//手机号为空
-				if(oPhone.value==""){
-					oPhoneTip.innerHTML='!&nbsp;&nbsp;请您填写手机号';
-					return;
-				}
-				//密码为空
-				if(oPass.value==""){
-					oPhoneTip.innerHTML='!&nbsp;&nbsp;请您填写密码';
-					return;
-				}
-				//验证码为空
-				if(oYzm.value==''){
-					oPhoneTip.innerHTML='!&nbsp;&nbsp;请您填写验证码';
-					return;
-				}
-				if(oYzm.value!=yanzm+''){
-					oPhoneTip.innerHTML='!&nbsp;&nbsp;您输入的验证码有误';
-					return;
-				}
-				
-				//验证手机号和密码
-				if(oPhone.value!=mobileNum+'' || oPass.value!=passw){
-					oPass.value='';
-					oPhoneTip.innerHTML='!&nbsp;&nbsp;手机号或密码输入有误，<a href="retrieve_password.html">&nbsp;忘记密码&nbsp;</a>？';	
-					oPass.focus();
-					
-					return;
-				}
-				
+			if($Mobile.val() == ""){//当手机号 或 邮箱 为空
+				$(this).parent().siblings("dd").html("请输入手机号或邮箱！");
+			}else{//当手机号有误
+				if(!(reg1.test($Mobile.val()) || reg2.test($Mobile.val()))){ 
+					$(this).parent().siblings("dd").html("手机号码或邮箱输入有误！请重新输入！");
+				} 
 			}
-	}
-	
-}
-<!--登录验证 end-->
-//测试登录
-loginCheck(123,'123',123)
+			return false; 
+		});
+		// 当手机号输入框获得焦点时，把下面的红字提示文本清空，然后选中文本
+		$Mobile.on("focus",function(){
+			$(this).parent().siblings("dd").html("");
+			//$PassWord.parent().siblings("dd").html("");
+			this.select();
+			return false; 
+		});
+				
+		// 密码 验证
+		$PassWord.on("blur",function(){
+			if($PassWord.val() == ""){//当密码为空
+				$(this).parent().siblings("dd").html("请输入密码！");
+			}else{//当密码长度有误
+				if(!$PassWord.val().match(/^[A-Za-z0-9_]{6,12}$/)){ 
+					$(this).parent().siblings("dd").html("密码长度有误！请输入6至12位包含数字、字母、下划线的正确密码！");
+				} 
+			}
+			return false; 
+		});
+		// 当密码输入框获得焦点时，把下面的红字提示文本清空，然后选中文本
+		$PassWord.on("focus",function(){
+			$(this).parent().siblings("dd").html("");
+			//$Mobile.parent().siblings("dd").html("");
+			this.select();
+			return false; 
+		});
+		
+		 //点击 登录 的时候开始验证		
+		$("#login").on("tap click",function(){
+			
+            // 根据不同的情况 设置弹框的提示文本  
+			if($Mobile.val() == ""){//当手机号为空
+				$hint_cont.html("请输入手机号或邮箱！");
+				$PassWord.parent().siblings("dd").html("");
+				mark();
+			}else if(!(reg1.test($Mobile.val()) || reg2.test($Mobile.val()))){//当手机号或邮箱格式有误
+				$hint_cont.html("手机号码或邮箱输入有误！请重新输入！");
+				mark();
+			}else if($PassWord.val() == ""){//当密码为空
+				$hint_cont.html("请输入密码！");
+				$Mobile.parent().siblings("dd").html("");
+				mark();
+			}else if(!$PassWord.val().match(/^[A-Za-z0-9_]{6,12}$/)){//当密码格式有误
+				$hint_cont.html("密码长度有误！请输入6至12位包含数字、字母、下划线的正确密码！");
+				mark();
+			}
+		});	
+			
+		// 窗口大小改变时，弹出层的位置也相应改变
+		$(window).on("resize",function(){
+			$oMark.css({
+				width : Math.max($('body').width(),$(window).width()) + 'px' ,
+				height: Math.max($('body').height(),$(window).height()) + 'px'
+			});
+			$hint_over.css({
+				marginTop: -$hint_over.height()/2 + 'px' , 
+				marginLeft: -$hint_over.width()/2 + 'px'  
+			});
+			
+			//点击 登录 的时候，后台验证该手机号是否注册 。在样式表中处于隐藏状态 。
+			//如果没有注册，就弹出这个提示框并让他居中 （这是在切换横竖屏的时候的样式）
+			$hint_register.css({
+				marginTop: -$hint_register.height()/2 + 'px' , 
+				marginLeft: -$hint_register.width()/2 + 'px'  
+			});
+		});
+			
+		//点击确定 关闭弹层	
+		$("#btn_ok").on("tap click",function(){
+			$oMark.hide();
+			$hint_over.hide();
+			$('body').css('overflow','auto');
+			
+            // 根据不同的情况 设置焦点 
+			if($Mobile.val() == "" || !(/^1[3|4|5|8][0-9]\d{8}$/.test($Mobile.val()))){//当手机号为空 或有误
+				$Mobile.focus();
+				$Mobile.select();
+			}else if($PassWord.val() == "" || !$PassWord.val().match(/^[A-Za-z0-9_]{6,12}$/)){//当密码为空 或有误
+				$PassWord.focus();
+				$PassWord.select();
+			}
+		})
+		
+		function mark(){
+			
+			$('body').css('overflow','hidden');
+			if($("#mark").size()){  //如果页面有mark 就让他显示
+				$("#mark").show().css({
+					width : Math.max($('body').width(),$(window).width()) + 'px' ,
+					height: Math.max($('body').height(),$(window).height()) + 'px'
+				});
+			}else{ // 如果没有就把已创建的添加进body
+				$oMark.appendTo($('body')).css({
+					width : Math.max($('body').width(),$(window).width()) + 'px' ,
+					height: Math.max($('body').height(),$(window).height()) + 'px'
+				});
+			}
+			$hint_over.show().css({  // 让弹框显示  并设置位置
+				zIndex : 120 ,
+				//top : ($(window).height()-$hint_over.height()) / 2 + 'px' , 
+				//left : ($(window).width()-$hint_over.width()) / 2 + 'px'  
+				marginTop: -$hint_over.height()/2 + 'px' , 
+				marginLeft: -$hint_over.width()/2 + 'px'
+			});
+			
+			//点击 登录 的时候，后台验证该手机号是否注册 。在样式表中处于隐藏状态 。
+			//如果没有注册，就弹出这个提示框并让他居中
+			/*$hint_register.show().css({
+				marginTop: -$hint_register.height()/2 + 'px' , 
+				marginLeft: -$hint_register.width()/2 + 'px'  
+			});*/
+		};	
+		
+	})();		
+});
 </script>
 </head>
 <body>
-    <div class="login_content">
-    <!--header start-->
-    <div class="top_wrapper">
-        <dl class="top">
-            <dd>
-                <a class="serv_icon" href="javascript:;"></a>
-                <a class="sina_icon" href="javascript:;"></a>
-                <a class="wx_icon" href="javascript:;"></a>
-                <a class="wl_icon" href="javascript:;"></a>
-            </dd>
-        </dl>   
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>用户登录</div>
+    <!--content-->
+    <div class="main cf">
+        <dl class="login_wrapper">
+            <dt>
+            	<em></em>
+            	<input id="mobileNomber" type="text" placeholder="请输入您的手机号或邮箱" />
+                <span class="right_icon" style="display:none;"></span>
+            </dt>
+            <dd></dd>	
+        </dl>
+        <dl class="login_wrapper">
+            <dt>
+            	<em></em>
+            	<input id="passWord" type="password" placeholder="请输入您的密码" />
+            </dt>
+            <dd></dd>
+        </dl>
+        <p class="btn_wrapper"><input id="login" type="button" value="登 录" /></p>
+        <p class="btn_wrapper"><a class="left" href="#">免费注册</a><a class="right" href="#">忘记密码？</a></p>
     </div>
-    <!--header end-->
-    <!--content start-->
-
-    	<!--login_head start-->
-           <div class="login_head cf">
-                    <h1 class="left"><a href="index.html" title="绿城在线置业"></a></h1>
-                    <p class="right">全国统一客服/<span>400-111-3900</span></p>
-           </div>
-    <!--login_head end-->
-    <!--login_content start-->
-            <div class="center">
-                <div class="center_b">
-                	<form action="" method="get" class="login_form">
-                        <div class="yinying">
-                            <dl class="login_box">
-                                <dt>欢迎登录<a  class="log_dt1_a1"href="register.html">免费注册</a>
-                                <p class="tips"  id="phoneTip">!&nbsp;&nbsp;手机号或密码输入有误，<a href="retrieve_password.html">&nbsp;忘记密码&nbsp;</a>？</p></dt>
-                                <dd class="login_box_dd1"><div class="l_dd1"><input id="phoneNum" type="text" placeholder="手机号"/></div></dd>
-                                <dd><div class="l_dd2"><input id="passW"type="password" placeholder="密码"/></div></dd>
-                                <dd class="l_dd3">
-                                    <input id="yanzhengma" type="text" placeholder="请输入验证码"/><img src="images/bg/yanzhengma.jpg"/><a href="#">换一张？</a>
-                                </dd>
-                                <dd class="l_dd4"><input id="loginBtn" type="button" value="登录" id="login_btn"/></dd>
-                                <dd class="l_dd5"><input type="checkbox"/><span>自动登录</span><a href="retrieve_password.html"><span>找回密码</span></a></dd>
-                            </dl>
-                        </div>
-               		 </form>
-                </div>
-            </div>
-		<!--login_content end-->
-     
-    <!--content end-->
-        <!--login_foot start-->
-    	<div class="login_foot cf">
-        	<ul class="left cf">
-              <li><a href="#">关于我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-              <li><a href="#">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-              <li><a href="#">服务声明</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-              <li><a href="#">友情链接</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-              <li><a href="#">常见问题</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-              <li><a href="#">网站地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-              <li><a href="#">人才招聘</a></li>
-            </ul>
-            <p class="right">绿城版权所有 © 2010-2013</p>
+    <!--footer -->
+    <div class="footer_b">
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a href="#" class="help_icon">帮助</a></p>
+                </dd>
+            </dl>
         </div>
-   <!--login_foot end-->
-
+    </div>
+    <div class="logBtn"></div>
+	<div class="hint_over" ><!-- 输入有误的时候用的提示弹框 -->
+    	<div class="hint_cont">
+            <!--您输入的手机号不是完整的11位手机号或正确的手机号前七位，请重新输入手机号！ -->
+        </div>
+        <input id="btn_ok" type="button" value="确 定" />
+    </div>
+	<div class="hint_register"><!--点击 登录 的时候，后台验证该手机号是否注册 。在样式表中处于隐藏状态 。-->
+    	<div class="hint_cont">
+            您输入的手机号码还没注册，是否现在注册？
+        </div>
+        <input type="button" value="取 消" />
+        <input type="button" value="注 册" />
     </div>
 </body>
 </html>

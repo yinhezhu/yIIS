@@ -1,245 +1,207 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<link type="text/css" href="css/style.css" rel="stylesheet"/>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/other.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>注册</title>
-<script>
-(function(){
-window.onload=function()
-{
-		var userName=document.getElementById('userName');
-		var phoneNum=document.getElementById('phoneNum');
-		var logPassW=document.getElementById('logPassW');
-		var repeatPassword=document.getElementById('repeatPassword');
-		var yzm=document.getElementById('yzm');
-		var message=document.getElementById('message');
-		focusBlur(userName);
-		focusBlur(phoneNum);	
-		focusBlur(logPassW);
-		focusBlur(repeatPassword);
-		focusBlur(yzm);
-		
-		//弹出注册协议详细说明
-		var oBtn=document.getElementById('agree_btn');
-		var oTip=document.getElementById('agree_tip');
-		
-		var check=0;
-		oBtn.onclick=function(){
-			check++;
-			if(check%2){
-				oTip.style.display='block';
-			}else{
-				oTip.style.display='none';	
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript">
+$(function(){
+	$("#telephone").on("blur",function(){
+		var $this = $(this);
+		checkSubmitMobil($this);
+	}).on("focus",function(){
+		$(this).parent().siblings("dd").html(""); 
+	});
+	$("#psw1").on("blur",function(){
+		var $this = $(this);
+		checkPsw1($this);
+	}).on("focus",function(){
+		$(this).parent().siblings("dd").html(""); 
+	});
+	$("#psw2").on("blur",function(){
+		var $this = $(this);
+		checkPsw2($this);
+	}).on("focus",function(){
+		$(this).parent().siblings("dd").html(""); 
+	});
+	
+	
+	var $Mobile = $("#telephone");
+	var $PassWord = $("#psw1");
+	var $PassWord2 = $("#psw2");
+	//var $Again = $("#again");
+	var $hint_over = $(".hint_over"); //  输入有误的时候用的提示弹框 
+	var $oMark = $("<div id='mark'></div>");
+	var $hint_cont = $(".hint_cont");	
+	var reg1 = /^1[3|4|5|8][0-9]\d{8}$/ ;
+
+	 //点击 注册 的时候开始验证		
+	$("#register").on("tap click",function(){
+            // 根据不同的情况 设置弹框的提示文本
+			if($Mobile.val() == ""){//当手机号为空
+				$hint_cont.html("手机号码不能为空！");
+				$PassWord.parent().siblings("dd").html("");
+				$PassWord2.parent().siblings("dd").html("");
+				mark()
+				return;
+			}else if(!(reg1.test($Mobile.val()))){//当手机号有误
+				$hint_cont.html("手机号码输入不正确,请重新输入！");
+				mark()
+				return;
 			}
+			if(!$PassWord.val() || !$PassWord.val().match(/^[A-Za-z0-9_]{6,12}$/)){ // 当密码为空 或有误
+				$hint_cont.html("密码不能为空，且只能为6-12位英文或者数字");
+				mark()
+				return;
+			}
+			if(!$PassWord2.val() || $PassWord2.val() != $PassWord.val()){ // 确认密码为空或不等于上面的密码
+				$hint_cont.html("确认密码为空，或者和上面的密码不致");
+				mark()
+				return;
+			}
+		});	
+			
+	// 窗口大小改变时，弹出层的位置也相应改变
+	$(window).on("resize",function(){
+		$oMark.css({
+			width : Math.max($('body').width(),$(window).width()) + 'px' ,
+			height: Math.max($('body').height(),$(window).height()) + 'px'
+		});
+		$hint_over.css({
+			marginTop: -$hint_over.height()/2 + 'px' , 
+			marginLeft: -$hint_over.width()/2 + 'px'  
+		});
+	});
+			
+	//点击确定 关闭弹层	
+	$("#btn_ok").on("tap click",function(){
+		$oMark.hide();
+		$hint_over.hide();
+		$('body').css('overflow','auto');
+		
+		// 根据不同的情况 设置焦点 
+		if($Mobile.val() == "" || !(/^1[3|4|5|8][0-9]\d{8}$/.test($Mobile.val()))){//当手机号为空 或有误
+			$Mobile.focus();
+			$Mobile.select();
+		}else if(!$PassWord.val() || !$PassWord.val().match(/^[A-Za-z0-9_]{6,12}$/)){//当密码为空 或有误
+			$PassWord.focus();
+			$PassWord.select();
+		}else if(!$PassWord2.val() || $PassWord2.val() != $PassWord.val()){ // 确认密码为空或不等于上面的密码
+			$PassWord2.focus();
+			$PassWord2.select();
 		}
-		
-		phoneNum.onkeydown=function(ev){
-			var oEvent=ev||event;
-			if(oEvent.keyCode==9){
-				message.focus();	
-			}	
+	});
+
+	function mark(){
+		$('body').css('overflow','hidden');
+		if($("#mark").size()){  //如果页面有mark 就让他显示
+			$("#mark").show().css({
+				width : Math.max($('body').width(),$(window).width()) + 'px' ,
+				height: Math.max($('body').height(),$(window).height()) + 'px'
+			});
+		}else{ // 如果没有就把已创建的添加进body
+			$oMark.appendTo($('body')).css({
+				width : Math.max($('body').width(),$(window).width()) + 'px' ,
+				height: Math.max($('body').height(),$(window).height()) + 'px'
+			});
 		}
-		
-		document.onkeydown=function(ev){
-			var oEvent=ev||event;
-			if(oEvent.keyCode==13){
-				alert('注册信息有误！');	
-			}	
-		}	
-}
-		
-})();
+		$hint_over.show().css({  // 让弹框显示  并设置位置
+			zIndex : 120 ,
+			//top : ($(window).height()-$hint_over.height()) / 2 + 'px' , 
+			//left : ($(window).width()-$hint_over.width()) / 2 + 'px'  
+			marginTop: -$hint_over.height()/2 + 'px' , 
+			marginLeft: -$hint_over.width()/2 + 'px'
+		});
+	};	
+	//验证手机号
+	function checkSubmitMobil(obj){ 
+		if($("#telephone").val()==""){ 
+			obj.parent().siblings("dd").html("手机号码不能为空!"); 
+			obj.siblings("span").attr("class","wrong_icon");
+			return false; 
+		} 
+	   if(!$("#telephone").val().match(/^1[3|4|5|8][0-9]\d{8}$/)){ 
+		   obj.parent().siblings("dd").html("手机号码输入不正确,请重新输入！"); 
+		   obj.siblings("span").attr("class","wrong_icon");
+		   return false; 
+	   } 
+	   obj.siblings("span").attr("class","right_icon"); 
+	   obj.parent().siblings("dd").html(""); 
+	   return true; 
+	}
+	//验证密码
+	function checkPsw1(obj){
+		if(!obj.val() || !obj.val().match(/^[A-Za-z0-9_]{6,12}$/)){
+			obj.parent().siblings("dd").html("密码不能为空，且只能为6-12位英文或者数字");
+			obj.siblings("span").attr("class","wrong_icon");	
+			return false; 
+		}else{
+			obj.siblings("span").attr("class","right_icon");
+			obj.parent().siblings("dd").html(""); 
+		}
+	} 
+	function checkPsw2(obj){
+		if(!obj.val() || obj.val() != $("#psw1").val()){
+			obj.parent().siblings("dd").html("确认密码为空，或者和上面的密码不致");
+			obj.siblings("span").attr("class","wrong_icon");
+			return false;
+		}else{
+			obj.siblings("span").attr("class","right_icon");
+			obj.parent().siblings("dd").html(""); 
+		}
+	} 
+	
+})
 </script>
 </head>
 <body>
-    <!--header start-->
-<div class="login_content">
-    <div class="top_wrapper">
-        <dl class="top">
-            <dd>
-                <a class="serv_icon" href="javascript:;"></a>
-                <a class="sina_icon" href="javascript:;"></a>
-                <a class="wx_icon" href="javascript:;"></a>
-                <a class="wl_icon" href="javascript:;"></a>
-            </dd>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>用户注册</div>
+    <!--content-->
+    <div class="main cf input_focus">
+        <dl class="register">
             <dt>
-                <a href="login.html">登录</a><a href="register.html">注册</a>
+            	<input id="telephone" type="text" placeholder="请输入您的手机号" />
+                <span></span>
+            </dt>	
+            <dd></dd>	
+        </dl>
+        <dl class="register">
+            <dt>
+            	<input id="psw1" type="password" placeholder="请输入您的密码" />
+                <span></span>
+            </dt>	
+            <dd></dd>
+        </dl>
+        <dl class="register">
+            <dt>
+            	<input id="psw2" type="password" placeholder="请再次确认您的密码" />
+                <span></span>
             </dt>
-        </dl>   
+            <dd></dd>	
+        </dl>
+        <p class="btn_wrapper"><input id="register" type="button" value="立即注册" /></p>
     </div>
-    <!--header end-->
-    <!--content start-->
-    <div class="login_content">
-    	<!--login_head start-->
-           <div class="login_head cf">
-                    <h1 class="left"><a href="index.html" title="绿城在线置业"></a></h1>
-                    <p class="right">全国统一客服/<span>400-111-3900</span></p>
-           </div>
-    <!--login_head end-->
-    	<!--register_content start-->
-     	<div class="regist">
-        	<h2>快速注册<span>注册后您可以发布房源、申请成为经纪人轻松赚取佣金、认证成为住房使用者享受高品质物业服务！
-</span></h2>
-			<div class="cf">
-            	<div class="regist_form left" >
-                    <form action="#" method="get">
-                        <ul class="" id="regist_ul">
-                            <li class="cf">
-                                <h3><span>*</span>真实姓名</h3>
-                                <div>
-                                    <input class="w_338" type="text" value="请输入您的真实姓名" id="userName"/>
-                                </div>
-                                <em>请填写真实姓名</em>
-                            </li>
-                            <li class="cf">
-                                <h3><span>*</span>手机号码</h3>
-                                <div>
-                                    <input class="w_338" type="text" value="请输入您的手机号" id="phoneNum"/>
-                                </div>
-                                <em>请输入手机号</em>
-                            </li>
-                            <li class="regis_li3 cf">
-                                <h3><span>*</span>手机验证码</h3>
-                                
-                                <a href="#" id="message">免费获取短信验证码</a>
-                                <div>
-                                    <input class="w_150" type="text" value="输入短信验证码" id="yzm"/>
-                                </div>
-                                <em>请输入验证码</em>
-                            </li>
-                            <li class="cf">
-                                <h3><span>*</span>设置登录密码</h3>
-                                <div>
-                                    <input class="w_338" type="password" value="设置登录密码" id="logPassW"/>
-                                </div>
-                                <em>请输入密码</em>
-                            </li>
-                            <li class="cf">
-                                <h3><span>*</span>重复登录密码</h3>
-                                <div>
-                                    <input class="w_338" type="password" value="重复登录密码" id="repeatPassword"/>
-                                </div>
-                                <em>请重新输入密码</em>
-                            </li>
-                            <li class="regis_li5 cf">
-                                	<input type="submit" value="免费注册"/>
-                            </li>
-                            
-                            <li class="regis_li4 cf">
-                                <input type="checkbox"/><a href="javascript:;" class="agree" id="agree_btn">&nbsp;&nbsp;同意注册协议</a><p><a href="login.html">已注册用户登录</a></p>
-                                <em>您还未接受注册协议</em>
-                            </li>
-                            <li class="agree_tips" id="agree_tip">
-                            	<div>
-                                	<p>绿城置业服务协议</p>
-                                    <br>
-                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;本协议由您与绿城房地产集团有限公司共同缔结，本协议具有合同效力。</p>
-                                    <p>
-                                    <b>本协议中协议双方合称协议方，绿城房地产集团有限公司在协议中亦称为“绿城”。</b>
-                                    </p>
-                                	<p>1.  本协议内容包括协议正文及所有绿城已经发布的或将来可能发布的各类规则。所有规则为本协议不可分割的组成部分，与协议正文具有同等法律效力。除另行明确声明外，任何绿城提供的服务均受本协议约束。</p>
-									<p>2.  您应当在使用绿城服务之前认真阅读全部协议内容。如您对协议有任何疑问的，应向绿城咨询。但无论您事实上是否在使用绿城服务之前认真阅读了本协议内容，只要您使用绿城服务，则本协议即对您产生约束，届时您不应以未阅读本协议的内容或者未获得绿城对您问询的解答等理由，主张本协议无效或要求撤销本协议。</p>
-<p>2、除另行明确声明外，淘宝平台服务包含任何淘宝及其关联公司提供的基于互联网以及移动网的相关服务，且均受本协议约束。如果您不同意本协议的约定，您应立即停止注册/激活程序或停止使用淘宝平台服务。</p>
-                                	<p>3.  您承诺接受并遵守本协议的约定。如果您不同意本协议的约定，您应立即停止注册程序或停止使用绿城置业服务。</p>
-                                	<p>4.  绿城有权根据需要不时地制订、修改本协议及/或各类规则，并以网站公示的方式进行公告，不再单独通知您。变更后的协议和规则一经在网站公布后，立即自动生效。如您不同意相关变更，应当立即停止使用绿城置业服务。您继续使用绿城置业服务的，即表示您接受经修订的协议。</p>
-                                    <br>
-                                    <p><b>二、 注册</b></p>
-                                    <p>1.  注册者资格</p>
-                                    <p>您确认，在您完成注册程序或以其他绿城允许的方式实际使用绿城置业服务时，您应当是具备完全民事权利能力和完全民事行为能力的自然人。若您不具备前述主体资格，则您及您的监护人应承担因此而导致的一切后果，且绿城有权注销（永久冻结）您的绿城置业账户，并向您及您的监护人索偿。</p>
-                                    <p>2.  账户</p>
-                                    <p>在您签署本协议，完成会员注册程序时，绿城会向您提供唯一的绿城账户（以下称账户）。
-您应对您的账户和密码的安全，以及对通过您的账户和密码实施的行为负责。除非有法律规定或司法裁定，且征得绿城的同意，否则，账户和密码不得以任何方式转让、赠与或继承（与账户相关的财产权益除外）。如果发现任何人不当使用您的账户或有任何其他可能危及您的账户安全的情形时，您应当立即以有效方式通知绿城，要求绿城暂停相关服务。您理解绿城对您的请求采取行动需要合理时间，绿城对在采取行动前已经产生的后果（包括但不限于您的任何损失）不承担任何责任。</p>
-                                    <p>3.  会员</p>
-                                    <p>在您按照注册页面提示填写信息、阅读并同意本协议并完成全部注册程序后，您即成为绿城置业服务会员。
-在注册时，您应当按照法律法规要求，或注册页面的提示准确提供，并及时更新您的资料，以使之真实、及时、完整和准确。如有合理理由怀疑您提供的资料错误、不实、过时或不完整的，绿城有权向您发出询问及/或要求改正的通知，并有权直接做出删除相应资料的处理，直至中止、终止对您提供部分或全部绿城置业服务。绿城对此不承担任何责任，您将承担因此产生的任何直接或间接损失。
-您在使用绿城置业服务过程中，所产生的应纳税赋，以及一切硬件、软件、服务及其它方面的费用，均由您独自承担。</p>
-                                    <p>4. 您了解并同意，绿城有权应政府部门（包括司法及行政部门）的要求，向其提供您在绿城网填写的注册信息和交易纪录等必要信息。如您涉嫌侵犯他人知识产权，则绿城亦有权在初步判断涉嫌侵权行为存在的情况下，向权利人提供您必要的身份信息。</p>
-                                    <br>
-                                    <p><b>三、绿城置业服务规范</b></p>
-                                    <p>1. 使用绿城置业服务过程中，您承诺遵守以下约定：</p>
-                                    <p>a) 在使用绿城置业服务过程中实施的所有行为均遵守国家法律、法规等规范性文件及绿城网各项规则的规定和要求，不违背社会公共利益或公共道德，不损害他人的合法权益，不违反本协议及相关规则。您如果违反前述承诺，产生任何法律后果的，您应以自己的名义独立承担所有的法律责任，并确保绿城免于因此产生任何损失。</p>
-                                    <p>b) 在交易过程中，遵守诚实信用原则，不扰乱网上交易的正常秩序，不从事与网上交易无关的行为。</p>
-                                    <p>c) 不使用任何装置、软件或例行程序干预或试图干预正常运作或正在进行的任何交易、活动。</p>
-                                    <p>2. 您了解并同意：</p>
-                                    <p>a) 绿城有权对您是否违反上述承诺做出单方认定，并根据单方认定结果适用规则予以处理或终止向您提供服务，且无须征得您的同意或提前通知予您。</p>
-                                    <p>b) 对于您涉嫌违反承诺的行为对任意第三方造成损害的，您均应当以自己的名义独立承担所有的法律责任，并应确保绿城免于因此产生损失或增加费用。</p>
-                                    <p>c) 如您涉嫌违反有关法律或者本协议之规定，使绿城遭受任何损失，或受到任何第三方的索赔，或受到任何行政管理部门的处罚，您应当赔偿绿城因此造成的损失及（或）发生的费用，包括合理的律师费用。</p>
-                                    <br>
-                                    <p><b>四、责任范围和责任限制</b></p>
-                                    <p>1. 绿城对绿城置业服务不作任何明示或暗示的保证，包括但不限于绿城置业服务的适用性、没有错误或疏漏、持续性、准确性、可靠性、适用于某一特定用途。同时，绿城也不对绿城置业服务所涉及的技术及信息的有效性、准确性、正确性、可靠性、质量、稳定、完整和及时性作出任何承诺和保证。</p>
-                                    <p>2. 绿城置业服务是房源的代销平台，您的订单仅视为向绿城发出的订购的要约或申请，只有当您的订单在完成了网上竞买和我们工作人员的审核，并完成与绿城签定《商品房买卖合同》或《商品房预售合同》后，双方才正式成立契约关系。绿城亦有权单方面取消订单。同时，绿城依据国家房地产调控通知要求保留对房产订购数量的限制权。</p>
-                                    <p>3. 不论在何种情况下，绿城均不对由于互联网正常的设备维护，互联网络连接故障，电脑、通讯或其他系统的故障，电力故障，罢工，劳动争议，暴乱，起义，骚乱，生产力或生产资料不足，火灾，洪水，风暴，爆炸，战争，政府行为，司法行政机关的命令或第三方的不作为而造成的不能服务或延迟服务承担责任。</p>
-                                    <br>
-                                    <p><b>五、 协议终止</b></p>
-                                    <p>1. 出现以下情况时，绿城有权直接以注销账户的方式终止本协议:</p>
-                                    <p>a) 绿城终止向您提供服务后，您涉嫌再一次直接或间接或以他人名义注册为绿城用户的；</p>
-                                    <p>b) 您注册信息中的主要内容不真实或不准确或不及时或不完整。</p>
-                                    <p>c) 本协议（含规则）变更时，您明示并通知绿城不愿接受新的服务协议的；</p>
-                                    <p>d) 其它绿城认为应当终止服务的情况。</p>
-                                    <p>2. 您有权向绿城要求注销您的账户，经绿城审核同意的，绿城注销（永久冻结）您的账户，届时，您与绿城基于本协议的合同关系即终止。您的账户被注销（永久冻结）后，绿城没有义务为您保留或向您披露您账户中的任何信息，也没有义务向您或第三方转发任何您未曾阅读或发送过的信息。</p>
-                                    <p>3.  您同意，您与绿城的合同关系终止后，绿城仍享有下列权利</p>
-                                    <p>a) 继续保存您的注册信息及您使用绿城置业服务期间的所有信息。</p>
-                                    <p>b) 您在使用绿城置业服务期间存在违法行为或违反本协议和/或规则的行为的，绿城仍可依据本协议向您主张权利。</p>
-                                    <p>六、法律适用、管辖与其他</p>
-                                    <p>1. 本协议之效力、解释、变更、执行与争议解决均适用中华人民共和国法律，如无相关法律规定的，则应参照通用国际商业惯例和（或）行业惯例。</p>
-                                    <p>2. 因本协议产生之争议，应依照中华人民共和国法律予以处理。</p>
-                                </div>
-                            </li>
-                        </ul>
-                       	
-                     </form>
-                     	
-                </div>
-                <div class="regis_r right">
-                            <div>	
-                                <img src="images/upload/regis_phone.png"/>
-                                <p>手机快速注册</p>
-                            </div>
-                            <p class="regis_dot">
-                            </p>
-                            <ul>
-                                <li>中国大陆手机用户，</li>
-                                <li>请编辑短信“<span>JD</span>”发送到：</li>
-                                <li><span>XXXXXXXXXXXXXXXXXX</span></li>
-                            </ul>
-               </div>
-            </div>
-        </div>	
-		<!--register_content end-->
-        <!--login_foot start-->
-    	<div class="login_foot cf">
-        	<ul class="left cf">
-              <li><a href="#">关于我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-              <li><a href="#">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-              <li><a href="#">服务声明</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-              <li><a href="#">友情链接</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-              <li><a href="#">常见问题</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-              <li><a href="#">网站地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-              <li><a href="#">人才招聘</a></li>
-            </ul>
-            <p class="right">绿城版权所有 © 2010-2013</p>
-        </div>
-   <!--login_foot end-->
- 
-    </div>
-      <!--content end-->
-      <!--提示弹框 start-->
-    <div class="mask"></div>
-    <!--删除-->
-    <div id="delete_layer" class="layer l_width1">
-        <h2>提示</h2>
-        <div class="layer_box">
-            <p class="layer_nr">关注成功！</p>
-            <p class="align_r">
-				<input class="ly_btn_1 close" type="button" value="确定" />
-            </p>
+    <!--footer -->
+    <div class="footer_b">
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a href="#" class="help_icon">帮助</a></p>
+                </dd>
+            </dl>
         </div>
     </div>
-    <!--提示弹框 end--
-</div>
+    <div class="logBtn"></div>
+    <!--check layer-->
+    <div class="hint_over" style="margin:50px auto;">
+    	<div class="hint_cont"></div>
+        <input type="button" id="btn_ok" value="确 定" />
+    </div>
 </body>
 </html>

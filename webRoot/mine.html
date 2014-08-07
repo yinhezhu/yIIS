@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>我的保单</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+// 以下代码在样式里已经用:active解决
+$(function(){
+	//查看详情 等按钮点击的时候变样式
+	/*(function(){
+		$(".changeColorInput input").mousedown(function(){
+			$(this).addClass("keydown");	
+		}).mouseup(function(){
+			$(this).removeClass("keydown");
+		});	
+	})();	
+	
+	//绑定按钮 点击的时候变样式
+	(function(){
+		$("#bindBtn").mousedown(function(){
+			$(this).addClass("bind_keydown");	
+		}).mouseup(function(){
+			$(this).removeClass("bind_keydown");
+		});	
+	})();*/	
+	//更多操作
+	(function(){
+		var $more = $(".more_detail");
+		$more.on("touchend click",function(){
+			var $this = $(this);
+			if($this.find("i").hasClass("up")){
+				$this.next(".dis").hide();
+				$this.find("i").removeClass("up");
+			}else{
+				$this.next(".dis").show();
+				$this.find("i").addClass("up");
+			}
+			
+		});
+	})();
+});
+
+
+</script>
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>我的保单</div>
+    <div class="header">
+    	<div class="butt_wrap">
+            <h3 class="current">官网保单</h3>
+            <h3>其他保单</h3>
+        </div>
+    </div>
+    <!--content-->
+    	<!--在 whole_list 旁边添加class为 changeColorInput 是为了样式里选择里面的input来实现点击的时候换样式 ，以免跟其他页面的whole_list下面的input发生冲突 -->
+    <div class="main cf margin_t_minus">
+    	<div class="tab_div show_div">
+        	<div class="whole_list changeColorInput">
+            	<div>
+                	<p>安心旅行</p>
+                    <p>保单号：86002P0182013015922</p>
+                    <p>成交时间：2010-03-26</p>
+                    <!--<span class="green_bg"></span>-->
+                    <input type="button" value="查看详情" onFocus="this.blur()" />
+                    <a href="javascript:;" class="more_detail">更多操作<i></i></a>
+                    <p class="dis" style="display:none;">
+                    	<input type="button" value="投保人资料变更" onFocus="this.blur()" />
+                        <input type="button" value="犹豫期退保" onFocus="this.blur()" />
+                        <input type="button" value="追加保费" onFocus="this.blur()" />
+                        <input type="button" value="部分领取" onFocus="this.blur()" />
+                        <input type="button" value="退保" onFocus="this.blur()" />
+                    </p>
+                </div>
+            </div>
+        	<div class="whole_list changeColorInput">
+            	<div>
+                	<p>阳光人寿稳操胜券投资连结保险</p>
+                    <p>保单号：86002P0182013015922</p>
+                    <p>成交时间：2010-03-26</p>
+                    <p>账户现金价值：13,004.00元</p>
+                    <!--<span class="gray_bg"></span>-->
+                    <input type="button" value="查看详情" onFocus="this.blur()" />
+                    <!--<input type="button" value="解除合同" onFocus="this.blur()" />-->
+                    <a href="javascript:;" class="more_detail">更多操作<i></i></a>
+                    <p class="dis" style="display:none;">
+                    	<input type="button" value="投保人资料变更" onFocus="this.blur()" />
+                        <input type="button" value="犹豫期退保" onFocus="this.blur()" />
+                        <input type="button" value="追加保费" onFocus="this.blur()" />
+                        <input type="button" value="部分领取" onFocus="this.blur()" />
+                        <input type="button" value="退保" onFocus="this.blur()" />
+                    </p>
+                </div>
+            </div>
+        	<div class="whole_list changeColorInput">
+            	<div>
+                	<p>非网销投连产品</p>
+                    <p>保单号：86002P0182013015922</p>
+                    <p>成交时间：2010-03-26</p>
+                    <!--<span class="green_bg"></span>-->
+                    <input type="button" value="查看详情" onFocus="this.blur()" />
+                </div>
+            </div>
+        	<div class="whole_list changeColorInput">
+            	<div>
+                	<p>家财险/意健险div产品</p>
+                    <p>保单号：86002P0182013015922</p>
+                    <p>成交时间：2010-03-26</p>
+                    <!--<span class="gray_bg"></span>-->
+                    <input type="button" value="查看详情" onFocus="this.blur()" />
+                    <!--<input type="button" value="解除合同" onFocus="this.blur()" />-->
+                </div>
+            </div>
+        	<div class="whole_list changeColorInput">
+            	<div>
+                	<p>车险</p>
+                    <p>保单号：86002P0182013015922</p>
+                    <p>成交时间：2010-03-26</p>
+                    <!--<span class="green_bg"></span>-->
+                    <input type="button" value="查看详情" onFocus="this.blur()" />
+                </div>
+            </div>
+        	<div class="whole_list changeColorInput">
+            	<div>
+                	<p>房产财产保险</p>
+                    <p>保单号：86002P0182013015922</p>
+                    <p>成交时间：2010-03-26</p>
+                    <!--<span class="gray_bg"></span>-->
+                    <input type="button" value="查看详情" onFocus="this.blur()" />
+                    <!--<input type="button" value="解除合同" onFocus="this.blur()" />-->
+                </div>
+            </div>
+        	<div class="whole_list changeColorInput">
+            	<div>
+                	<p>意健险</p>
+                    <p>保单号：86002P0182013015922</p>
+                    <p>成交时间：2010-03-26</p>
+                    <!--<span class="gray_bg"></span>-->
+                    <input type="button" value="查看详情" onFocus="this.blur()" />
+                    <!--<input type="button" value="解除合同" onFocus="this.blur()" />-->
+                </div>
+            </div>
+            <!--<p class="more_list"><a href="#">更多保全<i class="down"></i></a></p>-->
+        </div>
+        <div class="tab_div">
+        	<p class="relevance">已关联保单</p>
+        	<div class="whole_list changeColorInput">
+            	<div>
+                	<p>E路阳光（DIY版）</p>
+                    <p>保单号：86002P0182013015922</p>
+                    <p>成交时间：2010-03-26</p>
+                    <!--<span class="green_bg"></span>-->
+                    <input type="button" value="查看详情" onFocus="this.blur()" />
+                </div>
+            </div>
+        	<div class="whole_list changeColorInput">
+            	<div>
+                	<p>阳光人寿稳操胜券投资连结保险</p>
+                    <p>保单号：86002P0182013015922</p>
+                    <p>成交时间：2010-03-26</p>
+                    <p>账户现金价值：13,004.00元</p>
+                    <!--<span class="gray_bg"></span>-->
+                    <input type="button" value="查看详情" onFocus="this.blur()" />
+                    <!--<input type="button" value="解除合同" onFocus="this.blur()" />
+                    <input type="button" value="投保人资料变更" onFocus="this.blur()" />
+                    <input type="button" value="追加保费" onFocus="this.blur()" />
+                    <input type="button" value="部分领取" onFocus="this.blur()" />-->
+                </div>
+            </div>
+            <div class=" details_list noInformation">
+            	对不起，您还未进行<a href="javascript:;">实名认证</a>，认证通过后您可以查看到您的其他保单信息。
+            </div>
+            <!-- noInformation 默认是隐藏的，没有查到信息时显示，同时把上面的几个whole_list隐藏-->
+            <!--<p class="more_list"><a href="#">收起<i class="up"></i></a></p>-->
+        	<p class="new_relevance">手动绑定保单</p>
+            <dl class="check bind_check">
+                <dd><input class="text_left borderBox" type="text" /></dd>
+                <dd><input id="bindBtn" type="button" value="绑定" onFocus="this.blur()" /></dd>
+            </dl>
+            <p>注：请先完善您的个人信息才能绑定保单（投保成功后24小时才能在网上绑定）</p>
+            <p class="margin_top10">产品推荐</p>
+            <div class="details_list pst">
+            	<div>
+                	<em class="icon_l"></em>
+                    <em class="icon_r"></em>
+                    <ul class="pic_marquee cf">
+                    	<li>
+                        	<a href="#">
+                            	<p><img src="images/upload/pic1.jpg"/></p>
+                                阳光人寿出行无忧意外
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="#">
+                            	<p><img src="images/upload/pic1.jpg"/></p>
+                                阳光人寿出行无忧意外
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="#">
+                            	<p><img src="images/upload/pic1.jpg"/></p>
+                                阳光人寿出行无忧意外
+                            </a>
+                        </li>
+                    </ul>	
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+</body>
+</html>

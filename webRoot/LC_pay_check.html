@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>理财一号-支付-验证账户</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<link rel="stylesheet" href="css/dateTouch.css"/>
+<script type="text/javascript">
+$(function(){
+	//单击下一步 功能模块
+	(function(){
+		var $ems = $("span.lc_choose").find("em");
+		var $button = $("input[value='下一次再验证']");
+		var $window = $("div.hint_register");
+		var $oMark = $("<div id='mark'></div>");
+		$button.off().on("touchend click",function(){
+			$window.show();
+			$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+			if($("#mark").size()){
+				$("#mark").show().css("position","fixed");
+				
+			}else{
+				$oMark.appendTo($("body"));
+				$("#mark").css("position","fixed");
+			}
+		});
+		// 窗口大小改变时，弹出层的位置也相应改变
+		$(window).on("resize",function(){
+			$oMark.css({
+				width : Math.max($('body').width(),$(window).width()) + 'px' ,
+				height: Math.max($('body').height(),$(window).height()) + 'px'
+			});
+			$window.css({
+				marginTop: -$window.height()/2 + 'px' , 
+				marginLeft: -$window.width()/2 + 'px'  
+			});
+		});
+		//点击取消 关闭弹层	
+		$("#btn_closed").on("touchend click",function(){
+			$oMark.hide();
+			$window.hide();
+		});
+	})();
+});
+</script>
+</head>
+<body>
+    <!--top-->
+<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>填写资料</div>
+    <!--content-->
+    <div class="pc_main cf">
+    	<div class="pc_box">
+        	<p class="pc_pay_section">尊敬的客户，为了保证您账户中的资金安全，我们需要对您填写的银行账户进行账户验证。</p>
+            <p class="pc_pay_section">验证步骤如下：</p>
+            <p class="pc_pay_section">1、我们已向您填写的卡号为23443456787653423的银行卡已经汇入了一笔一元以下的金额，该笔金额将于5分钟内到达您的账户，每个订单最多只能进行3次小额汇款；</p>
+            <p class="pc_pay_section">2、您可以通过电话银行或手机、网上银行等您已开通的查询方式，查询今天交易明细中该笔金额；</p>
+            <p class="pc_pay_section">3、输入您收到金额，验证成功后，我们会立即从您的账户中扣款，请保证该账户有足够的金额。</p>
+        </div>
+        <h2 class="pc_title">银行账户验证</h2>
+        <div class="pc_box">
+           <p class="pc_pay_section"><input class="pay_input borderBox" type="text" placeholder="请输入验证金额" /></p>
+			<p class="gray_color">说明：请输入正确的金额。如您连续输错3次，该银行帐号将不能够用于阳光人寿理财一号保险的购买
+</p>
+
+        </div>
+        <p class="pc_btn btn_width"><input id="login" class="gray_btn" type="button" value="下一次再验证"><input type="button" value="提 交"></p>
+        
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--提示弹框-->
+    <div class="hint_register">
+    	<div class="hint_cont center_align">
+            您确实要放弃验证吗？
+        </div>
+        <input type="button" value="确 定" onClick="javasrciptt:window.onload.href='#'"/>
+        <input type="button" value="取 消" id="btn_closed" />
+    </div>
+</body>
+</html>

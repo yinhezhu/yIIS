@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>部分领取2</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//弹框功能模块
+	(function(){
+		var $button = $("input[value='确 定']");
+		var $window = $("div.hint_over");
+		var $oMark = $("<div id='mark'></div>");
+		$button.off().on("touchend click",function(){
+			$window.show();
+			$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+			if($("#mark").size()){
+				$("#mark").show().css("position","fixed");
+				
+			}else{
+				$oMark.appendTo($("body"));
+				$("#mark").css("position","fixed");
+			}
+		});
+		// 窗口大小改变时，弹出层的位置也相应改变
+		$(window).on("resize",function(){
+			$oMark.css({
+				width : Math.max($('body').width(),$(window).width()) + 'px' ,
+				height: Math.max($('body').height(),$(window).height()) + 'px'
+			});
+			$window.css({
+				marginTop: -$window.height()/2 + 'px' , 
+				marginLeft: -$window.width()/2 + 'px'  
+			});
+		});
+		//点击取消 关闭弹层	
+		$("#btn_closed").on("touchend click",function(){
+			$oMark.hide();
+			$window.hide();
+		});
+	})();
+	//手机验证模块
+	(function(){
+		var $phone = $("h4:contains('手机验证')");
+		var $phoneDiv = $("div.lc_sb");	
+		$phone.on("touchend click",function(){
+			$phoneDiv.show();
+		});
+	})();
+});
+</script>
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>部分领取</div>
+    <!--content-->
+    <div class="main cf">
+    	<div class="details_list">
+        	<h4>保单账户信息</h4>
+            <ul>              
+            	<li><span>账户价值</span><i>1000.00</i></li>
+                <li><span>本次领取金额</span><i>1000.00</i></li>
+                <li><span>手续费</span><i>1000.00</i></li>
+                <li><span>实际到账金额</span><i>1000.00</i></li>
+                <li><span>领取后账户剩余金额</span><i>1000.00</i></li>
+            </ul>
+        </div>
+        <div class="details_list">
+        	<h4>银行账户信息</h4>
+            <ul>           
+            	<li><span>缴费银行</span><i>招商银行</i></li>
+                <li><span>开户名称</span><i>张小飞</i></li> 
+                <li><span>账号</span><i>7894345002343254</i><em id="toTop"></em></li>
+                <li class="gray_color">部分领取/退保的资金只能退到您首次缴费及追加缴费所使用过的您本人的银行账号。</li>  
+            </ul>
+        </div>
+        <p class="lc_btn"><input type="button" value="确 定"></p>
+        <dl class="lc_tips">
+        	<dt>操作特别提示：</dt>
+            <dd>1）为了保障您的资金安全，请务必仔细何地您的银行账号，如有问题请到您所在的营业部进行变更。</dd>
+            <dd>2）您的资金将在受理日后10个工作日内退还到您的银行账号，请注意查收。</dd>
+        </dl>
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--提示弹框-->
+    <div class="hint_over">
+        <div class="hint_cont center_align">
+			您好，你尚未绑定手机号码，请到官网（<a href="#" class="blue2">www.sinosig.com</a>）- 账户管理中进行绑定.
+        </div>
+        <input type="button" value="确 定" id="btn_closed" />
+    </div>
+</body>
+</html>

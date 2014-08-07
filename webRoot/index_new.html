@@ -1,0 +1,222 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>新首页</title>
+<link rel="stylesheet" href="css/main.css"/>
+<script src="js/zepto.min.js"></script>
+<script src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	(function(){
+		var $hint_over = $(".hint_register");
+		var $oMark = $("<div id='mark'></div>");
+		var $hint_cont = $(".hint_cont");
+		$("#phone").on("tap click",function(){
+			$('body').css('overflow','hidden');
+				if($("#mark").size()){  //如果页面有mark 就让他显示
+					$("#mark").show().css({
+						width : Math.max($('body').width(),$(window).width()) + 'px' ,
+						height: Math.max($('body').height(),$(window).height()) + 'px'
+					});
+				}else{ // 如果没有就把已创建的添加进body
+					$oMark.appendTo($('body')).css({
+						width : Math.max($('body').width(),$(window).width()) + 'px' ,
+						height: Math.max($('body').height(),$(window).height()) + 'px'
+					});
+				}
+				$hint_over.show().css({  // 让弹框显示  并设置位置
+					zIndex : 120 ,
+					//top : ($(window).height()-$hint_over.height()) / 2 + 'px' , 
+					//left : ($(window).width()-$hint_over.width()) / 2 + 'px'  
+					marginTop: -$hint_over.height()/2 + 'px' , 
+					marginLeft: -$hint_over.width()/2 + 'px'
+				});		
+		});
+		// 窗口大小改变时，弹出层的位置也相应改变
+		$(window).on("resize",function(){
+			$oMark.css({
+				width : Math.max($('body').width(),$(window).width()) + 'px' ,
+				height: Math.max($('body').height(),$(window).height()) + 'px'
+			});
+			$hint_over.css({
+				marginTop: -$hint_over.height()/2 + 'px' , 
+				marginLeft: -$hint_over.width()/2 + 'px' 
+			});
+		});
+		// 取消关闭弹框
+		$("#btn_closed").on("tap click",function(){
+			$oMark.hide();
+			$hint_over.hide();
+			$('body').css('overflow','auto');		
+		})
+	})();
+})
+</script>
+</head>
+<body>
+	<div class="wrapper">
+        <!--header start-->
+        <dl class="header">
+        	<dt><a href="#"><span>阳光保险集团</span></a></dt>
+            <dd><a href="#">登录</a>/<a href="#">注册</a></dd>
+        </dl>
+        <!--header end-->
+        <!-- pic focus start-->
+        <div class="picFocus">
+            <div id="index_banner" class="in-slider">
+            	<div class="in-slider-cont">
+                    <ul id="inslist">
+                        <li>
+                            <a href="#"><img src="images/upload/index_img1.jpg" alt="" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="images/upload/index_img2.jpg" alt="" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="images/upload/index_img1.jpg" alt="" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="images/upload/index_img2.jpg" alt="" /></a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="index_btn"  class="in-slider-status">
+                    <span class="sel"></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <script src="js/sea.js"></script>
+                <script>
+                    seajs.use("./js/slide/IndexSlide.js");
+                </script>
+            </div>
+            
+        </div>
+        <!-- pic focus end-->
+        <!--content start-->
+        <ul class="product_icon_new cf">
+            <li>
+                <a href="#">
+                    <em><i class="p_icon2_new"></i></em>
+                    <span>我的阳光</span> 
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <em><i class="p_icon1_new"></i></em>
+                    <span>产品购买</span> 
+                </a>
+            </li> 
+            <li>
+                <a href="#">
+                    <em><i class="p_icon4_new"></i></em>
+                    <span>保单服务</span> 
+                </a>
+            </li> 
+            <li>
+                <a href="#">
+                    <em><i class="p_icon3_new"></i></em>
+                    <span>理赔服务</span> 
+                </a>
+            </li>  
+        </ul>
+        <!--精品推荐 start-->
+        <div class="box">
+        	<h2 class="index_h2">精品推荐</h2>
+            <em class="jp_icon"></em>
+            <ul class="jp_list cf">
+            	<li>
+                	<a href="#">
+                	<dl class="cf">
+                    	<dt><img src="images/upload/index_jp1.png"/></dt>
+                        <dd>
+                        	<h3>短期意外险</h3>
+                            <p>短期交通意外险7天30天短期旅行必备</p>
+                        </dd>
+                    </dl>
+                    </a>
+                </li>
+                <li>
+                	<a href="#">
+                	<dl class="cf">
+                    	<dt><img src="images/upload/index_jp2.png"/></dt>
+                        <dd>
+                        	<h3>理财王</h3>
+                            <p>理财王两全保险高收益  零风险  低门槛</p>
+                        </dd>
+                    </dl>
+                    </a>
+                </li>
+                <li>
+                	<a href="#">
+                	<dl class="cf">
+                    	<dt><img src="images/upload/index_jp3.png"/></dt>
+                        <dd>
+                        	<h3>车险</h3>
+                            <p>自动投保 快速获得报价 方案自主选择</p>
+                        </dd>
+                    </dl>
+                    </a>
+                </li>
+                <li class="jp_more">更多精品<br>敬请期待</li>
+            </ul>
+        </div>
+        <!--精品推荐 end-->
+        <!--服务资讯 start-->
+		<div class="box pd_13">
+        	<h2 class="index_h2">服务资讯</h2>
+            <ul class="index_info_list">
+                <li><a href="#">阳光保险集团杯2013千万车主阳光保险集团阳光保险集团阳光保险集团阳光</a></li>
+                <li><a href="#">阳光保险集团杯2013千万车主最</a></li>
+                <li><a href="#">阳光保险集团杯2013千万车主最</a></li>
+            </ul>
+            <p class="center_align"><a href="#" class="gray">查看全部</a></p>
+        </div>
+        <!--服务资讯 end-->
+        <!--关于阳光 start-->
+       	<div class="box pd_13">
+        	<h2 class="index_h2">关于阳光</h2> 
+            <ul class="index_info_list">
+                <li><a href="#">组织架构</a></li>
+                <li><a href="#">董事长致辞</a></li>
+                <li><a href="#">阳光文化</a></li>
+            </ul>
+       	    <p class="center_align"><a href="#" class="gray">查看全部</a></p>
+        </div>
+        <!--关于阳光 end-->
+
+        <!--content end-->
+	</div>
+    <!--footer -->
+    <div class="footer_b">
+    	<p class="bottom">
+        	<a href="#">登录</a>&nbsp;&nbsp;
+            <a href="#">注册</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color" id="phone">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a href="#" class="help_icon">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--95510弹框-->
+    <div class="hint_register">
+    	<div class="hint_cont center_align">95510</div>
+        <div class="center_align">
+        	<input type="button" value="取 消" id="btn_closed" />
+        	<a href="tel:95510" style="display:inline-block;width:48%;">
+            	<input style="width:100%;" type="button" value="呼 叫" />
+            </a>
+        </div>
+    </div>
+</body>
+</html>

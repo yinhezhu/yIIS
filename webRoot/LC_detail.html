@@ -1,0 +1,255 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>理财一号-产品详情</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//购买份数选择功能模块
+	(function(){
+		var $spans = $("span.js_span");
+		var $input = $("input.num_input");
+		var $dds = $("dd.pc_choose").find("span");
+		$spans.eq(0).off().on("touchend",function(){
+			if(parseInt($input.val()) == 1){
+				$(this).removeClass("cut_icon2").addClass("cut_icon1");
+				return;
+			}
+			$input.val(parseInt($input.val()) - 1);
+			initDD();
+			$spans.eq(1).removeClass("add_icon1").addClass("add_icon2");
+			if(parseInt($input.val()) == 1){
+				$(this).removeClass("cut_icon2").addClass("cut_icon1");
+			}
+		});
+		$spans.eq(1).off().on("touchend",function(){
+			if(parseInt($input.val()) == 199){
+				$(this).removeClass("add_icon2").addClass("add_icon1");
+				return;
+			}
+			$input.val(parseInt($input.val()) + 1);
+			initDD();
+			$spans.eq(0).removeClass("cut_icon1").addClass("cut_icon2");
+			if(parseInt($input.val()) == 199){
+				$(this).removeClass("add_icon2").addClass("add_icon1");
+			}
+		});
+		$input.off().on("blur",function(){
+			var reg = /^[0-9]+$/i;
+			if(!reg.test($input.val())){
+				$input.val("5");
+				return;
+			}
+			if(parseInt($input.val()) > 199){
+				$input.val("199");
+				$spans.eq(1).trigger("click");
+			}
+			initDD();
+		});
+		
+		$dds.off().on("touchend",function(){
+			$dds.removeClass("on");
+			$(this).addClass("on");
+			var index = $(this).index();
+			switch (index) {
+				case  0:
+					$input.val(5);
+					break;
+				case 1 :
+					$input.val(10);
+					break;
+				case 2 :
+					$input.val(20);
+					break;
+				case 3 :
+					$input.val(50);
+					break;
+			}
+		});
+		
+		function initDD(){
+			if(parseInt($input.val()) == 5){
+				$dds.eq(0).trigger("touchend");
+			}else if(parseInt($input.val()) == 10){
+				$dds.eq(1).trigger("touchend");
+			}else if(parseInt($input.val()) == 20){
+				$dds.eq(2).trigger("touchend");
+			}else if(parseInt($input.val()) == 50){
+				$dds.eq(3).trigger("touchend");
+			}else{
+				$dds.removeClass("on");
+			}
+		}
+	})();
+	
+	
+});
+</script>
+</head>
+<body>
+    <!--top-->
+<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>产品详情</div>
+    <!--content-->
+    <div class="pc_main cf">
+        <h2 class="pc_title">理财王两全保险（万能型）</h2>
+        <div class="pc_box cf">
+        	<span class="pc_bold">阳光人寿 2013保险理财投资精品</span>
+        	<ul class="pc_star">
+            	<li>预期收益率<span class="orange_color">5.2%</span>（年化）</li>
+                <li>适合闲钱做短期投资!</li>
+                <li>精选投资标的，收益稳健!</li>
+                <li>每<span class="orange_color">1000元</span>赠<span class="orange_color">450个</span>支付宝集分宝！</li>
+            </ul>
+            <dl class="pc_dl cf">
+                <dt>保险期间</dt>
+                <dd><span>5年</span></dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价</dt>
+                <dd><span class="red_color">￥1000.00</span></dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>购买份数</dt>
+                <dd><span class="cut_icon2 js_span"></span><input type="text" class="num_input" value="50" /><span class="add_icon2 js_span"></span><span class="gray_color f_12">（每人限购199份）</span></dd>
+            </dl> 
+            <dl class="pc_dl lc_width cf">
+            	<dd class="pc_choose"><span>5千</span><span>1万</span><span>2万</span><span class="on">5万</span></dd>
+            </dl>
+            <p class="padding_t10"><input type="button" value="立即购买"></p>
+        </div>
+        <h2 class="pc_title">产品特色</h2>
+        <div class="pc_box cf f_15">
+        	<dl class="pc_dl cf">
+                <dt>收&nbsp;&nbsp;益&nbsp;&nbsp;高</dt>
+                <dd>预期年化收益  5.2%(年化)，有保底</dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>门&nbsp;&nbsp;槛&nbsp;&nbsp;低</dt>
+                <dd>投资门槛低至千元</dd>
+            </dl> 
+            <dl class="pc_dl cf">
+                <dt>超&nbsp;&nbsp;短&nbsp;&nbsp;期</dt>
+                <dd>灵活支取，3个月后领取/退保不收取费用 </dd>
+            </dl> 
+            <dl class="pc_dl cf">
+                <dt>赠集分宝</dt>
+                <dd>每1000元赠2020个积分，可兑换450个支付宝集分宝</dd>
+            </dl> 
+            <dl class="pc_dl cf">
+                <dt>持续增值</dt>
+                <dd>日复利，月结息</dd>
+            </dl> 
+            <dl class="pc_dl cf">
+                <dt>易&nbsp;&nbsp;操&nbsp;&nbsp;作</dt>
+                <dd>阳光保险官网直销，购买无需开通网银</dd>
+            </dl>      
+        </div>
+        <h2 class="pc_title">投保须知</h2>
+        <div class="pc_box cf">
+        	<dl class="pc_dl cf">
+                <dt>投保年龄</dt>
+                <dd>男：18周岁至59周岁（含 ）<br>女：18周岁至54周岁（含 ）</dd>
+            </dl>
+            <dl class="pc_dl cf">
+                <dt>购买金额</dt>
+                <dd>1000元起售，1000元整数倍（限购199份）</dd>
+            </dl> 
+            <dl class="pc_dl cf">
+                <dt>生效日期</dt>
+                <dd>投保日的次日零时</dd>
+            </dl> 
+            <dl class="pc_dl cf">
+                <dt>犹&nbsp;&nbsp;豫&nbsp;&nbsp;期</dt>
+                <dd>保险单生效日起的十日内</dd>
+            </dl> 
+            <dl class="pc_dl cf">
+                <dt>退保方式</dt>
+                <dd>可在线上进行保单查询和退保</dd>
+            </dl> 
+            <dl class="pc_dl cf">
+                <dt>购买区域</dt>
+                <dd>中国大陆地区除西藏、青海、宁夏、贵州、海南外均可购买</dd>
+            </dl>     
+        </div>
+        <h2 class="pc_title">领取/退保</h2>
+        <div class="pc_box cf">
+            <table class="table_list margin_10">
+                <colgroup>
+                    <col class="w_50" />
+                    <col class="w_50" />
+                </colgroup>
+                <tr>   
+                    <th>保险生效日期</th>
+                    <th>领取（退保）收费比率</th>
+                </tr>
+                <tr>
+                    <td><=90天</td>
+                    <td>1%</td>
+                </tr>
+                <tr>
+                    <td>>90天</td>
+                    <td>0%</td>
+                </tr>
+            </table>
+        </div>
+        <h2 class="pc_title">支付方式</h2>
+        <div class="pc_box cf">
+        	<table class="table_list margin_10">
+                <colgroup>
+                    <col class="w_30" />
+                    <col class="w_30" />
+                    <col class="w_30" />
+                </colgroup>
+                <tr>   
+                    <th>银行名称</th>
+                    <th>支持卡种</th>
+                    <th>限额</th>
+                </tr>
+                <!--列表数据循环开始-->
+                <tr>
+                    <td>中国农业银行 </td>
+                    <td>借记卡（储蓄卡）</td>
+                    <td>100万</td>
+                </tr>
+                <tr>
+                    <td>中国建设银行 </td>
+                    <td>借记卡（储蓄卡）</td>
+                    <td>100万</td>
+                </tr>
+                <!--列表数据循环结束-->
+            </table>	
+        </div>
+        <h2 class="pc_title">投保流程</h2>
+        <div class="pc_box cf">
+        	<div class="flow_pic2">
+            	<span>1<br>填写资料</span>
+                <span>2<br>确认资料</span>
+                <span>3<br>验证信息</span>
+                <span>4<br>完成支付</span>
+            </div>    
+        </div>        
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+</body>
+</html>

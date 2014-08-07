@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>犹豫期退保-连投险</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//选择事件
+	(function(){
+		var $select = $("select.kinds_list");
+		var $span = $select.parent().find("span");
+		$select.off().on("change",function(){
+			var index = $(this).get(0).selectedIndex;
+			$span.html($(this).find("option").eq(index).text());
+		});
+	})();
+});
+</script>
+</head>
+<body>
+    <!--top-->
+	<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>犹豫期退保</div>
+    <!--content-->
+    <div class="main cf">
+    	<div class="details_list">
+        	<h4>保单账户信息</h4>
+            <ul>              
+                <li><span>保单号码</span><i>8026000002532998</i></li>
+                <li><span>险种名称</span><i>阳光人寿稳操胜券投资连结保险</i></li>
+                <li><span>保单生效日期</span><i>2013-03-20</i></li>
+                <li><span>首付保费</span><i>6000</i></li>
+                <li><span>现有单位数</span><i>6000</i></li>
+                <li><span>初始费用</span><i>0.8%</i></li>
+                <li><em class="orange_color">注：</em>您账户价值50万以下金额的0.8%</li>
+            </ul>
+        </div>
+        <div class="details_list">
+        	<div class="ltx_info">
+                <dl class="lc_import">
+                    <dt>请选择退保原因</dt>
+                    <dd class="kindsDD2">
+                        <span> — —请选择— —</span>
+                        <select class="kinds_list">
+                            <option value="">收入下降</option>
+                            <option value="">其他</option>
+                        </select>
+                    </dd>
+                </dl>
+                <p>我们会对产品、服务进行持续的改善。</p>
+            </div>
+        </div>
+        <p class="lc_btn"><input type="button" value="确 定"></p>
+        <dl class="lc_tips">
+        	<dt>操作特别提示：</dt>
+            <dd>1）选择退保后您将不再享受阳光人寿稳操胜券投资连结保险产品的保障，请您慎重考虑！</dd>
+            <dd>2）本公司将按照受理当日下一个评估日的投资单位价格，计算本保险的保单账户价值。</dd>
+        </dl>
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+</body>
+</html>

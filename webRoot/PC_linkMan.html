@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>常用联系人</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//列表满10条单击“添加”按钮 功能模块
+	(function(){
+		var size = $(".details_list").size();
+		var $button = $("input[value='添加']");
+		var $window = $("div.hint_over");
+		var $oMark = $("<div id='mark'></div>");
+		$button.off().on("touchend",function(){
+			if(size >= 10){
+				$window.fadeIn();
+				$window.css({marginTop:-$window.height()/2,marginLeft:-$window.width()/2,zIndex:200});
+				if($("#mark").size()){
+					$("#mark").show().css("position","fixed");
+					
+				}else{
+					$oMark.appendTo($("body"));
+					$("#mark").css("position","fixed");
+				}
+				setTimeout(function(){
+					$("#mark").hide();
+					$window.fadeOut();
+				},3000);	
+			}
+		});
+	})();
+});
+</script>
+</head>
+<body>
+    <!--top-->
+<div class="top"><a class="back_icon" href="javascript:;"></a><a href="index.html" class="index_icon"></a>常用联系人</div>
+    <!--content-->
+    <div class="main cf">   
+    	<p class="pc_section cf">
+        	<span class="left">常用联系人信息<em>(最多保存10条信息)</em></span>
+            <input class="pc_button right" type="button" value="添加" />
+        </p>
+        <div class="details_list claims_pd">
+            <a href="#">
+            	<em class="arrow_icon2"></em>
+                <ul> 
+                    <li><span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span><i>张小飞<em class="gray_color">(默认)</em></i></li>
+                    <li><span>身份证号</span><i>372876198010102345</i></li>
+                    <li><span>手机号码</span><i>13654263256</i></li>
+                </ul>
+            </a>
+        </div>
+        <div class="details_list claims_pd">
+            <a href="#">
+            	<em class="arrow_icon2"></em>
+                <ul> 
+                    <li><span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span><i>张小飞</i></li>
+                    <li><span>身份证号</span><i>372876198010102345</i></li>
+                    <li><span>手机号码</span><i>13654263256</i></li>
+                </ul>
+            </a>
+        </div>
+        <!-- 需要分页的时候 取消以下注释 -->
+        <!--<p class="center_align">
+        	<button>上一页</button>
+            <span class="page">
+                <em>1 / 3</em>
+            	<select class="page_select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </span>
+            <button>下一页</button>
+        </p>-->   
+        <!-- 需要分页的时候 取消以上注释 --> 
+    </div>
+    <!--footer -->
+    <div class="footer_b">
+        <p class="bottom">
+        	<a href="#">张小凡</a>&nbsp;&nbsp;
+            <a href="#">退出</a>
+            <a href="javascript:void(0);" class="top_icon">TOP</a>
+        </p>  
+    	<div class="footer">
+        	<!--<p><button>下 载</button><button>微 信</button><button>服务热线</button></p>-->
+            <dl class="cf">
+                <dd>
+                	<p><em class="phone_icon"></em>全国统一客户服务热线：<span class="red_color">95510</span></p>
+                    <p>版权所有 粤ICP备09150084号&nbsp;<a class="help_icon" href="#">帮助</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="logBtn"></div>
+    <!--错误提示框-->
+    <div class="hint_over">
+    	<div class="hint_cont center_align">常用联系人保存条数已达到上限！</div>
+    </div> 
+</body>
+</html>
