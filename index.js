@@ -1,2 +1,2 @@
-var server = require("./server/makeServer");
-server.start();
+var $server = require("./server/makeServer");
+$server.start();

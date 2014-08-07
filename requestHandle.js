@@ -1,10 +1,10 @@
 // JavaScript Document
-var fs = require("fs");
+var $fs = require("fs");
 var defaultPath = "./webRoot";
 var mime = require("./common/mine").mime;
 function handle(pathname,request,response){
 	var realPath = defaultPath + pathname;
-	fs.stat(realPath,function(err,stats){
+	$fs.stat(realPath,function(err,stats){
 		if(stats === undefined){//如果地址没有找到
 			response.writeHead(404, {'Content-Type': 'text/plain'}); 
 			response.end();
@@ -14,13 +14,13 @@ function handle(pathname,request,response){
 			if(!stats.isDirectory()){//如果不是目录的情况
 				var array = realPath.split(".");
 				var type = array[array.length-1];
-				fs.exists(realPath, function(exists){  
+				$fs.exists(realPath, function(exists){  
 					if ( !exists ) {  
 						response.writeHead(404, {'Content-Type': 'text/plain'});  
 						// res.write();  
 						response.end();  
 					} else {  
-						fs.readFile(realPath, 'binary', function(err, file){  
+						$fs.readFile(realPath, 'binary', function(err, file){  
 							if ( err ) {  
 								response.writeHead(500, {'Content-Type': 'text/plain'});  
 								// res.write();  
@@ -34,14 +34,14 @@ function handle(pathname,request,response){
 					}  
 				});  
 			}else{//目录的情况
-				fs.readdir(realPath,function(err,files){
+				$fs.readdir(realPath,function(err,files){
 					var dirArr = [],filesArr = [],resultArr;
 					for(var i=0;i<files.length;i++){
 						var target = files[i];
 						if(pathname ==="/"){
-							var stats = fs.statSync(realPath + target);
+							var stats = $fs.statSync(realPath + target);
 						}else{ 
-							var stats = fs.statSync(realPath + "/" + target);
+							var stats = $fs.statSync(realPath + "/" + target);
 						}
 						if(stats.isDirectory()){
 							dirArr.push(target);
