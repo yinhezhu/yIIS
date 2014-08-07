@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<title>登录</title>
+<script>
+<!--登录验证 start-->
+function loginCheck(mobileNum,passw,yanzm){
+	
+	//自动聚焦
+	function focusBlur(obj){
+		var oldV=obj.value;
+		obj.onfocus=function(){
+					if(obj.value==oldV){
+					obj.value='';
+					
+					};
+			}
+			obj.onblur=function(){
+				if(obj.value==""){
+					obj.value=oldV;
+				}
+			}
+		
+	}
+	
+	window.onload=function(){
+			var oPhone=document.getElementById('phoneNum');
+			var oPass=document.getElementById('passW');
+			var oYzm=document.getElementById('yanzhengma');
+			var oBtn=document.getElementById('loginBtn');
+			var oBtn=document.getElementById('loginBtn');
+			var oPhoneTip=document.getElementById('phoneTip');
+			oPhoneTip.innerHTML='';
+			var PhoneoldV=oPhone.value;
+			var passoldV=oPass.value;
+			var yzmOldV=oYzm.value;
+			focusBlur(oPhone);
+			focusBlur(oPass);
+			focusBlur(oYzm);
+			
+			
+			//用户名，密码检测
+	
+			loginCheck(oBtn,oPhone,phoneTip);
+			var timer=null;
+	
+			//手机号只能输入数字	
+			oPhone.onkeydown=function(ev){
+				document.title=ev.keyCode;
+				
+				//Tab
+				if(ev.keyCode==9){
+					oPass.focus();
+				}
+				//0  48,96
+				//9  57,105
+				if(ev.keyCode==13){
+				alert('登录信息有误！');		
+				}
+				if((ev.keyCode<48 || ev.keyCode>57) && ev.keyCode!=8 &&(ev.keyCode<96 || ev.keyCode>105 && ev.keyCode!=13 && ev.keyCode!=9)){
+					console.log(123);
+					return false;	
+				}
+				
+			}
+			//手机号最多输入11个
+			
+			oPhone.onfocus=function(){
+				if(oPhone.value==PhoneoldV){
+					oPhone.value='';
+					};
+					oPhone.maxLength=11;
+	
+			}
+			//密码最多输入18个
+		
+			oPass.onkeydown=function(ev){
+				if(ev.keyCode==13){
+				alert('登录信息有误！');		
+				}
+				if(oPass.value==passoldV){
+					oPass.value='';
+					};
+					oPass.maxLength=15;
+	
+			}
+			//验证码最多输入5个
+			oYzm.onkeydown=function(ev){
+				if(ev.keyCode==13){
+				alert('登录信息有误！');		
+				}
+				oYzm.maxLength=5;	
+			}
+			
+
+			oBtn.onclick=function(){
+				//手机号为空
+				if(oPhone.value==""){
+					oPhoneTip.innerHTML='!&nbsp;&nbsp;请您填写手机号';
+					return;
+				}
+				//密码为空
+				if(oPass.value==""){
+					oPhoneTip.innerHTML='!&nbsp;&nbsp;请您填写密码';
+					return;
+				}
+				//验证码为空
+				if(oYzm.value==''){
+					oPhoneTip.innerHTML='!&nbsp;&nbsp;请您填写验证码';
+					return;
+				}
+				if(oYzm.value!=yanzm+''){
+					oPhoneTip.innerHTML='!&nbsp;&nbsp;您输入的验证码有误';
+					return;
+				}
+				
+				//验证手机号和密码
+				if(oPhone.value!=mobileNum+'' || oPass.value!=passw){
+					oPass.value='';
+					oPhoneTip.innerHTML='!&nbsp;&nbsp;手机号或密码输入有误，<a href="retrieve_password.html">&nbsp;忘记密码&nbsp;</a>？';	
+					oPass.focus();
+					
+					return;
+				}
+				
+			}
+	}
+	
+}
+<!--登录验证 end-->
+//测试登录
+loginCheck(123,'123',123)
+</script>
+</head>
+<body>
+    <div class="login_content">
+    <!--header start-->
+    <div class="top_wrapper">
+        <dl class="top">
+            <dd>
+                <a class="serv_icon" href="javascript:;"></a>
+                <a class="sina_icon" href="javascript:;"></a>
+                <a class="wx_icon" href="javascript:;"></a>
+                <a class="wl_icon" href="javascript:;"></a>
+            </dd>
+        </dl>   
+    </div>
+    <!--header end-->
+    <!--content start-->
+
+    	<!--login_head start-->
+           <div class="login_head cf">
+                    <h1 class="left"><a href="index.html" title="绿城在线置业"></a></h1>
+                    <p class="right">全国统一客服/<span>400-111-3900</span></p>
+           </div>
+    <!--login_head end-->
+    <!--login_content start-->
+            <div class="center">
+                <div class="center_b">
+                	<form action="" method="get" class="login_form">
+                        <div class="yinying">
+                            <dl class="login_box">
+                                <dt>欢迎登录<a  class="log_dt1_a1"href="register.html">免费注册</a>
+                                <p class="tips"  id="phoneTip">!&nbsp;&nbsp;手机号或密码输入有误，<a href="retrieve_password.html">&nbsp;忘记密码&nbsp;</a>？</p></dt>
+                                <dd class="login_box_dd1"><div class="l_dd1"><input id="phoneNum" type="text" placeholder="手机号"/></div></dd>
+                                <dd><div class="l_dd2"><input id="passW"type="password" placeholder="密码"/></div></dd>
+                                <dd class="l_dd3">
+                                    <input id="yanzhengma" type="text" placeholder="请输入验证码"/><img src="images/bg/yanzhengma.jpg"/><a href="#">换一张？</a>
+                                </dd>
+                                <dd class="l_dd4"><input id="loginBtn" type="button" value="登录" id="login_btn"/></dd>
+                                <dd class="l_dd5"><input type="checkbox"/><span>自动登录</span><a href="retrieve_password.html"><span>找回密码</span></a></dd>
+                            </dl>
+                        </div>
+               		 </form>
+                </div>
+            </div>
+		<!--login_content end-->
+     
+    <!--content end-->
+        <!--login_foot start-->
+    	<div class="login_foot cf">
+        	<ul class="left cf">
+              <li><a href="#">关于我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+              <li><a href="#">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+              <li><a href="#">服务声明</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+              <li><a href="#">友情链接</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+              <li><a href="#">常见问题</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+              <li><a href="#">网站地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+              <li><a href="#">人才招聘</a></li>
+            </ul>
+            <p class="right">绿城版权所有 © 2010-2013</p>
+        </div>
+   <!--login_foot end-->
+
+    </div>
+</body>
+</html>

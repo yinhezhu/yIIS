@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>经纪人</title>
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script>
+
+//鼠标滑过图片
+	 
+$(function (){
+
+	(function(){
+		$(".index_picList li").off().on("mouseenter",function(){
+			var $this = $(this);
+			$this.find(".pic_tj").slideDown("slow");
+			$this.find("div").find("a").show().animate({bottom:"50%"},500);
+		}).on("mouseleave",function(){
+			var $this = $(this);
+			$this.find(".pic_tj").slideUp("slow");
+			$this.find("div").find("a").animate({bottom:"-33px"},500);
+		});
+	})();
+		
+});
+
+</script>
+</head>
+<body>
+	<h3 class="gc_title">最新公告：为保证绿城物业的服务质量及工作效率，2014年起我们将完整的物业服务标准公示在生活服务里。</h3>
+	<div class="broRight cf mr_t30">
+		<div class="broInfo">
+			<dl class="broDetail">
+				<dt class="cf">
+					<span>宋春华</span>
+					<em>账户ID：1356543367</em>
+				</dt>
+				<dd><ul>
+					<li><em>账户佣金：</em><a href="#"><span>14.5万&nbsp;</span></a>元</li>
+					<li><em>团队佣金：</em><a href="#"><span>117.5万&nbsp;</span></a>元</li>
+				</ul></dd>
+				<dd><ul>
+					<li><em>买房意向：</em><a href="#"><span>153</span></a></li>
+					<li><em>已成交：</em><a href="#"><span>50</span></a></li>
+					<li><em>待成交：</em><a href="#"><span>75</span></a></li>
+				</ul></dd>
+			</dl>
+			<a href="rec_buy.html" target="_parent"><input class="recBuy" type="button" value="" /></a>
+		</div>
+		<div class="cliState">
+			<h2>我的客户状态</h2>
+			<table class="broTab">
+				<thead>
+					<tr>
+						<td>客户信息</td>
+						<td>推荐楼盘</td>
+						<td>推荐时间</td>
+						<td>佣金额</td>
+						<td>状态</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>王安石(13856847521)</td>
+						<td>龙虎春江彼岸-滨江</td>
+						<td>2014-03-14</td>
+						<td>根据成交状况计算</td>
+						<td>未成交</td>
+					</tr>
+					<tr>
+						<td>欧阳观海(13858741236)</td>
+						<td>龙虎春江彼岸-滨江</td>
+						<td>2014-02-05</td>
+						<td class="tdColor">5万元</td>
+						<td>已成交</td>
+					</tr>
+					<tr>
+						<td>大力(13888996541)</td>
+						<td>苏宁睿城-建邺</td>
+						<td>2014-01-03</td>
+						<td class="tdColor">1万3000元</td>
+						<td>已成交</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="myTeam">
+			<h2>我的团队</h2>
+			<table class="broTab">
+				<thead>
+					<tr>
+						<td>姓名</td>
+						<td>电话</td>
+						<td>加入时间</td>
+						<td>成交套数</td>
+						<td>成交总金额</td>
+						<td>我的奖金</td>
+						<td>推荐客户</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>白居易</td>
+						<td>13856847521</td>
+						<td>2014-03-14</td>
+						<td>10</td>
+						<td class="tdColor">20万5000元</td>
+						<td class="tdColor">2500元</td>
+						<td>55</td>
+					</tr>
+					<tr>
+						<td>梁非凡</td>
+						<td>13858741236</td>
+						<td>2014-02-05</td>
+						<td>8</td>
+						<td class="tdColor">5万元</td>
+						<td class="tdColor">500元</td>
+						<td>20</td>
+					</tr>
+					<tr>
+						<td>李栋梁</td>
+						<td>13888996541</td>
+						<td>2014-01-03</td>
+						<td>2</td>
+						<td class="tdColor">1万3000元</td>
+						<td class="tdColor">1300元</td>
+						<td>18</td>
+					</tr>
+				</tbody>
+			</table>
+			<p class="broAddAll align_r"><a href="#">+全部</a></p>
+		</div>
+		<div class="mayLike">
+			<h2>可能感兴趣的楼盘</h2>
+			<div>
+
+				<ul class="index_picList house_width bro_pic_width cf">
+					<li>
+						<div>
+							<img src="images/upload/未标题-1.jpg" alt="">
+							<p class="mask_txt">8800元/平米²</p>
+							<em class="pic_mask"></em>
+							<a href="javascript:;">查看详情</a>    
+						</div>
+						<a class="pic_txt" href="javascript:;">鑫苑鑫城-相城</a>
+					</li>
+					<li>
+						<div>
+							<img src="images/upload/未标题-2.jpg" alt="">
+							<p class="mask_txt">8800元/平米²</p>
+							<em class="pic_mask"></em>
+							<a href="javascript:;">查看详情</a>    
+						</div>
+						<a class="pic_txt" href="javascript:;">鑫苑鑫城-相城</a>
+					</li>
+					<li>
+						<div>
+							<img src="images/upload/broMayLike.png" alt="">
+							<p class="mask_txt">8800元/平米²</p>
+							<em class="pic_mask"></em>
+							<a href="javascript:;">查看详情</a>    
+						</div>
+						<a class="pic_txt" href="javascript:;">鑫苑鑫城-相城</a>
+					</li>
+				</ul>
+			</div>
+			<p class="broAddAll align_r"><a href="#">+全部</a></p>
+		</div>
+		<div class="myCol">
+			<h2>我的收藏</h2>
+			<div>
+				<ul class="index_picList house_width bro_pic_width cf">
+					<li>
+						<div>
+							<img src="images/upload/未标题-1.jpg" alt="">
+							<p class="mask_txt">8800元/平米²</p>
+							<em class="pic_mask"></em>
+							<a href="javascript:;">查看详情</a>    
+						</div>
+						<a class="pic_txt" href="javascript:;">绿地之窗-金桥山开发区</a>
+					</li>
+					<li>
+						<div>
+							<img src="images/upload/未标题-2.jpg" alt="">
+							<p class="mask_txt">8800元/平米²</p>
+							<em class="pic_mask"></em>
+							<a href="javascript:;">查看详情</a>    
+						</div>
+						<a class="pic_txt" href="javascript:;">绿地之窗-金桥山开发区</a>
+					</li>
+					<li>
+						<div>
+							<img src="images/upload/broMyCol.png" alt="">
+							<p class="mask_txt">8800元/平米²</p>
+							<em class="pic_mask"></em>
+							<a href="javascript:;">查看详情</a>
+						</div>
+						<a class="pic_txt" href="javascript:;">绿地之窗-金桥山开发区</a>
+					</li>
+				</ul>
+			</div>
+			<p class="broAddAll align_r"><a href="#">+全部</a></p>
+		</div>
+	</div>
+</body>
+</html>

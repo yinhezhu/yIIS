@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script>
+$(function (){
+		
+	$('ul.houseCond').find('dl').on('click','dd a[class!=fliter_btn]',function(){	
+		$(this).addClass('nhActive')
+		.parent().siblings().children('a').removeClass('nhActive');
+	});
+
+	$('.nhTab').on('click','li',function (){
+		
+		$(this).addClass('nhtActive')
+		.siblings().removeClass('nhtActive');
+	});
+
+	//下拉菜单箭头
+
+	$('.nhsOpt').click(function (){
+		
+		$(this).find('strong').css('background-position','0 0');	
+	});
+
+
+	$('.nhsOpt').find('p').click(function (){
+			
+		$(this).find('strong').css('background-position','-14px 0');	
+	});
+
+	$(document).click(function (){
+			
+		$('.nhsOpt').find('strong').css('background-position','0 0');
+	});
+	
+	//筛选折行
+	$('.house_cond_all').each(function (i){
+			
+		$(this).outerHeight($(this).parent().height());
+	});
+
+	//下拉菜单
+	$('.more_cond').find('dd').on('click',function (){
+
+		var txt='';
+
+		$(this).find('option').each(function (i){
+			
+			if(this.selected) txt=$(this).text();	
+		});
+
+		$(this).find('span').text(txt);
+
+	});
+
+
+	//鼠标滑过图片
+	 
+	 $('.old_list_left').on('mouseenter',function (){
+		 
+		$(this).find('.old_img_det').show().animate({bottom:"50%"},500);
+
+		}).on('mouseleave',function (){
+			
+		$(this).find('.old_img_det').animate({bottom:"-100%"},500);
+	});
+	
+});
+</script>
+<title>二手房列表页</title>
+</head>
+<body>
+
+<!--header start-->
+    <div class="top_wrapper">
+        <dl class="top">
+            <dd>
+                <a class="serv_icon" href="javascript:;"></a>
+                <a class="sina_icon" href="javascript:;"></a>
+                <a class="wx_icon" href="javascript:;"></a>
+                <a class="wl_icon" href="javascript:;"></a>
+            </dd>
+            <dt>
+                <!--未登录
+                <a href="login.html">登录</a><a href="register.html">注册</a><a href="javascript:;">手机版</a><a href="aboutUs.html">服务帮助</a>
+                -->
+                <!--已登录-->
+                <div class="top_select">
+                	<span>15266666666</span>
+                    <ul class="cf">
+                        <li><a href="myGreenCity.html">个人设置</a></li> 
+                        <li><a href="javascript:;">佣金认证</a></li>
+                        <li><a href="javascript:;">邀请团队</a></li>
+                    </ul>
+                </div>
+                <a href="javascript:;">退出登录</a><a href="javascript:;">手机版</a><a href="aboutUs.html">服务帮助</a>
+            </dt>
+        </dl>   
+    </div>
+    <dl class="search_wrapper search_new cf">
+        <dt>
+            <a href="index.html">绿城在线置业</a>
+        </dt>
+        <dd class="cf">
+        	<ul class="search_nav">
+            	<li class="active">新房</li>
+                <li>二手房</li>
+                <li>租房</li>
+            </ul>
+        	<div class="s_dis">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+            <div class="s_dis" style="display:none;">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+            <div class="s_dis" style="display:none;">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+
+        </dd>
+    </dl>  
+    <div class="nav_wrapper nav_new">
+        <dl>
+        	<dt>
+                <div class="change_city">
+                    <p>
+                        <span>杭州</span><em>[切换城市]</em><strong></strong>
+                    </p>
+                    <div class="city_box">
+                    	<dl class="cf">
+                        	<dt>华北东北</dt>
+                            <dd>
+                            	<a href="javascript:;">北京</a>
+                                <a href="javascript:;">济南</a>
+                                <a href="javascript:;">青岛</a>
+                                <a href="javascript:;">新泰</a>
+                                <a href="javascript:;">胶州</a>
+                                <a href="javascript:;">东营</a>
+                                <a href="javascript:;">唐山</a>
+                                <a href="javascript:;">沈阳</a>
+                                <a href="javascript:;">大连</a>
+                                <a href="javascript:;">天津</a>
+                                <a href="javascript:;">长沙 </a>
+                                <a href="javascript:;">郑州</a>
+                                <a href="javascript:;">新疆</a>
+                                <a href="javascript:;">海南</a>
+                            </dd>
+                        </dl>
+                        <dl class="cf">
+                        	<dt>华北东北</dt>
+                            <dd>
+                            	<a href="javascript:;">北京</a>
+                                <a href="javascript:;">济南</a>
+                                <a href="javascript:;">青岛</a>
+                                <a href="javascript:;">新泰</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>    
+            </dt>
+            <dd>
+                <ul class="nav cf">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="house_list.html">新房</a></li>
+                    <li><a class="on" href="old_house_list.html">二手房</a></li>
+                    <li><a href="rent_house_list.html">租房</a></li>
+                    <li><a href="inform.html">资讯</a></li>
+                    <li><a href="broker.html">经纪人</a></li>
+                    <li><a href="green_city_identify.html">我的绿城</a></li>
+                </ul>
+            </dd>  
+        </dl>
+
+    </div>
+    <!--header end-->
+
+	<!-- houseCond start -->
+
+	<div class="ldsPw">
+		<p class="path">当前位置：<a href="index.html">首页</a>&nbsp;&gt;&nbsp;杭州二手房</p>
+		<ul class="houseCond cf">
+			<li><dl>
+				<dt>区域：</dt>
+				<dd class="house_cond_all"><a class="nhActive" href="javascript:;">全部</a></dd>
+				<dd><a href="javascript:;">西湖</a></dd>
+				<dd><a href="javascript:;">拱墅</a></dd>
+				<dd><a href="javascript:;">江干</a></dd>
+				<dd><a href="javascript:;">下城</a></dd>
+				<dd><a href="javascript:;">上城</a></dd>
+				<dd><a href="javascript:;">余杭</a></dd>
+				<dd><a href="javascript:;">萧山</a></dd>
+				<dd><a href="javascript:;">滨江</a></dd>
+				<dd><a href="javascript:;">建德</a></dd>
+				<dd><a href="javascript:;">富江</a></dd>
+				<dd><a href="javascript:;">临安</a></dd>
+				<dd><a href="javascript:;">桐庐</a></dd>
+				<dd><a href="javascript:;">淳安</a></dd>
+				<dd><a href="javascript:;">杭州周边</a></dd>
+			</dl></li>
+			<li><dl>
+				<dt>售价：</dt>
+				<dd class="house_cond_all"><a class="nhActive" href="javascript:;">全部</a></dd>
+				<dd><a href="javascript:;">80万以下</a></dd>
+				<dd><a href="javascript:;">80-100万</a></dd>
+				<dd><a href="javascript:;">150-200万</a></dd>
+				<dd><a href="javascript:;">200-300万</a></dd>
+				<dd><a href="javascript:;">3万-5万</a></dd>
+				<dd><a href="javascript:;">300万以上</a></dd>
+				<dd class="has_btn cf">
+					<input class="left" type="text" value="" />
+					<span class="left">-</span>
+					<input class="left" type="text" value="" />
+					<span class="left">万</span>
+					<a class="fliter_btn" href="javascript:;"><em>价格筛选</em></a>
+				</dd>
+			</dl></li>
+			<li><dl>
+				<dt>户型：</dt>
+				<dd class="house_cond_all"><a class="nhActive" href="javascript:;">全部</a></dd>
+				<dd><a href="javascript:;">一居</a></dd>
+				<dd><a href="javascript:;">二居</a></dd>
+				<dd><a href="javascript:;">三居</a></dd>
+				<dd><a href="javascript:;">四居</a></dd>
+				<dd><a href="javascript:;">五居</a></dd>
+				<dd><a href="javascript:;">五居以上</a></dd>
+			</dl></li>
+			<li class="lst"><dl>
+				<dt>面积：</dt>
+				<dd class="house_cond_all"><a class="nhActive" href="javascript:;">全部</a></dd>
+				<dd><a href="javascript:;">50平米以下</a></dd>
+				<dd><a href="javascript:;">50-70平米</a></dd>
+				<dd><a href="javascript:;">70-90平米</a></dd>
+				<dd><a href="javascript:;">90-110平米</a></dd>
+				<dd><a href="javascript:;">110-130平米</a></dd>
+				<dd><a href="javascript:;">130-150平米</a></dd>
+				<dd><a href="javascript:;">150-200平米</a></dd>
+				<dd><a href="javascript:;">200-300平米</a></dd>
+				<dd><a href="javascript:;">300平以上</a></dd>
+				<dd class="has_btn cf">
+					<input class="left" type="text" value="" />
+					<span class="left">-</span>
+					<input class="left" type="text" value="" />
+					<span class="left">万</span>
+					<a class="fliter_btn" href="javascript:;"><em>面积筛选</em></a>
+				</dd>
+			</dl></li>
+			<li  class="more_cond"><dl>
+				<dt>更多找房条件：</dt>
+				<dd>
+					<p>
+						<span>住宅类型</span>
+						<em></em>
+					</p>
+					<select>
+						<option selected>住宅类型</option>
+						<option>普通住宅</option>
+						<option>公寓</option>
+						<option>豪华住宅</option>
+						<option>商住楼</option>
+					</select>
+				</dd>
+				<dd>
+					<p>
+						<span>房龄</span>
+						<em></em>
+					</p>
+					<select>
+						<option selected>房龄</option>
+						<option>2年以下</option>
+						<option>2-5年</option>
+						<option>5-10年</option>
+						<option>10年以上</option>
+					</select>
+				</dd>
+				<dd>
+					<p>
+						<span>朝向</span>
+						<em></em>
+					</p>
+					<select>
+						<option selected>朝向</option>
+						<option>南北通透</option>
+						<option>东西向</option>
+						<option>朝南</option>
+						<option>朝北</option>
+						<option>朝东</option>
+						<option>朝西</option>
+					</select>
+				</dd>
+				<dd>
+					<p>
+						<span>楼层</span>
+						<em></em>
+					</p>
+					<select>
+						<option selected>楼层</option>
+						<option>地下</option>
+						<option>1层</option>
+						<option>6层以下</option>
+						<option>6-12层</option>
+						<option>12层以上</option>
+						<option>顶层</option>
+					</select>
+				</dd>
+				<dd>
+					<p>
+						<span>产权年限</span>
+						<em></em>
+					</p>
+					<select>
+						<option selected>产权年限</option>
+						<option>70年产权</option>
+						<option>50年产权</option>
+						<option>40年产权</option>
+					</select>
+				</dd>
+				<dd>
+					<p>
+						<span>装修程度</span>
+						<em></em>
+					</p>
+					<select>
+						<option selected>装修程度</option>
+						<option>毛坯</option>
+						<option>简单装修</option>
+						<option>中等装修</option>
+						<option>精装修</option>
+						<option>豪华装修</option>
+					</select>
+				</dd>
+			
+			</dl></li>
+		</ul>
+	</div>
+
+	<!-- houseCond end -->
+
+	<!-- houseList start -->
+
+	<div class="ldsPw">
+		<div class="house_release">
+			<a href="myGreenCity.html"></a>
+		</div>
+		<div class="nhSort all_old cf">
+			<h2 class="left">全部二手房出售</h2>
+			<p class="ldsFco nhsName align_c">排序</p>
+			<div class="nhsOpt selectWrap">
+				<p class="cf">
+					<span>更新时间</span>
+					<strong></strong>
+				</p>
+				<ul>
+					<li>更新时间</li>
+					<li>面积</li>
+					<li>价格</li>
+				</ul>
+			</div>
+		</div>
+		<div class="old_list">
+			<ul class="cf">
+				<li class="left">
+					<div class="old_list_left left">
+						<img src="images/upload/old_list_img.png" alt="" />
+						<a href="old_house_detail.html"><em class="old_img_mask"></em></a>
+						<a class="old_img_det" href="javascript:;">查看详情</a> 
+					</div>
+					<dl class="old_list_mid left">
+						<dt><a href="old_house_detail.html">温馨人家,满五年,东边套只要298万拎包入住</a></dt>
+						<dd class="cf">
+							<em class="left">
+								<strong></strong>
+								滨江区春晓路与风荷路交叉口
+							</em>
+						</dd>
+						<dd class="cf">
+							<span class="left">
+								<strong></strong>
+								4室2厅，4/18层，南北向，房龄15年，70年产权
+							</span>
+						</dd>
+					</dl>
+					<div class="old_list_right">
+						<span>(4居)159平米</span>
+						<em><strong>298</strong>万</em>
+						<span>20470元/平米</span>
+					</div>
+				</li>
+				<li class="left">
+					<div class="old_list_left left">
+						<img src="images/upload/old_list_img.png" alt="" />
+						<a href="old_house_detail.html"><em class="old_img_mask"></em></a>
+						<a class="old_img_det" href="javascript:;">查看详情</a> 
+					</div>
+					<dl class="old_list_mid left">
+						<dt><a href="old_house_detail">温馨人家,满五年,东边套只要298万拎包入住</a></dt>
+						<dd class="cf">
+							<em class="left">
+								<strong></strong>
+								滨江区春晓路与风荷路交叉口
+							</em>
+						</dd>
+						<dd class="cf">
+							<span class="left">
+								<strong></strong>
+								4室2厅，4/18层，南北向，房龄15年，70年产权
+							</span>
+						</dd>
+					</dl>
+					<div class="old_list_right">
+						<span>(4居)159平米</span>
+						<em><strong>298</strong>万</em>
+						<span>20470元/平米</span>
+					</div>
+				</li>
+				<li class="left">
+					<div class="old_list_left left">
+						<img src="images/upload/old_list_img.png" alt="" />
+						<a href="old_house_detail.html"><em class="old_img_mask"></em></a>
+						<a class="old_img_det" href="javascript:;">查看详情</a> 
+					</div>
+					<dl class="old_list_mid left">
+						<dt><a href="old_house_detail">温馨人家,满五年,东边套只要298万拎包入住</a></dt>
+						<dd class="cf">
+							<em class="left">
+								<strong></strong>
+								滨江区春晓路与风荷路交叉口
+							</em>
+						</dd>
+						<dd class="cf">
+							<span class="left">
+								<strong></strong>
+								4室2厅，4/18层，南北向，房龄15年，70年产权
+							</span>
+						</dd>
+					</dl>
+					<div class="old_list_right">
+						<span>(4居)159平米</span>
+						<em><strong>298</strong>万</em>
+						<span>20470元/平米</span>
+					</div>
+				</li>
+				<li class="left">
+					<div class="old_list_left left">
+						<img src="images/upload/old_list_img.png" alt="" />
+						<a href="old_house_detail.html"><em class="old_img_mask"></em></a>
+						<a class="old_img_det" href="javascript:;">查看详情</a> 
+					</div>
+					<dl class="old_list_mid left">
+						<dt><a href="old_house_detail">温馨人家,满五年,东边套只要298万拎包入住</a></dt>
+						<dd class="cf">
+							<em class="left">
+								<strong></strong>
+								滨江区春晓路与风荷路交叉口
+							</em>
+						</dd>
+						<dd class="cf">
+							<span class="left">
+								<strong></strong>
+								4室2厅，4/18层，南北向，房龄15年，70年产权
+							</span>
+						</dd>
+					</dl>
+					<div class="old_list_right">
+						<span>(4居)159平米</span>
+						<em><strong>298</strong>万</em>
+						<span>20470元/平米</span>
+					</div>
+				</li>
+				<li class="left">
+					<div class="old_list_left left">
+						<img src="images/upload/old_list_img.png" alt="" />
+						<a href="old_house_detail.html"><em class="old_img_mask"></em></a>
+						<a class="old_img_det" href="javascript:;">查看详情</a> 
+					</div>
+					<dl class="old_list_mid left">
+						<dt><a href="old_house_detail">温馨人家,满五年,东边套只要298万拎包入住</a></dt>
+						<dd class="cf">
+							<em class="left">
+								<strong></strong>
+								滨江区春晓路与风荷路交叉口
+							</em>
+						</dd>
+						<dd class="cf">
+							<span class="left">
+								<strong></strong>
+								4室2厅，4/18层，南北向，房龄15年，70年产权
+							</span>
+						</dd>
+					</dl>
+					<div class="old_list_right">
+						<span>(4居)159平米</span>
+						<em><strong>298</strong>万</em>
+						<span>20470元/平米</span>
+					</div>
+				</li>
+				<li class="left">
+					<div class="old_list_left left">
+						<img src="images/upload/old_list_img.png" alt="" />
+						<a href="old_house_detail.html"><em class="old_img_mask"></em></a>
+						<a class="old_img_det" href="javascript:;">查看详情</a> 
+					</div>
+					<dl class="old_list_mid left">
+						<dt><a href="old_house_detail">温馨人家,满五年,东边套只要298万拎包入住</a></dt>
+					<dd class="cf">
+							<em class="left">
+								<strong></strong>
+								滨江区春晓路与风荷路交叉口
+							</em>
+						</dd>
+						<dd class="cf">
+							<span class="left">
+								<strong></strong>
+								4室2厅，4/18层，南北向，房龄15年，70年产权
+							</span>
+						</dd>
+					</dl>
+					<div class="old_list_right">
+						<span>(4居)159平米</span>
+						<em><strong>298</strong>万</em>
+						<span>20470元/平米</span>
+					</div>
+				</li>
+				<li class="left">
+					<div class="old_list_left left">
+						<img src="images/upload/old_list_img.png" alt="" />
+						<a href="old_house_detail.html"><em class="old_img_mask"></em></a>
+						<a class="old_img_det" href="javascript:;">查看详情</a> 
+					</div>
+					<dl class="old_list_mid left">
+						<dt><a href="old_house_detail">温馨人家,满五年,东边套只要298万拎包入住</a></dt>
+						<dd class="cf">
+							<em class="left">
+								<strong></strong>
+								滨江区春晓路与风荷路交叉口
+							</em>
+						</dd>
+						<dd class="cf">
+							<span class="left">
+								<strong></strong>
+								4室2厅，4/18层，南北向，房龄15年，70年产权
+							</span>
+						</dd>
+					</dl>
+					<div class="old_list_right">
+						<span>(4居)159平米</span>
+						<em><strong>298</strong>万</em>
+						<span>20470元/平米</span>
+					</div>
+				</li>
+				<li class="left old_list_last">
+					<div class="old_list_left left">
+						<img src="images/upload/old_list_img.png" alt="" />
+						<a href="old_house_detail.html"><em class="old_img_mask"></em></a>
+						<a class="old_img_det" href="javascript:;">查看详情</a> 
+					</div>
+					<dl class="old_list_mid left">
+						<dt><a href="old_house_detail">温馨人家,满五年,东边套只要298万拎包入住</a></dt>
+						<dd class="cf">
+							<em class="left">
+								<strong></strong>
+								滨江区春晓路与风荷路交叉口
+							</em>
+						</dd>
+						<dd class="cf">
+							<span class="left">
+								<strong></strong>
+								4室2厅，4/18层，南北向，房龄15年，70年产权
+							</span>
+						</dd>
+					</dl>
+					<div class="old_list_right">
+						<span>(4居)159平米</span>
+						<em><strong>298</strong>万</em>
+						<span>20470元/平米</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="inform_page align_c hsPageRes"><a href="javascript:;">上一页</a><a href="javascript:;">1</a><a href="javascript:;" class="on">2</a><a href="javascript:;">3</a><a href="javascript:;">4</a><a href="javascript:;">5</a><a href="javascript:;">下一页</a> 
+        </div>
+	</div>
+
+	<!-- houseList end -->
+
+	 <!--footer start-->
+    <div class="footer_wrapper1">
+        <div class="footer cf">
+            <dl>
+                <dt>绿城保障</dt>
+                <dd><a href="#">资源优势特惠楼盘</a></dd>
+                <dd><a href="#">品牌地产合作</a></dd>
+                <dd><a href="#">专业服务团队</a></dd>
+            </dl>
+            <dl>
+                <dt>使用帮助</dt>
+                <dd><a href="#">帮助中心</a></dd>
+                <dd><a href="#">注册常见问题</a></dd>
+                <dd><a href="#">经纪人常见问题</a></dd>
+                <dd><a href="#">佣金常见问题</a></dd>
+            </dl>
+            <dl>
+                <dt>经纪人模式</dt>
+                <dd><a href="#">经纪人说明</a></dd>
+                <dd><a href="#">经纪人佣金报酬</a></dd>
+                <dd><a href="#">如何推荐客户</a></dd>
+            </dl>
+            <dl>
+                <dt>提供服务</dt>
+                <dd><a href="#">绿城独家特惠楼盘</a></dd>
+                <dd><a href="#">促成推荐用户成交</a></dd>
+                <dd><a href="#">经纪人佣金发放</a></dd>
+            </dl>
+            <dl>
+                <dt>联系我们</dt>
+                <dd class="last">
+                    <p>客服热线:<br><span>400-180-8116</span><p>
+                    <a class="f_msg_icon" href="javascript:;"></a>
+                    <a class="f_serv_icon" href="javascript:;"></a>
+                    <a class="f_sina_icon" href="javascript:;"></a>
+                    <a class="f_wx_icon" href="javascript:;"></a>
+                    <a class="f_wl_icon" href="javascript:;"></a> 
+                </dd>
+            </dl>
+        </div>    
+    </div>        
+    <div class="footer_wrapper2">
+        <div class="footer">       
+            <p class="f_nav">
+                <a href="#">关于我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">服务声明</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">友情链接</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">常见问题</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">网站地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">人才招聘</a>
+            </p>
+            <i> © 绿城房地产集团有限公司 浙ICP备05064294号-1</i>
+        </div>   
+    </div>
+    <!--footer end-->
+    <!--悬浮菜单 start-->
+    <ul class="menu_list">
+    	<li><a id="menu" class="m_icon_1" href="javascript:;"></a></li>
+        <!--<li><a class="m_icon_2" href="javascript:;"></a></li>
+        <li><a class="m_icon_3" href="javascript:;"></a></li>-->
+        <li><a class="m_icon_4" href="javascript:;"></a></li> 
+        <li><a class="m_icon_5" href="javascript:;"></a></li> 
+        <!--<li><a class="m_icon_6" href="javascript:;"></a></li>
+        <li><a class="m_icon_7" href="javascript:;"></a></li>-->
+        <li><a class="m_icon_8" href="javascript:;"></a><img src="images/upload/code.jpg" alt=""/></li>
+    </ul>
+    <!--悬浮菜单 end-->
+</body>
+</html>

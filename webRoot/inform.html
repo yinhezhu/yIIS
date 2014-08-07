@@ -1,0 +1,410 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<title>资讯</title>
+</head>
+<script>
+window.onload=function(){
+	var oTab=document.getElementById('inform_tab');	
+	var aBox=document.getElementById('informD_b').children;
+	var aLi=oTab.children;
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].index=i;
+		aLi[i].onclick=function(){
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].className='';
+				aBox[i].style.display='none';
+			}
+				aLi[this.index].className='on';
+				aBox[this.index].style.display='block';	
+		}
+	}
+	
+}
+</script>
+<body>
+	 <!--header start-->
+    <div class="top_wrapper">
+        <dl class="top">
+            <dd>
+                <a class="serv_icon" href="javascript:;"></a>
+                <a class="sina_icon" href="javascript:;"></a>
+                <a class="wx_icon" href="javascript:;"></a>
+                <a class="wl_icon" href="javascript:;"></a>
+            </dd>
+            <dt>
+                <a href="login.html">登录</a><a href="register.html">注册</a><a href="javascript:;">手机版</a><a href="aboutUs.html">服务帮助</a>
+            </dt>
+        </dl>   
+    </div>
+    <dl class="search_wrapper search_new cf">
+        <dt>
+            <a href="index.html">绿城在线置业</a>
+        </dt>
+        <dd class="cf">
+        	<ul class="search_nav">
+            	<li class="active">新房</li>
+                <li>二手房</li>
+                <li>租房</li>
+            </ul>
+        	<div class="s_dis">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+            <div class="s_dis" style="display:none;">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+            <div class="s_dis" style="display:none;">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+
+        </dd>
+    </dl>    
+    <div class="nav_wrapper nav_new">
+        <dl>
+        	<dt>
+                <div class="change_city">
+                    <p>
+                        <span>杭州</span><em>[切换城市]</em><strong></strong>
+                    </p>
+                    <div class="city_box">
+                    	<dl class="cf">
+                        	<dt>华北东北</dt>
+                            <dd>
+                            	<a href="javascript:;">北京</a>
+                                <a href="javascript:;">济南</a>
+                                <a href="javascript:;">青岛</a>
+                                <a href="javascript:;">新泰</a>
+                                <a href="javascript:;">胶州</a>
+                                <a href="javascript:;">东营</a>
+                                <a href="javascript:;">唐山</a>
+                                <a href="javascript:;">沈阳</a>
+                                <a href="javascript:;">大连</a>
+                                <a href="javascript:;">天津</a>
+                                <a href="javascript:;">长沙 </a>
+                                <a href="javascript:;">郑州</a>
+                                <a href="javascript:;">新疆</a>
+                                <a href="javascript:;">海南</a>
+                            </dd>
+                        </dl>
+                        <dl class="cf">
+                        	<dt>华北东北</dt>
+                            <dd>
+                            	<a href="javascript:;">北京</a>
+                                <a href="javascript:;">济南</a>
+                                <a href="javascript:;">青岛</a>
+                                <a href="javascript:;">新泰</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>    
+            </dt>
+            <dd>
+                <ul class="nav cf">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="house_list.html">新房</a></li>
+                    <li><a href="old_house_list.html">二手房</a></li>
+                    <li><a href="rent_house_list.html">租房</a></li>
+                    <li><a class="on"  href="inform.html">资讯</a></li>
+                    <li><a href="broker.html">经纪人</a></li>
+                    <li><a href="green_city_identify.html">我的绿城</a></li>
+                </ul>
+            </dd>  
+        </dl>
+
+    </div>
+    <!--header end-->
+	<div class="inform cf">
+		<p class="path">当前位置：资讯<span class="inform_tips">真诚&nbsp;善意&nbsp;精致&nbsp;完美</span></p>
+    		<div class="inform_b left">
+                <ol class="tab cf" id="inform_tab">
+                    <li class="on">全部新闻</li>
+                    <li>绿城新闻</li>
+                    <li>项目新闻</li>
+                    <li>媒体看绿城</li>
+                </ol>
+                <div id="informD_b" class="informDe_box">
+                	 <div>
+                                <ul class="inform_list1">	
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="绿城集团工会喜获示范工会等称号">绿城集团工会喜获示范工会等称号</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="2013第二届金砖价值排行榜四项大奖花落绿城">2013第二届金砖价值排行榜四项大奖花落绿城</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="“理想启航”绿城集团2014年校园招聘启动">“理想启航”绿城集团2014年校园招聘启动</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="绿城中国被纳入恒生内地100指数">绿城中国被纳入恒生内地100指数</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="绿城•颐乐学院冠名老年健康文化博览会">绿城•颐乐学院冠名老年健康文化博览会</a><span>2014-02-24</span>
+                                    </li>	
+                                </ul>
+                            </div>
+                            <div class="dis_none">
+                                <ul class="inform_list1 ">	
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="绿城集团工会喜获示范工会等称号">2绿城集团工会喜获示范工会等称号</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="2013第二届金砖价值排行榜四项大奖花落绿城">2013第二届金砖价值排行榜四项大奖花落绿城</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="“理想启航”绿城集团2014年校园招聘启动">“理想启航”绿城集团2014年校园招聘启动</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="绿城中国被纳入恒生内地100指数">绿城中国被纳入恒生内地100指数</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="绿城•颐乐学院冠名老年健康文化博览会">绿城•颐乐学院冠名老年健康文化博览会</a><span>2014-02-24</span>
+                                    </li>	
+                                </ul>
+                            </div>
+                            <div  class="dis_none">
+                                <ul class="inform_list1">	
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="绿城集团工会喜获示范工会等称号">3绿城集团工会喜获示范工会等称号</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="2013第二届金砖价值排行榜四项大奖花落绿城">2013第二届金砖价值排行榜四项大奖花落绿城</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="“理想启航”绿城集团2014年校园招聘启动">“理想启航”绿城集团2014年校园招聘启动</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="绿城中国被纳入恒生内地100指数">绿城中国被纳入恒生内地100指数</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="绿城•颐乐学院冠名老年健康文化博览会">绿城•颐乐学院冠名老年健康文化博览会</a><span>2014-02-24</span>
+                                    </li>	
+                                </ul>
+                            </div>
+                            <div  class="dis_none">
+                                <ul class="inform_list1">	
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="绿城集团工会喜获示范工会等称号">44绿城集团工会喜获示范工会等称号</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="2013第二届金砖价值排行榜四项大奖花落绿城">2013第二届金砖价值排行榜四项大奖花落绿城</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="“理想启航”绿城集团2014年校园招聘启动">“理想启航”绿城集团2014年校园招聘启动</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="绿城中国被纳入恒生内地100指数">绿城中国被纳入恒生内地100指数</a><span>2014-02-24</span>
+                                    </li>
+                                    <li class="cf">
+                                        <a href="informDetail.html" title="绿城•颐乐学院冠名老年健康文化博览会">绿城•颐乐学院冠名老年健康文化博览会</a><span>2014-02-24</span>
+                                    </li>	
+                                </ul>
+                            </div>
+                </div>
+                
+                <div class="inform_page"><a href="javascript:;">上一页</a><a href="javascript:;">1</a><a href="javascript:;" class="on">2</a><a href="javascript:;">3</a><a href="javascript:;">4</a><a href="javascript:;">5</a><a href="javascript:;">下一页</a> 
+                </div>
+            </div>
+            <div class="inform_r right">
+            	<img src="images/bg/erweima.jpg"/>
+                <p class="informR_wb"><a href="#">绿城官方新浪微博</a></p>
+                <p class="informR_yell"><a href="#">绿城会黄页</a><a href="http://chinagreentown.com/Html/huangye" class="huangye_more">更多&gt;&gt;</a></p>
+                <dl>
+                	<dt>北京绿城会</dt>
+                    <dd><em>电话：</em><span>010-89310888</span></dd>
+                    <dd><em>地址：</em><span>北京市房山区闫村镇绿城百合公寓销售中心</span></dd>
+                </dl>
+                <dl>
+                	<dt>上海绿城会</dt>
+                    <dd><em>电话：</em><span>021-62350066</span></dd>
+                    <dd><em>地址：</em><span>上海市仙霞路319号远东国际广场A幢27楼</span></dd>
+                </dl>
+                <dl>
+                	<dt>北京绿城会</dt>
+                    <dd><em>电话：</em><span>0577-86500833</span></dd>
+                    <dd><em>地址：</em><span>浙江省温州市机场大道公交总站旁</span></dd>
+                </dl>
+            </div>
+    </div>
+    <!--footer start-->
+    <div class="footer_wrapper1">
+        <div class="footer cf">
+            <dl>
+                <dt>绿城保障</dt>
+                <dd><a href="#">资源优势特惠楼盘</a></dd>
+                <dd><a href="#">品牌地产合作</a></dd>
+                <dd><a href="#">专业服务团队</a></dd>
+            </dl>
+            <dl>
+                <dt>使用帮助</dt>
+                <dd><a href="#">帮助中心</a></dd>
+                <dd><a href="#">注册常见问题</a></dd>
+                <dd><a href="#">经纪人常见问题</a></dd>
+                <dd><a href="#">佣金常见问题</a></dd>
+            </dl>
+            <dl>
+                <dt>经纪人模式</dt>
+                <dd><a href="#">经纪人说明</a></dd>
+                <dd><a href="#">经纪人佣金报酬</a></dd>
+                <dd><a href="#">如何推荐客户</a></dd>
+            </dl>
+            <dl>
+                <dt>提供服务</dt>
+                <dd><a href="#">绿城独家特惠楼盘</a></dd>
+                <dd><a href="#">促成推荐用户成交</a></dd>
+                <dd><a href="#">经纪人佣金发放</a></dd>
+            </dl>
+            <dl>
+                <dt>联系我们</dt>
+                <dd class="last">
+                    <p>客服热线:<br><span>400-180-8116</span><p>
+                    <a class="f_msg_icon" href="javascript:;"></a>
+                    <a class="f_serv_icon" href="javascript:;"></a>
+                    <a class="f_sina_icon" href="javascript:;"></a>
+                    <a class="f_wx_icon" href="javascript:;"></a>
+                    <a class="f_wl_icon" href="javascript:;"></a> 
+                </dd>
+            </dl>
+        </div>    
+    </div>        
+    <div class="footer_wrapper2">
+        <div class="footer">
+            <i>© 绿城房地产集团有限公司 浙ICP备05064294号-1</i>   
+        </div>   
+    </div>
+    <!--footer end-->
+    <!--悬浮菜单 start-->
+    <ul class="menu_list">
+    	<li><a id="menu" class="m_icon_1" href="javascript:;"></a></li>
+        <!--<li><a class="m_icon_2" href="javascript:;"></a></li>
+        <li><a class="m_icon_3" href="javascript:;"></a></li>-->
+        <li><a class="m_icon_4" href="javascript:;"></a></li> 
+        <li><a class="m_icon_5" href="javascript:;"></a></li> 
+        <!--<li><a class="m_icon_6" href="javascript:;"></a></li>
+        <li><a class="m_icon_7" href="javascript:;"></a></li>-->
+        <li><a class="m_icon_8" href="javascript:;"></a><img src="images/upload/code.jpg" alt=""/></li>
+    </ul>
+    <!--悬浮菜单 end-->
+</body>
+</html>

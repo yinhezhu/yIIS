@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>隐私设置</title>
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+
+$(function (){
+
+	$('.pri_radio').children('input').each(function (i){
+	
+		if($(this).attr('checked')){
+		
+			$(this).siblings('em').css('background','url(images/icons/setpics.png) no-repeat -2px -46px');
+
+		}
+	});
+		
+	$('.pri_radio').click(function (){
+		
+		$(this).children('em').css('background','url(images/icons/setpics.png) no-repeat -2px -46px');
+
+		$(this).parent().siblings().find('em').css('background','');
+	});	
+});
+
+</script>
+</head>
+<body>
+<div class="broRight brSpe">
+	<h2>隐私设置</h2>
+	<table class="broTab priv_set">
+		<tbody>
+			<tr>
+				<td>同城市绿城可找到我</td>
+				<td>
+					<div class="pri_radio">
+						<em></em>
+						<input checked type="radio" name="same_city" id="city_yes" />
+						<label for="city_yes">是</label>
+					</div>
+				</td>
+				<td>
+					<div class="pri_radio">
+						<em></em>
+						<input type="radio" name="same_city" id="city_no" />
+						<label for="city_no">否</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>同小区邻里可找到我</td>
+				<td>
+					<div class="pri_radio">
+						<em></em>
+						<input checked type="radio" name="same_area" id="area_yes" />
+						<label for="area_yes">是</label>
+					</div>
+				</td>
+				<td>
+					<div class="pri_radio">
+						<em></em>
+						<input type="radio" name="same_area" id="area_no" />
+						<label for="area_no">否</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>同楼房邻里可找到我</td>
+				<td>
+					<div class="pri_radio">
+						<em></em>
+						<input checked type="radio" name="same_biuld" id="biuld_yes" />
+						<label for="biuld_yes">是</label>
+					</div>
+				</td>
+				<td>
+					<div class="pri_radio">
+						<em></em>
+						<input type="radio" name="same_biuld" id="biuld_no" />
+						<label for="biuld_no">否</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>同单元邻里可找到我</td>
+				<td>
+					<div class="pri_radio">
+						<em></em>
+						<input checked type="radio" name="same_unit" id="unit_yes" />
+						<label for="unit_yes">是</label>
+					</div>
+				</td>
+				<td>
+					<div class="pri_radio">
+						<em></em>
+						<input type="radio" name="same_unit" id="unit_no" />
+						<label for="unit_no">否</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>任何邻里都可找到我</td>
+				<td>
+					<div class="pri_radio">
+						<em></em>
+						<input type="radio" name="any" id="any_yes" />
+						<label for="any_yes">是</label>
+					</div>
+				</td>
+				<td>
+					<div class="pri_radio">
+						<em></em>
+						<input checked type="radio" name="any" id="any_no" />
+						<label for="any_no">否</label>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="infoSubmit cf pri_sub">
+		<input class="left" type="submit" value="保&nbsp;存" name="" />
+	</div>
+	
+</div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<title>推荐买房</title>
+<script>
+
+//jquery
+
+$(function (){
+	
+	var n=0;
+		
+	$('#add_building_btn').click(function (){
+		n++;
+		if(n==3){
+			$('#add_building_btn').hide();
+			$('#stop_add_btn').show();
+		}
+		$('#clone_warp').clone().appendTo('#add_build_li');
+
+	});	
+
+	$('#add_build_li').on('click','select',function (){
+
+		$(this).prev().find('span').text($(this).val());
+	})
+
+	//备注
+
+	$('.ldsTa').find('textarea').val('我是默认内容').css('color','#d1d1d1');
+
+	$('.ldsTa').find('textarea').focus(function (){
+
+		if($(this).val()!='我是默认内容')return;
+		
+		$(this).val('').css('color','#585858');	
+
+	}).blur(function (){
+		
+		if(!$(this).val()){
+		
+			$('.ldsTa').find('textarea').val('我是默认内容').css('color','#d1d1d1');
+
+		}else{
+		
+			$(this).css('color','#585858');
+		}
+	});
+
+});
+
+</script>
+    </head>
+    <body>
+        <!--header start-->
+        <div class="top_wrapper">
+            <dl class="top">
+                <dd>
+                    <a class="serv_icon" href="javascript:;"></a>
+                    <a class="sina_icon" href="javascript:;"></a>
+                    <a class="wx_icon" href="javascript:;"></a>
+                    <a class="wl_icon" href="javascript:;"></a>
+                </dd>
+                <dt>
+                    <a href="login.html">登录</a><a href="register.html">注册</a>
+                </dt>
+            </dl>   
+        </div>
+        <!--header end-->
+        <!--content start-->
+        <!--login_head start-->
+        <div class="login_head cf">
+            <h1 class="left"><a href="index.html" title="绿城在线置业"></a></h1>
+            <p class="right">全国统一客服/<span>400-111-3900</span></p>
+        </div>
+        <!--login_head end-->
+        <!--register_content start-->
+        <div class="regist">
+            <h2>推荐买房<span>轻松赚取高额佣金！</span></h2>
+            <div class="cf">
+                <div class="regist_form left lmx_tip_em" >
+                    <form action="#" method="get">
+                        <ul class="ldsForm cf auto_height ">
+                            <li class="cf height70">
+                                <h3><span>*</span>朋友姓名</h3>
+                                <div>
+                                    <input type="text" />
+                                </div>
+                                <em>朋友姓名</em>
+                            </li>
+                            <li class="cf height70">
+                                <h3><span>*</span>联系电话</h3>
+                                <div>
+                                    <input type="text" />
+                                </div>
+                                <em>朋友姓名</em>
+                            </li>
+                            <li class="cf height70">
+                                <h3><span>*</span>意向总价</h3>
+                                <div class="search_house cf right rec_buy_search">
+                                    <div class="search_sel">
+                                        <div  class="cf">
+                                            <span   id="search_cont" class="left">0-100万</span>
+                                            <strong class="left"></strong>
+                                        </div>
+                                    </div>
+                                    <select id="life_search_list" value="">
+                                        <option>0-100万</option>
+                                        <option>200-400万</option>
+                                        <option>1000-1500万</option>
+                                    </select>
+                                </div>
+                                <em>朋友姓名</em>
+                            </li>
+                        <li class="cf" id="add_build_li">
+							<h3><span>*</span>意向楼盘</h3>
+                            <div class="no_hwb" id="clone_warp">
+                            
+                           		<em class="left rec_buy_tipS">南京</em>
+                            	<div class="search_house cf left rec_buy_search width196 margin_left8" id="add_building">
+                                    <div class="search_sel width196">
+                                        <div class="width196 cf">
+                                            <span id="search_cont3" class="width196 left">绿城 杭州蓝庭</span>
+                                            <strong class="left"></strong>
+                                        </div>
+                                    </div>
+                                    <select id="life_search_list3" value="">
+                                        <option selected value="1">绿城 杭州蓝庭</option>
+                                        <option value="2">绿城 上海蓝庭</option>
+                                        <option value="3">绿城 南京蓝庭</option>
+                                    </select>
+                                    
+                                </div>
+                                
+                                
+                                <div class="search_house cf left rec_buy_search width133">
+                                    <div class="search_sel width133">
+                                        <div class="width133 cf">
+                                            <span id="search_cont2" class="width100 left">杭州</span>
+                                            <strong class="left"></strong>
+                                        </div>
+                                    </div>
+                                    <select id="life_search_list2" >
+                                        <option selected value="1">杭州</option>
+                                        <option value="2">上海</option>
+                                        <option value="3">南京</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                            
+						</li>
+                        
+						<li class="cf" >
+							<h3><span>*</span>备&nbsp;&nbsp;&nbsp;&nbsp;注</h3>
+							<div class="ldsTa"style="position:relative;">
+								<textarea></textarea>
+                                
+                        	<a href="javascript:;" id="add_building_btn" class="rec_buy_add"></a>
+                            <a href="javascript:;" id="stop_add_btn" class="rec_buy_stop_add" ></a>
+							</div>
+						</li>
+						<li class="regis_li5 cf ldsSpeBtn rec_buy_btn">
+								<div>
+                                	<input type="submit" value="提交推荐"/>
+                                </div>
+						</li>
+					</ul>
+					
+				 </form>
+			</div>
+		</div>
+	</div>	
+	<!--register_content end-->
+    <!--login_foot start-->
+	<div class="login_foot cf">
+		<ul class="left cf">
+		  <li><a href="#">关于我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+		  <li><a href="#">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+		  <li><a href="#">服务声明</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+		  <li><a href="#">友情链接</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+		  <li><a href="#">常见问题</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+		  <li><a href="#">网站地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+		  <li><a href="#">人才招聘</a></li>
+		</ul>
+		<p class="right">绿城版权所有 © 2010-2013</p>
+	</div>
+   <!--login_foot end-->
+</body>
+</html>
+

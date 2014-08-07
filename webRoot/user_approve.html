@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>住户认证</title>
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/confirm.js"></script>
+<script type="text/javascript">
+$(function(){
+	//下拉选择事件
+	(function(){
+		var $select = $("select.os_list");
+		$select.off().on("change",function(){
+			var index = $(this).get(0).selectedIndex;
+			$(this).prev().find("span").html($(this).find("option").eq(index).text());
+		});
+	})();
+	//认证资料
+	(function(){
+		$(".approve_nav li").off().on("click",function(){
+			var index = $(this).index();
+			$(".approve_nav li").removeClass("active");
+			$(this).addClass("active");
+			$(".approve_dis").css("display","none");
+			$(".approve_dis").eq(index).css("display","block");
+			
+		})
+	})();
+	
+})
+</script>
+</head>
+<body>
+	<div class="cf">
+        <dl class="approve_dl cf">
+            <dt class="lh">我的认证：</dt>
+            <dd>
+                <div class="oSel w_218">
+                    <p>
+                        <span>绿城巧园2期4栋2单元6128</span>
+                        <strong></strong>
+                    </p>
+                    <select class="os_list">
+                        <option value="">绿城巧园2期4栋2单元6128</option>
+                        <option value="">绿城巧园2期4栋2单元6328</option>
+                    </select>
+                </div>
+            </dd>
+        </dl>
+        <h2 class="neighbor_title2"><em>住户认证</em></h2>
+    </div>
+    
+    <p class="txt_tip2">用户确认进行身份认证申请后，所在小区工作人员将会对认证用户指定的住所投递一份纸质的验证码，用户在线提交验证码后，当系统通过验证，用户认证过程完成。<br><br>此时用户可进行邻里社交功能及相关的配送和物业服务了。</p>
+        
+    <dl class="myGreenCity_dl border_0">
+        <dt class="title_s2">认证资料提交&nbsp;&nbsp;<span class="f_14"><em class="red_color">*</em>住户认证需要先<a class="blue" href="javascript:;">新增我的房产</a></span></dt>
+        <dd class="cf">
+        	<table class="table_list">
+                <colgroup>
+                    <col class="w_20" />
+                    <col class="w_20" />
+                    <col class="w_20" />
+                    <col class="w_20" />
+                    <col class="w_20" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>城市</th>
+                        <th>区域</th>
+                        <th>小区</th>
+                        <th>房号</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--列表循环开始-->
+                    <tr>
+                        <td>杭州市</td>
+                        <td>西湖区</td>
+                        <td>富春和院</td>
+                        <td>八号楼三单元603</td>
+                        <td>
+                        	<span class="red_color">已认证</span><br>
+                            <a class="link link2" href="javascript:;">修改</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>杭州市</td>
+                        <td>西湖区</td>
+                        <td>富春和院</td>
+                        <td>八号楼三单元603</td>
+                        <td>
+                        	<a class="link link1" href="javascript:;">待认证</a><br>
+                            <a class="link link3" href="javascript:;">修改</a>
+                        </td>
+                    </tr>
+                    <!--列表循环结束-->
+                </tbody>
+            </table>
+            
+        </dd>
+    </dl> 
+    
+    <!--提示弹框-->
+    <div class="mask"></div>
+    <!--点击待确认-->
+    <div id="group_layer" class="layer l_width3">
+        <h2 class="layer_title"><a class="close_icon close" href="javascript:;"></a></h2>
+        <div class="layer_box layer_btn">
+            <p class="layer_nr2">小区物业人员会往您填写的房产住址的邮箱投递纸质验证码，这个过程大概需要3-5天！<br>验证后您可以享受邻里社交功能及相关的配送和物业服务了。</p>
+            <p class="align_c">
+                <input class="ly_btn_1 layer_btn1" type="button" value="现在接受" /><input class="ly_btn_2 close" type="button" value="稍后接受" />
+            </p>
+        </div>
+    </div>
+    <!--点击接受-->
+    <div id="group_layer2" class="layer l_width3">
+        <h2 class="layer_title"><a class="close_icon close" href="javascript:;"></a></h2>
+        <div class="layer_box layer_btn">
+            <p class="layer_nr2">小区物业人员会往您填写的房产住址的邮箱投递纸质验证码，这个过程大概需要3-5天，请在收到纸质邮件后7个工作日内输入信件中的8位验证码：</p>
+            <p><input type="text" class="lyaer_input_txt" value="请输入8位验证码"></p>
+            <p class="align_c">
+                <input class="ly_btn_1 btn_w layer_btn2" type="button" value="确定" />
+            </p>
+            <p class="layer_tip">没收到验证码？请联系400-111-3900</p>
+        </div>
+    </div>
+    <!--通过验证-->
+     <div id="group_layer3" class="layer l_width4">
+        <h2 class="layer_title"><a class="close_icon close" href="javascript:;"></a></h2>
+        <div class="layer_box layer_btn">
+            <p class="layer_nr2">
+            	<span class="layer_right_tip">通过验证！</span>
+                从现在起，您可以使用邻里社交功能及相关的配送和物业服务了。
+            </p>
+            <p class="align_c">
+                <input class="ly_btn_1 btn_w" type="button" value="知道了" />
+            </p>
+        </div>
+    </div>
+    <!--已认证修改-->
+     <div id="delete_layer" class="layer l_width5">
+        <h2 class="layer_title">修改认证<a class="close_icon close" href="javascript:;"></a></h2>
+        <div class="layer_box layer_btn">
+        	<dl class="import3 cf">
+                <dt><span class="red_color">*</span>&nbsp;城市：</dt>
+                <dd class="cf">
+                    <div class="oSel w_387">
+                        <p>
+                            <span>请选择</span>
+                            <strong></strong>
+                        </p>
+                        <select class="os_list">
+                            <option value="">北京</option>
+                            <option value="">上海</option>
+                        </select>
+                    </div>
+                </dd>
+            </dl>  
+            <dl class="import3 cf">
+                <dt><span class="red_color">*</span>&nbsp;区域：</dt>
+                <dd class="cf">
+                    <div class="oSel w_387">
+                        <p>
+                            <span>请选择</span>
+                            <strong></strong>
+                        </p>
+                        <select class="os_list">
+                            <option value="">西湖区</option>
+                            <option value="">西湖区</option>
+                        </select>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="import3 cf">
+                <dt><span class="red_color">*</span>&nbsp;小区：</dt>
+                <dd class="cf">
+                    <div class="oSel w_387">
+                        <p>
+                            <span>请选择</span>
+                            <strong></strong>
+                        </p>
+                        <select class="os_list">
+                            <option value="">富春和院</option>
+                            <option value="">富春和院</option>
+                        </select>
+                    </div>
+                </dd>
+            </dl> 
+            <dl class="import3 cf">
+                <dt><span class="red_color">*</span>&nbsp;房号：</dt>
+                <dd>
+                    <input type="text" value="正确的房号将方便您接受纸质验证码投递！" class="left input_txt">
+                </dd>
+            </dl>
+            <p class="align_c">提示：修改<span class="orange_color">已认证</span>的房产信息需要重新接受验证码，确认需要修改吗？</p>
+            <p class="align_c">
+                <input class="ly_btn_1 btn_w" type="button" value="确定修改" />
+            </p>
+        </div>
+    </div>
+    <!--未认证修改-->
+     <div id="delete_layer2" class="layer l_width5">
+        <h2 class="layer_title">修改房产<a class="close_icon close" href="javascript:;"></a></h2>
+        <div class="layer_box layer_btn">
+        	<dl class="import3 cf">
+                <dt><span class="red_color">*</span>&nbsp;城市：</dt>
+                <dd class="cf">
+                    <div class="oSel w_387">
+                        <p>
+                            <span>请选择</span>
+                            <strong></strong>
+                        </p>
+                        <select class="os_list">
+                            <option value="">北京</option>
+                            <option value="">上海</option>
+                        </select>
+                    </div>
+                </dd>
+            </dl>  
+            <dl class="import3 cf">
+                <dt><span class="red_color">*</span>&nbsp;区域：</dt>
+                <dd class="cf">
+                    <div class="oSel w_387">
+                        <p>
+                            <span>请选择</span>
+                            <strong></strong>
+                        </p>
+                        <select class="os_list">
+                            <option value="">西湖区</option>
+                            <option value="">西湖区</option>
+                        </select>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="import3 cf">
+                <dt><span class="red_color">*</span>&nbsp;小区：</dt>
+                <dd class="cf">
+                    <div class="oSel w_387">
+                        <p>
+                            <span>请选择</span>
+                            <strong></strong>
+                        </p>
+                        <select class="os_list">
+                            <option value="">富春和院</option>
+                            <option value="">富春和院</option>
+                        </select>
+                    </div>
+                </dd>
+            </dl> 
+            <dl class="import3 cf">
+                <dt><span class="red_color">*</span>&nbsp;房号：</dt>
+                <dd>
+                    <input type="text" value="正确的房号将方便您接受纸质验证码投递！" class="left input_txt">
+                </dd>
+            </dl>
+            <p class="align_c">
+                <input class="ly_btn_1 btn_w" type="button" value="确定修改" />
+            </p>
+        </div>
+    </div>
+</body>
+</html>

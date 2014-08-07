@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>住户认证</title>
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//下拉选择事件
+	(function(){
+		var $select = $("select.os_list");
+		$select.off().on("change",function(){
+			var index = $(this).get(0).selectedIndex;
+			$(this).prev().find("span").html($(this).find("option").eq(index).text());
+		});
+	})();
+	//认证资料
+	(function(){
+		$(".approve_nav li").off().on("click",function(){
+			var index = $(this).index();
+			$(".approve_nav li").removeClass("active");
+			$(this).addClass("active");
+			$(".approve_dis").css("display","none");
+			$(".approve_dis").eq(index).css("display","block");
+			
+		})
+	})();
+	
+})
+</script>
+</head>
+<body>
+	<div class="cf">
+        <dl class="approve_dl cf">
+            <dt class="lh">我的认证：</dt>
+            <dd>
+                <div class="oSel w_218">
+                    <p>
+                        <span>绿城巧园2期4栋2单元6128</span>
+                        <strong></strong>
+                    </p>
+                    <select class="os_list">
+                        <option value="">绿城巧园2期4栋2单元6128</option>
+                        <option value="">绿城巧园2期4栋2单元6328</option>
+                    </select>
+                </div>
+            </dd>
+        </dl>
+        <h2 class="neighbor_title2"><em>住户认证</em></h2>
+    </div>
+    <dl class="myGreenCity_dl">
+        <dd>
+           <p class="txt_tip">注：您可以上传房屋购买的相关信息 或 预约工作人员进行上门认证！</p> 
+        </dd>
+    </dl> 
+    <!--已认证模块 start 注：用户未认证时没有该模块-->
+    <dl class="myGreenCity_dl mr_t30">
+        <dt class="title_s2">已认证</dt>
+        <dd class="cf">
+            <p class="approve_pic">
+                <img src="images/upload/img_7.jpg">
+                <span>绿城之江- <em>余杭</em></span>
+            </p>
+            <div class="approve_box">
+            	<dl class="import2 cf">
+                    <dt>房产地址：</dt>
+                    <dd>余杭临平星河路（绿城之江1期5栋6单元）</dd>
+                </dl>
+                <dl class="import2 cf">
+                    <dt>开&nbsp;发&nbsp;商：</dt>
+                    <dd>杭州余杭金腾房地产开发有限公司</dd>
+                </dl>
+                <dl class="import2 cf">
+                    <dt>物业电话：</dt>
+                    <dd>88888888</dd>
+                </dl>
+                <dl class="import2 cf">
+                    <dt>物业公司：</dt>
+                    <dd>绿城物业服务集团有限公司</dd>
+                </dl>
+                <dl class="import2 cf">
+                    <dt>物业地址：</dt>
+                    <dd>绿城蓝庭8号楼一层</dd>
+                </dl>
+            </div>
+        </dd>
+    </dl>   
+    <!--已认证模块 end-->
+    <dl class="myGreenCity_dl border_0">
+        <dt class="title_s2">认证资料提交</dt>
+        <dd class="cf">
+        	<ul class="approve_nav cf">
+                <li class="active">上传房屋信息</li>
+                <li>预约上门认证</li>
+            </ul>
+            <div class="approve_dis">
+                <div class="approve_nr">
+                    <p class="approve_tip">注：图片仅支持.gif .jpg .jpeg .png 格式，请上传彩照，可以是扫描件或数码相机照。<br>&nbsp;&nbsp;&nbsp;&nbsp;图片大小不超过1MB。</p>	
+                    <ul class="approve_list cf">
+                        <li>
+                            <img src="images/upload/img_8.jpg" alt="">
+                            <em></em>  
+                        </li>
+                        <li>
+                            <img src="images/upload/img_8.jpg" alt="">
+                            <em></em>  
+                        </li>
+                        <li>
+                            <img src="images/upload/img_8.jpg" alt="">
+                            <em></em>  
+                        </li>
+                        <li>
+                            <img src="images/upload/img_8.jpg" alt="">
+                            <em></em>  
+                        </li>
+                        <li>
+                            <img src="images/upload/img_8.jpg" alt="">
+                            <em></em>  
+                        </li>
+                        <li>
+                            <img src="images/upload/img_8.jpg" alt="">
+                            <em></em>  
+                        </li>
+                        <li>
+                            <img src="images/upload/img_8.jpg" alt="">
+                            <em></em>  
+                        </li>
+                        <li>
+                            <img src="images/upload/img_8.jpg" alt="">
+                            <em></em>  
+                        </li>
+                    </ul>
+                    <span class="up_btn2">图片上传<input type="file" class="file"></span>
+                </div>
+            	<input type="button" value="提交认证/预约" class="orange_btn2 btn1">
+                <!--按钮不可点击状态
+                <input type="button" value="提交认证/预约" class="gray_btn_no btn1">
+                -->
+            </div>
+            <div class="approve_dis" style="display:none;">
+                <div class="approve_nr">
+                    <dl class="import3 cf">
+                        <dt>居住地址：</dt>
+                        <dd class="cf">
+                            <div class="oSel w_128">
+                                <p>
+                                    <span>城市</span>
+                                    <strong></strong>
+                                </p>
+                                <select class="os_list">
+                                    <option value="">北京</option>
+                                    <option value="">上海</option>
+                                </select>
+                            </div>
+                            <div class="oSel w_128">
+                                <p>
+                                    <span>小区</span>
+                                    <strong></strong>
+                                </p>
+                                <select class="os_list">
+                                    <option value="">曼陀花园</option>
+                                    <option value="">曼陀花园</option>
+                                </select>
+                            </div>
+                            <p><input type="text" value="详细地址" class="left input_txt"></p>
+                        </dd>
+                    </dl>
+                    <dl class="import3 cf">
+                        <dt>手机号码：</dt>
+                        <dd>
+                            <input type="text" value="" class="left input_txt">
+                        </dd>
+                    </dl>
+                    <dl class="import3 cf">
+                        <dt>居住使用人姓名：</dt>
+                        <dd>
+                            <input type="text" value="" class="left input_txt">
+                        </dd>
+                    </dl>
+                </div>
+                <input type="button" value="提交认证/预约" class="orange_btn2 btn1">
+                <!--按钮不可点击状态
+                <input type="button" value="提交认证/预约" class="gray_btn_no btn1">
+                -->
+            </div>
+        </dd>
+    </dl> 
+</body>
+</html>

@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script>
+$(function (){
+	//在售房源
+	divShow(".xsjd_btn","#xsjd_l");	
+	function oTanc(oClk,oBox){
+		$(oClk).click(function(){
+			$(this).parent().find(oBox).show();
+			$(oBox).css({marginTop:-$(oBox).height()/2,marginLeft:-$(oBox).width()/2,zIndex:200});			
+		})
+	}
+	oTanc(".sale_progress dd",".xqtk_t");
+	oTanc(".sale_progress img",".xqtk_t");
+	oTanc(".sale_progress2 .listpic_t",".bighxt_t");
+
+	$('.fanh_t').click(function (){	
+		$('.xqtk_t').hide();
+	});
+	$('.fanh_t1').click(function (){	
+		$('.bighxt_t').hide();
+	});
+	//3D看图无资料弹窗
+	divShow("#3D_look","#no_3Ddata");
+	//下拉菜单
+	$('.screen_t').find('dd').on('click',function (){
+
+		var txt='';
+
+		$(this).find('option').each(function (i){
+			
+			if(this.selected) txt=$(this).text();	
+		});
+
+		$(this).find('span').text(txt);
+
+	});
+	//查看详情
+	(function(){
+		$(".hdppic_t ul li").off().on("mouseenter",function(){
+		var $this = $(this);
+		$this.find("div").find("a").show().stop().animate({bottom:"50%"},500);
+		}).on("mouseleave",function(){
+		var $this = $(this);
+		$this.find("div").find("a").stop().animate({bottom:"-33px"},500);
+		});
+	})();
+	//地图弹窗
+	$(document).on('click','.ndmLeft',function (){
+
+		$('.mapShow').show();
+
+		$('body').css('overflow','hidden');
+
+	}).on('click','.mapClose',function (){
+		
+		$('.mapShow').hide();
+
+		$('body').css('overflow','auto');
+	});
+
+	$(window).on('resize',function (){
+
+		clearTimeout($(this).timer);
+	
+		$(this).timer=setTimeout(function (){
+			$("#baiduMap").height($(window).height()-35);
+			
+		},100);
+	});
+
+	//标签切换
+
+	$('.hdpTab').on('click','li',function (){
+			
+		$(this).addClass('hdpActive').siblings().removeClass('hdpActive');
+	});
+
+	$('.hdSwitch ul').on('click','li',function (){
+			
+		$(this).addClass('hdsActive').siblings().removeClass('hdsActive');
+	});
+
+	//图片切换
+	(function(){
+		$('div.nclList ul').on('click','li',function (){
+				
+			$(this).addClass('nclActive').siblings().removeClass('nclActive');
+			$('div.nclImg').find('img').attr('src',$(this).find('img').attr('src'));
+		});
+		var $aLi=$('div.nclList ul li');
+		var $Ul_width=$aLi.length*($aLi.width()+22);
+		var iNum=0;
+		var move = false;
+		var right = false;
+		var left = true;
+		$("input.prev_t").addClass("show");
+		if($aLi.length<=5){
+			$('div.nclMain input').hide();
+		}else{
+			$('div.nclMain input').show();
+		}
+		$('div.nclList ul').width($Ul_width);
+		$("input.next_t").on('click',function(){
+			if(!move&&!right){
+				move = true;
+				iNum++;
+				if(iNum==$aLi.length-5){
+					$(this).addClass('show');
+					right = true;
+					$("input.prev_t").removeClass('show');
+					left = false;
+				}else{
+					$("input.prev_t").removeClass('show');
+					left = false;
+				}
+				$('div.nclList ul').animate({'left':-iNum*($aLi.width()+22)},500,function(){
+					move = false;
+				});
+			}
+		});
+		$("input.prev_t").on('click',function(){
+			if(!move&&!left){
+				move = true;	
+				iNum--;		
+				if(iNum==0){
+					$(this).addClass('show');
+					left = true;
+					$("input.next_t").removeClass('show');
+					right = false;
+				}else{
+					$("input.next_t").removeClass('show');
+					right = false;
+				}
+				$('div.nclList ul').animate({'left':-iNum*($aLi.width()+22)},500,function(){
+					move = false;
+				});
+			}
+		});	
+	})();
+
+	//收藏成功
+
+	(function divShow(button,layer){
+			var $oMark = $(".mask");
+			var $Close = $(".close");
+			$(button).click(function(){
+				$(layer).show();
+				$(layer).css({marginTop:-$(layer).height()/2,marginLeft:-$(layer).width()/2,zIndex:200});
+				if($oMark.size()){
+					$oMark.show().css("position","fixed");
+					
+				}else{
+					$oMark.appendTo($("body"));
+					$oMark.css("position","fixed");
+				}
+			});
+			// 窗口大小改变时，弹出层的位置也相应改变
+			$(window).on("resize",function(){
+				$oMark.css({
+					width : Math.max($('body').width(),$(window).width()) + 'px' ,
+					height: Math.max($('body').height(),$(window).height()) + 'px'
+				});
+				$(layer).css({
+					marginTop: -$(layer).height()/2 + 'px' , 
+					marginLeft: -$(layer).width()/2 + 'px'  
+				});
+			});
+			//关闭弹框
+			$Close.click(function(){
+				$oMark.hide();
+				$(layer).hide();	
+			});
+			$oMark.click(function(){
+				$(this).hide();
+				$(layer).hide();	
+			});
+		})('#suCol','#col_layer');
+
+});
+</script>
+<title>房源详细页</title>
+</head>
+<body>
+
+<!--header start-->
+    <div class="top_wrapper">
+        <dl class="top">
+            <dd>
+                <a class="serv_icon" href="javascript:;"></a>
+                <a class="sina_icon" href="javascript:;"></a>
+                <a class="wx_icon" href="javascript:;"></a>
+                <a class="wl_icon" href="javascript:;"></a>
+            </dd>
+            <dt>
+                <!--未登录
+                <a href="login.html">登录</a><a href="register.html">注册</a><a href="javascript:;">手机版</a><a href="aboutUs.html">服务帮助</a>
+                -->
+                <!--已登录-->
+                <div class="top_select">
+                	<span>15266666666</span>
+                    <ul class="cf">
+                        <li><a href="myGreenCity.html">个人设置</a></li> 
+                        <li><a href="javascript:;">佣金认证</a></li>
+                        <li><a href="javascript:;">邀请团队</a></li>
+                    </ul>
+                </div>
+                <a href="javascript:;">退出登录</a><a href="javascript:;">手机版</a><a href="aboutUs.html">服务帮助</a>
+            </dt>
+        </dl>   
+    </div>
+    <dl class="search_wrapper search_new cf">
+        <dt>
+            <a href="index.html">绿城在线置业</a>
+        </dt>
+        <dd class="cf">
+        	<ul class="search_nav">
+            	<li class="active">新房</li>
+                <li>二手房</li>
+                <li>租房</li>
+            </ul>
+        	<div class="s_dis">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+            <div class="s_dis" style="display:none;">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+            <div class="s_dis" style="display:none;">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+
+        </dd>
+    </dl>  
+    <div class="nav_wrapper nav_new">
+        <dl>
+        	<dt>
+                <div class="change_city">
+                    <p>
+                        <span>杭州</span><em>[切换城市]</em><strong></strong>
+                    </p>
+                    <div class="city_box">
+                    	<dl class="cf">
+                        	<dt>华北东北</dt>
+                            <dd>
+                            	<a href="javascript:;">北京</a>
+                                <a href="javascript:;">济南</a>
+                                <a href="javascript:;">青岛</a>
+                                <a href="javascript:;">新泰</a>
+                                <a href="javascript:;">胶州</a>
+                                <a href="javascript:;">东营</a>
+                                <a href="javascript:;">唐山</a>
+                                <a href="javascript:;">沈阳</a>
+                                <a href="javascript:;">大连</a>
+                                <a href="javascript:;">天津</a>
+                                <a href="javascript:;">长沙 </a>
+                                <a href="javascript:;">郑州</a>
+                                <a href="javascript:;">新疆</a>
+                                <a href="javascript:;">海南</a>
+                            </dd>
+                        </dl>
+                        <dl class="cf">
+                        	<dt>华北东北</dt>
+                            <dd>
+                            	<a href="javascript:;">北京</a>
+                                <a href="javascript:;">济南</a>
+                                <a href="javascript:;">青岛</a>
+                                <a href="javascript:;">新泰</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>    
+            </dt>
+            <dd>
+                <ul class="nav cf">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a class="on" href="house_list.html">新房</a></li>
+                    <li><a href="old_house_list.html">二手房</a></li>
+                    <li><a href="rent_house_list.html">租房</a></li>
+                    <li><a href="inform.html">资讯</a></li>
+                    <li><a href="broker.html">经纪人</a></li>
+                    <li><a href="green_city_identify.html">我的绿城</a></li>
+                </ul>
+            </dd>  
+        </dl>
+
+    </div>
+    <!--header end-->
+
+
+	<!-- nhDetail start -->
+
+	<div class="ldsPw">
+		<p class="path">当前位置：<a href="house_list.html">新房</a>&nbsp;&gt;&nbsp;绿城西溪国际</p> 
+		<dl class="nhdNews cf">
+			<dt>最新消息：</dt>
+			<dd>
+				<a href="house_inform_list.html">2014第二届最具创意设计四项大奖花落绿西溪</a>
+			</dd>
+			<dd>
+				<a href="house_inform_list.html">绿城•西溪国际冠名老年健康文化博览会</a>
+			</dd>
+		</dl>	
+	</div>
+
+	<div class="ldsPw nhdCaro cf">
+		<div class="nhdCaroLeft left">
+			<div class="nclTop cf">
+				<p class="left">
+					<span class="houseName left" title="绿城西溪国际">绿城西溪国际</span>
+					<a id="delete" href="javascript:;"><span class="ldsFollow left"><strong>+</strong><em>加关注</em></span></a>
+				</p>
+				<p class="stateTag right align_c">待售</p>
+			</div>
+			<div class="nclMain">
+                <input type="button" value="" class="prev_t" />
+                <input type="button" value="" class="next_t" />
+				<div class="nclImg">
+					<a href="#">
+						<img src="images/upload/未标题-1.jpg" alt="" />
+					</a>
+				</div>
+				<div class="nclList"><ul class="cf">
+					
+					<li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+					<li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+					<li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+					<li class="nclActive">
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+					<li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+					<li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+                    <li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+					<li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+				</ul></div>
+			</div>
+		</div>
+		<div class="nhdCaroRight right">
+			<div class="ncrTop">
+				<p class="left">绿城免费售楼咨询电话</p>
+				<em class="right">400-111-3900</em>
+			</div>
+			<div class="ncrMain">
+				<div class="nrmBar">
+					<p class="nrmPrice left">均价：<em>3000.00</em> 元/平米</p>
+					<p id="suCol" class="nrmColl right"><em class="left"></em><span class="left">收藏</span></p>
+				</div>
+				<ul class="nrmList cf">
+					<li>
+						<span>物业类型</span>
+						<em>：</em>
+						<strong>写字楼</strong>
+					</li>
+					<li>
+						<span>项目位置</span>
+						<em>：</em>
+						<strong>西湖西湖区文一西路花蒋路口</strong>
+					</li>
+					<li>
+						<span>面&nbsp;积&nbsp;段</span>
+						<em>：</em>
+						<strong>未定</strong></li>
+					<li>
+						<span>开盘时间</span>
+						<em>：</em>
+						<strong>未定</strong>
+					</li>
+					<li>
+						<span>入住时间</span>
+						<em>：</em>
+						<strong>未定</strong>
+					</li>
+					<li>
+						<span>物&nbsp;业&nbsp;费</span>
+						<em>：</em>
+						<strong style="width:150px;">未定</strong>
+						<div style="float:left;">
+							最大物业费：未定
+						</div>
+					</li>
+					<li>
+						<span>售楼地址</span>
+						<em>：</em>
+						<strong>西湖区文一西路花蒋路口</strong>
+					</li>
+					<li>
+						<span>开&nbsp;发&nbsp;商</span>
+						<em>：</em>
+						<strong>杭州中房西溪置业有限公司</strong>
+					</li> 
+				</ul>
+				<div class="nrmBtn">
+					<a class="left recmdBtn" href="rec_buy.html"></a>
+					<input class="right shareBtn" type="button" value="" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="nhdMap"><div class="ldsPw hdmBg cf">
+		<div class="ndmLeft left">
+			<div class="nmlImg">
+				<a href="javascript:;">
+					<img src="images/upload/nmlImg.png" alt="" />
+				</a>
+			</div>
+			<p class="nmlTxt align_c">
+				<a href="javascript:;">点击查看大图</a>
+			</p>
+		</div>
+        <dl class="xsjd_t left"><dt><img src="images/bg/code1.jpg" alt="" /><span>扫描二维码，安装绿城生活通</span></dt><dd><p>绿城西溪国际1期</p><span class="xsjd_btn"></span></dd></dl>
+		<div class="ndmRight right">
+			<div class="hdmrTop">
+				<p>团购力减</p>
+				<p><em>3000.00元</em>／平米</p>
+			</div>
+            <p class="hdmrBot align_c">已经参与<em>5,245</em>人</p>
+			<input id="group" class="hdmrBtn left" type="button" value="" />			
+		</div>
+	</div></div>
+
+	<div class="hdAlbum ldsPw">
+		<!--<h2>楼盘相册</h2>-->
+        <table border="0"><tbody><tr><td>
+        <h2>楼盘相册&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" id="3D_look">3D看房</a></h2></td>
+        </tr>
+        </tbody></table>
+		<ul class="hdpTab cf">
+			<li class="hdpActive"><a href="#">户型图</a></li>
+			<li><a href="#">总平图</a></li>
+			<li><a href="#">交通图</a></li>
+			<li><a href="#">实景图</a></li>
+			<li><a href="#">效果图</a></li>
+			<li><a href="#">样板图</a></li>
+			<li><a href="#">配套图</a></li>
+			<li><a href="build_photo.html">更多</a></li>
+		</ul>
+		<div class="hdpPic ldsPw hdppic_t">
+			<ul class="cf">
+				<li> 
+					<div>
+                        <img src="images/upload/未标题-1.jpg" alt="" />
+                        <em class="pic_mask"></em>
+                        <a href="pic_enlarge.html">查看详情</a>
+					</div>
+					<p>3室2厅2卫1厨 115m²</p>
+				</li>
+				<li>
+					<div>
+                        <img src="images/upload/未标题-2.jpg" alt="" />
+                        <em class="pic_mask"></em>
+                        <a href="#">查看详情</a>
+					</div>
+					<p>3室2厅2卫1厨 115m²</p>
+				</li>
+				<li>
+					<div>
+                        <img src="images/upload/hdPhoto.png" alt="" />
+                        <em class="pic_mask"></em>
+                        <a href="#">查看详情</a>
+					</div>
+					<p>3室2厅2卫1厨 115m²</p>
+				</li>
+				<li>
+					<div>
+                        <img src="images/upload/hdPhoto.png" alt="" />
+                        <em class="pic_mask"></em>
+                        <a href="#">查看详情</a>
+					</div>
+					<p>3室2厅2卫1厨 115m²</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="hd3d ldsPw">
+		<h2>3D看图</h2>
+		<div class="hdpPic hd3Special hdppic_t">
+			<ul class="cf">
+				<li>
+                    <div>
+                        <img src="images/upload/未标题-1.jpg" alt="" />
+                        <em class="pic_mask"></em>
+                        <a href="#">查看详情</a>
+					</div>
+					<p>3室2厅2卫1厨 115m²</p>
+				</li>
+				<li>
+					<div>
+                        <img src="images/upload/未标题-2.jpg" alt="" />
+                        <em class="pic_mask"></em>
+                        <a href="#">查看详情</a>
+					</div>
+					<p>3室2厅2卫1厨 115m²</p>
+				</li>
+				<li>
+					<div>
+                        <img src="images/upload/hd3d1.png" alt="" />
+                        <em class="pic_mask"></em>
+                        <a href="#">查看详情</a>
+					</div>
+					<p>3室2厅2卫1厨 115m²</p>
+				</li>
+				<li>
+					<div>
+                        <img src="images/upload/hd3d1.png" alt="" />
+                        <em class="pic_mask"></em>
+                        <a href="#">查看详情</a>
+					</div>
+					<p>3室2厅2卫1厨 115m²</p>
+				</li>
+				<li>
+					<div>
+                        <img src="images/upload/hd3d1.png" alt="" />
+                        <em class="pic_mask"></em>
+                        <a href="#">查看详情</a>
+					</div>
+					<p>3室2厅2卫1厨 115m²</p>
+				</li>
+				<li>
+					<div>
+                        <img src="images/upload/hd3d1.png" alt="" />
+                        <em class="pic_mask"></em>
+                        <a href="#">查看详情</a>
+					</div>
+					<p>3室2厅2卫1厨 115m²</p>
+				</li>
+				<li>
+					<div>
+                        <img src="images/upload/hd3d1.png" alt="" />
+                        <em class="pic_mask"></em>
+                        <a href="#">查看详情</a>
+					</div>
+					<p>3室2厅2卫1厨 115m²</p>
+				</li>
+				<li>
+					<div>
+                        <img src="images/upload/hd3d1.png" alt="" />
+                        <em class="pic_mask"></em>
+                        <a href="#">查看详情</a>
+					</div>
+					<p>3室2厅2卫1厨 115m²</p>
+				</li>
+			</ul>
+		</div>
+
+		<div class="inform_page align_c hdPageRevise"><a href="javascript:;">上一页</a><a href="javascript:;">1</a><a href="javascript:;" class="on">2</a><a href="javascript:;">3</a><a href="javascript:;">4</a><a href="javascript:;">5</a><a href="javascript:;">下一页</a> 
+        </div>
+	</div>
+
+	<div class="hdSwitch ldsPw">
+		<ul>
+			<li class="hdsActive">楼盘概况</li>
+			<li>项目描述</li>
+			<li>项目优势</li>
+			<li>建材装修</li>
+			<li>交通状况</li>
+			<li>车位信息</li>
+			<li>交付情况</li>
+			<li>相关信息</li>
+		</ul>
+		<div>					<p>西溪湿地贵为与西湖、钱塘江、运河并列齐名的四大城市景观名片之一，有着得天独厚、稀缺难求的湿地景观资源，同时又是杭州高端人群的聚集地，绿城R26;西溪国际项目于绿城集团而言，无疑又是全新的挑战。 绿城集团营造团队一头扎进西溪湿地，研究其景观特点、发掘其地理文脉、深度了解高端人群尤其是企业老总们的办公需求，同时把脉当前国际生态办公潮流，历时一年多的前期考察调研之后，才有了绿城R26;</p>
+			<p>西溪国际这样一件作品的蓝图。 绿城发现，美国的硅谷，包括苹果的总部、哥本哈根机场商务花园等，印度的班加罗尔，慕尼黑的伊萨办公区等地，集合了大量世界上最为优秀甚至伟大的公司，他们在绿树掩映和鸟语花香的环境中办公，结果员工身心健康、凝聚力强，办公效率普遍提升10%－15%。 而西溪湿地是目前国内首个也是唯一集城市湿地、农耕湿地、文化湿地于一体的国家湿地公园。西溪之美，具有“冷、野、淡、雅”四大特色。整个湿地70%以上的面积由河港、池塘、湖漾、沼泽覆盖，并由六条河流纵横交汇，加之大片的芦荡，众多的飞禽走兽，展现出“芦锥几顷界为田，一曲溪流一曲烟”诗意般的境界。</p>	
+		</div>
+	</div>
+
+	<!-- hsDetail end -->
+
+	 <!--footer start-->
+    <div class="footer_wrapper1">
+        <div class="footer cf">
+            <dl>
+                <dt>绿城保障</dt>
+                <dd><a href="#">资源优势特惠楼盘</a></dd>
+                <dd><a href="#">品牌地产合作</a></dd>
+                <dd><a href="#">专业服务团队</a></dd>
+            </dl>
+            <dl>
+                <dt>使用帮助</dt>
+                <dd><a href="#">帮助中心</a></dd>
+                <dd><a href="#">注册常见问题</a></dd>
+                <dd><a href="#">经纪人常见问题</a></dd>
+                <dd><a href="#">佣金常见问题</a></dd>
+            </dl>
+            <dl>
+                <dt>经纪人模式</dt>
+                <dd><a href="#">经纪人说明</a></dd>
+                <dd><a href="#">经纪人佣金报酬</a></dd>
+                <dd><a href="#">如何推荐客户</a></dd>
+            </dl>
+            <dl>
+                <dt>提供服务</dt>
+                <dd><a href="#">绿城独家特惠楼盘</a></dd>
+                <dd><a href="#">促成推荐用户成交</a></dd>
+                <dd><a href="#">经纪人佣金发放</a></dd>
+            </dl>
+            <dl>
+                <dt>联系我们</dt>
+                <dd class="last">
+                    <p>客服热线:<br><span>400-180-8116</span><p>
+                    <a class="f_msg_icon" href="javascript:;"></a>
+                    <a class="f_serv_icon" href="javascript:;"></a>
+                    <a class="f_sina_icon" href="javascript:;"></a>
+                    <a class="f_wx_icon" href="javascript:;"></a>
+                    <a class="f_wl_icon" href="javascript:;"></a> 
+                </dd>
+            </dl>
+        </div>    
+    </div>        
+    <div class="footer_wrapper2">
+        <div class="footer">       
+            <p class="f_nav">
+                <a href="#">关于我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">服务声明</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">友情链接</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">常见问题</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">网站地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">人才招聘</a>
+            </p>
+            <i> © 绿城房地产集团有限公司 浙ICP备05064294号-1</i>
+        </div>   
+    </div>
+    <!--footer end-->
+    <!--悬浮菜单 start-->
+    <ul class="menu_list">
+    	<li><a id="menu" class="m_icon_1" href="javascript:;"></a></li>
+        <!--<li><a class="m_icon_2" href="javascript:;"></a></li>
+        <li><a class="m_icon_3" href="javascript:;"></a></li>-->
+        <li><a class="m_icon_4" href="javascript:;"></a></li> 
+        <li><a class="m_icon_5" href="javascript:;"></a></li> 
+        <!--<li><a class="m_icon_6" href="javascript:;"></a></li>
+        <li><a class="m_icon_7" href="javascript:;"></a></li>-->
+        <li><a class="m_icon_8" href="javascript:;"></a><img src="images/upload/code.jpg" alt=""/></li>
+    </ul>
+    <!--悬浮菜单 end-->
+
+	<!-- 地图弹层 -->
+
+	<div class="mapShow">
+		<div class="mapHeadBar cf">
+			<p class="left">绿城西溪国际地图</p>
+			<p class="right mapClose">退出全屏</p>
+		</div>
+		<div class="mapPic">
+			<img src="images/upload/bdMap.png" alt="" />
+		</div>
+		<div id="rl_seach" style="position:absolute;width:300px;top:35px;right:0px;bottom:0px;overflow:auto; background:white;"></div>
+	</div>
+
+	<!-- 地图弹层 -->
+
+	<!--提示弹框-->
+    <div class="mask"></div>
+    <!--删除-->
+    <div id="delete_layer" class="layer l_width1">
+        <h2>提示</h2>
+        <div class="layer_box hd_btn_bg">
+            <p class="layer_nr">关注成功！</p>
+            <p class="align_r">
+				<input class="ly_btn_2 close" type="button" value="确定" />
+            </p>
+        </div>
+    </div>
+	<!-- 收藏 -->
+	<div id="col_layer" class="layer l_width1">
+        <h2>提示</h2>
+        <div class="layer_box hd_btn_bg">
+            <p class="layer_nr">收藏成功！</p>
+            <p class="align_r">
+				<input class="ly_btn_2 close" type="button" value="确定" />
+            </p>
+        </div>
+    </div>
+    <!--团购预约-->
+    <div id="group_layer" class="layer l_width2">
+        <h2>已有100人参加本次团购/预约服务<a href="javascript:;" class="close_icon close"></a></h2>
+        <div class="layer_box">
+        	<h3 class="ly_title">我要参加</h3>
+            <dl class="ly_import cf">
+                <dt class="lh">姓&nbsp;&nbsp;&nbsp;&nbsp;名：</dt>
+                <dd><input type="text" value="成成" class="input_txt"></dd>
+            </dl>
+            <dl class="ly_import cf">
+                <dt class="lh">手&nbsp;&nbsp;&nbsp;&nbsp;机：</dt>
+                <dd><input type="text" value="15116728982" class="input_txt"></dd>
+            </dl>
+            <dl class="ly_import cf">
+                <dt class="lh">验&nbsp;证&nbsp;码：</dt>
+                <dd><input type="text" value=" " class="input_txt input_w1"><input type="button" value="获取验证码" class="ly_btn_3"></dd>
+            </dl>
+            <p class="align_r">
+                <input class="ly_btn_1" type="button" value="提交" />
+            </p>
+        </div>
+    </div>    
+<!--新房详情-销售进度 start-->
+ 	<div class="sale_progress_box" id="xsjd_l">
+    	<h2>在售房源 <span class="close">关闭</span></h2>
+        <div class="screen_t">
+        	<dl>
+           	 <dt>户型：</dt>
+             <dd>
+             	<p><span>不限</span><em></em></p>
+                <select>
+                    <option selected="selected" class="o_clore">不限</option>
+                    <option>一室</option>
+                    <option>二室</option>
+                    <option>三室</option>
+                    <option>四室</option>
+                    <option>五室及以上</option>
+                </select>
+            </dd>
+            </dl>
+            <dl>
+           	 <dt>面积：</dt>
+             <dd>
+             	<p><span>不限</span><em></em></p>
+                <select>
+                    <option selected="selected" class="o_clore">不限</option>
+                    <option>50平米以下</option>
+                    <option>50-70平米</option>
+                    <option>70-90平米</option>
+                    <option>90-110平米</option>
+                    <option>110-130平米</option>
+                    <option>130-150平米</option>
+                    <option>150平米以上</option>
+                </select>
+            </dd>
+            </dl>
+            <input type="button" value="筛选" class="scrbtn" />
+        </div>
+        <ol class="cf">
+            <li class="left sale_model">户型</li>
+            <li class="left surplus_num">在售房源</li>
+        </ol>
+        <div class="sale_progress">      	
+            <dl class="cf">
+                <dt class="left">
+                    <img class="listpic_t" src="images/upload/未标题-1.jpg"/>
+                    <!--新房详情信息 start-->
+                    <div class="sale_progress_box xqtk_t">
+                        <h2>详情信息 <span class="fanh_t">返回</span></h2>
+                        <ol class="cf">
+                            <li class="left sale_model">户型</li>
+                            <li class="left surplus_num">在售房源</li>
+                        </ol>      	
+                        <dl class="sale_progress2 cf">
+                            <dt class="left">
+                                <img class="listpic_t" src="images/upload/未标题-1.jpg"/>
+                                <div class="bighxt_t">
+                                    <h2>3室2厅2卫130平<span class="fanh_t1"></span></h2>
+                                    <p><img src="images/upload/sale_new_house1.jpg" /><i></i></p>
+                                </div>
+
+                            </dt>
+                            <dd class="left"><span>3室2厅2卫1厨<br/>130平米</span><em>21</em></dd>
+                        </dl>
+                        <div class="lcbox_t">
+                            <h3>5号楼<span>在售房源11 套</span>售价56万-219万</h3>
+                            <table class="table_list">
+                                <thead>
+                                    <tr>
+                                        <th>楼层</th>
+                                        <th>在售房源</th>
+                                        <th>总价</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>  
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr> 
+                                </tbody>
+                            </table>
+                            <h3>6号楼<span>在售房源11 套</span>售价56万-219万</h3>
+                            <table class="table_list">
+                                <thead>
+                                    <tr>
+                                        <th>楼层</th>
+                                        <th>在售房源</th>
+                                        <th>总价</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>  
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr> 
+                                </tbody>
+                            </table>
+                            <h3>9号楼<span>在售房源11 套</span>售价56万-219万</h3>
+                            <table class="table_list">
+                                <thead>
+                                    <tr>
+                                        <th>楼层</th>
+                                        <th>在售房源</th>
+                                        <th>总价</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>  
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                	<!--新房详情信息 end-->
+                </dt>
+                <dd class="left"><span>3室2厅2卫<br/>130.11-153.22平米</span><em>21</em></dd>
+            </dl>
+             <dl class="cf">
+                <dt class="left">
+                    <img class="listpic_t" src="images/upload/未标题-2.jpg"/>
+                    <!--新房详情信息 start-->
+                    <div class="sale_progress_box xqtk_t">
+                        <h2>详情信息 <span class="fanh_t">返回</span></h2>
+                        <ol class="cf">
+                            <li class="left sale_model">户型</li>
+                            <li class="left surplus_num">在售房源</li>
+                        </ol>      	
+                        <dl class="sale_progress2 cf">
+                            <dt class="left">
+                                <img class="listpic_t" src="images/upload/未标题-2.jpg"/>
+                                <div class="bighxt_t">
+                                    <h2>2室2厅2卫 100平米 <span class="fanh_t1"></span></h2>
+                                    <p><img src="images/bg/login.jpg" /><i></i></p>
+                                </div>
+                            </dt>
+                            <dd class="left"><span>3室2厅2卫<br/>130平米</span><em>33</em></dd>
+                        </dl>
+                        <div class="lcbox_t">
+                            <h3>5号楼<span>在售房源11 套</span>售价56万-219万</h3>
+                            <table class="table_list">
+                                <thead>
+                                    <tr>
+                                        <th>楼层</th>
+                                        <th>在售房源</th>
+                                        <th>总价</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>  
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr> 
+                                </tbody>
+                            </table>
+                            <h3>6号楼<span>在售房源11 套</span>售价56万-219万</h3>
+                            <table class="table_list">
+                                <thead>
+                                    <tr>
+                                        <th>楼层</th>
+                                        <th>在售房源</th>
+                                        <th>总价</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>  
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr> 
+                                </tbody>
+                            </table>
+                            <h3>9号楼<span>在售房源11 套</span>售价56万-219万</h3>
+                            <table class="table_list">
+                                <thead>
+                                    <tr>
+                                        <th>楼层</th>
+                                        <th>在售房源</th>
+                                        <th>总价</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr>  
+                                    <tr>
+                                        <td>5层</td>
+                                        <td>4套</td>
+                                        <td>219万</td>
+                                    </tr> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                	<!--新房详情信息 end-->
+                </dt>
+                <dd class="left"><span>3室2厅2卫<br/>130平米</span><em>33</em></dd>
+            </dl>
+             <dl class="cf">
+                <dt class="left">
+                    <img class="listpic_t" src="images/upload/sale_new_house1.jpg"/>
+                </dt>
+                <dd class="left"><span>3室2厅2卫<br/>130平米</span><em>41</em></dd>
+            </dl>
+        </div>
+    </div>
+<!--新房详情-销售进度 end-->
+    <!--暂无3D资料弹窗 start-->
+    <div id="no_3Ddata" class="layer l_width1">
+    	<a class="close_icon close close_3D" href="javascript:;"></a>
+        <p>暂无3D资料</p>
+    </div>
+    <!--暂无3D资料弹窗 end-->
+</body>
+</html>

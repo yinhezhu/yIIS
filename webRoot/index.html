@@ -1,0 +1,695 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>首页</title>
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.cycle.lite.js"></script>
+<script type="text/javascript" src="js/jquery.cycle.all.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function (){
+    //首页大图轮播
+    (function(){
+        var w_w = $(window).width();
+        if(w_w>1600){
+            $('#myslide').css({"width":"1600px","margin":"0 auto"});
+        };
+        $('#myslide').cycle({
+            fx: 'scrollLeft',
+            pager:'#btn',
+            speed: 500,
+            pause:true,
+            pauseOnPagerHover:true
+        });
+		$(window).resize(function(){
+			 w_w = $(window).width();
+			 var right = (1600 -w_w)/2+320+"px";
+        	 $(".pic_dl").css("right",right);
+			 
+		})
+		$(window).trigger("resize");
+       
+    })();
+
+    //活动图轮播
+    (function(){
+        $('#myslide2').cycle({
+            fx: 'fade',
+            pager:'#btn2',
+            speed: 500,
+            pause:true,
+            pauseOnPagerHover:true
+        });
+    })();
+	
+	//热门排行
+	(function(){
+		$(".order_list li").off().on("mouseover",function(){
+			var $this = $(this);
+			
+			$(".order_list li").removeClass("active");
+			$this.addClass("active");
+		});
+	})();
+	//推荐鼠标滑过
+	(function(){	
+		$(".index_picList li").off().on("mouseenter",function(){
+			var $this = $(this);
+			
+			$this.find(".pic_tj").show().stop().animate({top:"0"},500);
+			$this.find("div").find("a").show().stop().animate({bottom:"50%"},500);
+		}).on("mouseleave",function(){
+			var $this = $(this);
+			$this.find(".pic_tj").show().stop().animate({top:"-30"},500);
+			$this.find("div").find("a").stop().animate({bottom:"-33px"},500);
+		});
+	})();
+	
+})
+</script>
+
+</head>
+<body>
+    <!--header start-->
+    <div class="top_wrapper">
+        <dl class="top">
+            <dd>
+                <a class="serv_icon" href="javascript:;"></a>
+                <a class="sina_icon" href="javascript:;"></a>
+                <a class="wx_icon" href="javascript:;"></a>
+                <a class="wl_icon" href="javascript:;"></a>
+            </dd>
+            <dt>
+                <!--未登录
+                <a href="login.html">登录</a><a href="register.html">注册</a><a href="javascript:;">手机版</a><a href="aboutUs.html">服务帮助</a>
+                -->
+                <!--已登录-->
+                <div class="top_select">
+                	<span>15266666666</span>
+                    <ul class="cf">
+                        <li><a href="myGreenCity.html">个人设置</a></li> 
+                        <li><a href="javascript:;">佣金认证</a></li>
+                        <li><a href="javascript:;">邀请团队</a></li>
+                    </ul>
+                </div>
+                <a href="javascript:;">退出登录</a><a href="javascript:;">手机版</a><a href="aboutUs.html">服务帮助</a>
+            </dt>
+        </dl>   
+    </div>
+    <dl class="search_wrapper search_new cf">
+        <dt>
+            <a href="index.html">绿城在线置业</a>
+        </dt>
+        <dd class="cf">
+        	<ul class="search_nav">
+            	<li class="active">新房</li>
+                <li>二手房</li>
+                <li>租房</li>
+            </ul>
+        	<div class="s_dis">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                            <li>30000-40000</li>
+                            <li>40000元以上</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+            <div class="s_dis" style="display:none;">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+            <div class="s_dis" style="display:none;">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+
+        </dd>
+    </dl>  
+    <div class="nav_wrapper nav_new">
+        <dl>
+        	<dt>
+                <div class="change_city">
+                    <p>
+                        <span>杭州</span><em>[切换城市]</em><strong></strong>
+                    </p>
+                    <div class="city_box">
+                    	<dl class="cf">
+                        	<dt>华北东北</dt>
+                            <dd>
+                            	<a href="javascript:;">北京</a>
+                                <a href="javascript:;">济南</a>
+                                <a href="javascript:;">青岛</a>
+                                <a href="javascript:;">新泰</a>
+                                <a href="javascript:;">胶州</a>
+                                <a href="javascript:;">东营</a>
+                                <a href="javascript:;">唐山</a>
+                                <a href="javascript:;">沈阳</a>
+                                <a href="javascript:;">大连</a>
+                                <a href="javascript:;">天津</a>
+                                <a href="javascript:;">长沙 </a>
+                                <a href="javascript:;">郑州</a>
+                                <a href="javascript:;">新疆</a>
+                                <a href="javascript:;">海南</a>
+                            </dd>
+                        </dl>
+                        <dl class="cf">
+                        	<dt>华北东北</dt>
+                            <dd>
+                            	<a href="javascript:;">北京</a>
+                                <a href="javascript:;">济南</a>
+                                <a href="javascript:;">青岛</a>
+                                <a href="javascript:;">新泰</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>    
+            </dt>
+            <dd>
+                <ul class="nav cf">
+                    <li><a class="on" href="index.html">首页</a></li>
+                    <li><a href="house_list.html">新房</a></li>
+                    <li><a href="old_house_list.html">二手房</a></li>
+                    <li><a href="rent_house_list.html">租房</a></li>
+                    <li><a href="inform.html">资讯</a></li>
+                    <li><a href="broker.html">经纪人</a></li>
+                    <li><a href="green_city_identify.html">我的绿城</a></li>
+                </ul>
+            </dd>  
+        </dl>
+
+    </div>
+    <!--header end-->
+
+    <!--content start-->
+    <!--picFocus start-->
+    <div class="pic_wrapper">
+        <div class="pic_focus" id="myslide">
+            <div>
+                <a href="#"><img src="images/upload/big_img1.jpg" /></a>
+                <dl class="pic_dl">
+                    <dt><input class="log_btn" type="button" value="登录" /><input class="reg_btn" type="button" value="注册" /></dt>
+                    <dd>
+                        <p><span class="step_icon1"></span>注册成为绿城经纪人</p>
+                        <p><em class="triangle_icon"></em></p>
+                        <p><span class="step_icon2"></span>简单分享亲戚好友</p>
+                        <p><em class="triangle_icon"></em></p>
+                        <p><span class="step_icon3"></span>轻松赚取成交佣金</p>
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a href="#"><img src="images/upload/big_img1.jpg" /></a>
+                <dl class="pic_dl">
+                    <dt><input class="log_btn" type="button" value="登录" /><input class="reg_btn" type="button" value="注册" /></dt>
+                    <dd>
+                        <p><span class="step_icon1"></span>注册成为绿城经纪人</p>
+                        <p><em class="triangle_icon"></em></p>
+                        <p><span class="step_icon2"></span>简单分享亲戚好友</p>
+                        <p><em class="triangle_icon"></em></p>
+                        <p><span class="step_icon3"></span>轻松赚取成交佣金</p>
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a href="#"><img src="images/upload/big_img1.jpg" /></a>
+                <dl class="pic_dl">
+                    <dt><input class="log_btn" type="button" value="登录" /><input class="reg_btn" type="button" value="注册" /></dt>
+                    <dd>
+                        <p><span class="step_icon1"></span>注册成为绿城经纪人</p>
+                        <p><em class="triangle_icon"></em></p>
+                        <p><span class="step_icon2"></span>简单分享亲戚好友</p>
+                        <p><em class="triangle_icon"></em></p>
+                        <p><span class="step_icon3"></span>轻松赚取成交佣金</p>
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a href="#"><img src="images/upload/big_img1.jpg" /></a>
+                <dl class="pic_dl">
+                    <dt><input class="log_btn" type="button" value="登录" /><input class="reg_btn" type="button" value="注册" /></dt>
+                    <dd>
+                        <p><span class="step_icon1"></span>注册成为绿城经纪人</p>
+                        <p><em class="triangle_icon"></em></p>
+                        <p><span class="step_icon2"></span>简单分享亲戚好友</p>
+                        <p><em class="triangle_icon"></em></p>
+                        <p><span class="step_icon3"></span>轻松赚取成交佣金</p>
+                    </dd>
+                </dl>
+            </div>
+            
+        </div>
+        <!--切换方块-->
+        <div id="btn" class="pic_bar"></div>
+    </div>
+    <!--picFocus end-->
+    <div class="wrapper cf">
+        <div class="left_wrapper">
+            <!-- 推荐 -->
+            <h2 class="index_title">推荐</h2>
+            <ul class="index_picList cf">
+                <li>
+                    <div>
+                        <img src="images/upload/logo.png" alt="">
+                        <p class="mask_txt">9000元/平</p>
+                        <em class="pic_disc">促销</em>
+                        <em class="pic_mask"></em>
+                        <em class="pic_tj">立即推荐</em>
+                        <a href="javascript:;">查看详情</a>    
+                    </div>
+                    <a class="pic_txt" href="javascript:;">赞成香颂-临平</a>
+                </li>
+                <li>
+                    <div>
+                        <img src="images/upload/未标题-2.jpg" alt="">
+                        <p class="mask_txt">9000元/平</p>
+                        <!-- <em class="pic_disc">促销</em> -->
+                        <em class="pic_mask"></em>
+                        <em class="pic_tj">立即推荐</em>
+                        <a href="javascript:;">查看详情</a>    
+                    </div>
+                    <a class="pic_txt" href="javascript:;">赞成香颂-临平</a>
+                </li>
+                <li>
+                    <div>
+                        <img src="images/upload/img_1.jpg" alt="">
+                        <p class="mask_txt">9000元/平</p>
+                        <!-- <em class="pic_disc">促销</em> -->
+                        <em class="pic_mask"></em>
+                        <em class="pic_tj">立即推荐</em>
+                        <a href="javascript:;">查看详情</a>    
+                    </div>
+                    <a class="pic_txt" href="javascript:;">赞成香颂-临平</a>
+                </li>
+                <li>
+                    <div>
+                        <img src="images/upload/img_1.jpg" alt="">
+                        <p class="mask_txt">9000元/平</p>
+                        <!-- <em class="pic_disc">促销</em> -->
+                        <em class="pic_mask"></em>
+                        <em class="pic_tj">立即推荐</em>
+                        <a href="javascript:;">查看详情</a>    
+                    </div>
+                    <a class="pic_txt" href="javascript:;">赞成香颂-临平</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="rigth_wrapper">
+            <!-- 活动 -->
+            <h2 class="index_title">活动</h2>
+            <div class="pic_wrapper2">
+                <div class="pic_focus2" id="myslide2">
+                    <a href="javascript:;"><img src="images/upload/img_3.jpg"></a>
+                    <a href="javascript:;"><img src="images/upload/img_3.jpg"></a>
+                    <a href="javascript:;"><img src="images/upload/img_3.jpg"></a>
+                </div>    
+                <!--切换数字-->
+                <div id="btn2" class="pic_bar2"></div>
+            </div>
+            <!-- 热门 -->
+            <h2 class="index_title">热门</h2>
+            <ul class="order_list cf">
+                <li class="first active">
+                    <dl>
+                        <dt class="cf">
+                            <span class="o_l">1</span>
+                            <span class="o_c">绿城西子田园牧歌-拱墅</span>
+                            <span class="o_r"><em class="money_icon"></em>佣金：2.6万</span>
+                        </dt>
+                        <dd class="cf">
+                            <a href="javascript:;" class="order_pic"><img src="images/upload/img_2.jpg" alt=""></a>
+                            <div>       
+                                <h3>
+                                    <a href="javascript:;" class="f_18">百大绿城西子国际-江干</a>
+<span class="o_r"><em class="money_icon"></em>佣金：2.6万</span>
+                                </h3> 
+                                <p>
+                                    <span class="f_12">已推荐：1453</span>
+                                    <span class="o_r_2"><em class="money_icon"></em>累积发放佣金：860万</span></p>
+                            </div>
+                            
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt class="cf">
+                            <span class="o_l">2</span>
+                            <span class="o_c">绿城西子田园牧歌-拱墅</span>
+                            <span class="o_r"><em class="money_icon"></em>佣金：2.6万</span>
+                        </dt>
+                        <dd class="cf">
+                            <a href="javascript:;" class="order_pic"><img src="images/upload/img_2.jpg" alt=""></a>
+                            <div>       
+                                <h3>
+                                    <a href="javascript:;" class="f_18">百大绿城西子国际-江干</a>
+<span class="o_r"><em class="money_icon"></em>佣金：2.6万</span>
+                                </h3> 
+                                <p>
+                                    <span class="f_12">已推荐：1453</span>
+                                    <span class="o_r_2"><em class="money_icon"></em>累积发放佣金：860万</span></p>
+                            </div>
+                            
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt class="cf">
+                            <span class="o_l">3</span>
+                            <span class="o_c">绿城西子田园牧歌-拱墅</span>
+                            <span class="o_r"><em class="money_icon"></em>佣金：2.6万</span>
+                        </dt>
+                        <dd class="cf">
+                            <a href="javascript:;" class="order_pic"><img src="images/upload/img_2.jpg" alt=""></a>
+                            <div>       
+                                <h3>
+                                    <a href="javascript:;" class="f_18">百大绿城西子国际-江干</a>
+<span class="o_r"><em class="money_icon"></em>佣金：2.6万</span>
+                                </h3> 
+                                <p>
+                                    <span class="f_12">已推荐：1453</span>
+                                    <span class="o_r_2"><em class="money_icon"></em>累积发放佣金：860万</span></p>
+                            </div>
+                            
+                        </dd>
+                    </dl>
+                </li>
+                <li class="last">
+                    <dl>
+                        <dt class="cf">
+                            <span class="o_l">4</span>
+                            <span class="o_c">绿城西子田园牧歌-拱墅</span>
+                            <span class="o_r"><em class="money_icon"></em>佣金：2.6万</span>
+                        </dt>
+                        <dd class="cf">
+                            <a href="javascript:;" class="order_pic"><img src="images/upload/img_2.jpg" alt=""></a>
+                            <div>       
+                                <h3>
+                                    <a href="javascript:;" class="f_18">百大绿城西子国际-江干</a>
+<span class="o_r"><em class="money_icon"></em>佣金：2.6万</span>
+                                </h3> 
+                                <p>
+                                    <span class="f_12">已推荐：1453</span>
+                                    <span class="o_r_2"><em class="money_icon"></em>累积发放佣金：860万</span></p>
+                            </div>
+                            
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <h2 class="index_title">明星经纪人</h2>
+    </div>  
+    <!-- 明星经纪人-->
+    <div class="agent_wrapper">
+        <div class="wrapper cf">
+        	<ul class="agent_list">
+            	<li>
+                	<div class="agent_img">
+                        <img src="images/upload/img_4.jpg" alt=""/>
+                        <span></span>
+                        <em>1</em>
+                    </div>
+                    <a href="javascript:;">李梅</a>
+                    <span class="agent_txt"><em class="money_icon"></em>累积：350万</span>
+                </li>
+                <li>
+                	<div class="agent_img">
+                        <img src="images/upload/img_4_2.jpg" alt=""/>
+                        <span></span>
+                        <em>2</em>
+                    </div>
+                    <a href="javascript:;">陆克华</a>
+                    <span class="agent_txt"><em class="money_icon"></em>累积：239万</span>
+                </li>
+                <li>
+                	<div class="agent_img">
+                        <img src="images/upload/img_4_3.jpg" alt=""/>
+                        <span></span>
+                        <em>3</em>
+                    </div>
+                    <a href="javascript:;">宋春华</a>
+                    <span class="agent_txt"><em class="money_icon"></em>累积：143万</span>
+                </li>
+            </ul>
+            <dl class="add_step">
+            	<dt>加入我们只要三步</dt>
+                <dd class="left">
+                    <p><span class="step_icon1_1"></span>注册成为绿城经纪人</p>
+                    <p><em class="triangle_icon"></em></p>
+                    <p><span class="step_icon2_1"></span>简单分享亲戚好友</p>
+                    <p><em class="triangle_icon"></em></p>
+                    <p><span class="step_icon3_1"></span>轻松赚取成交佣金</p>
+                </dd>
+                <dd class="right">
+                	<p>轻松赚取高额佣金，<br>绿城帮你即可搞定 !</p>
+                    <p class="orange_color">坐拥500万佣金！<br>即可推荐，坐等收益！</p> 
+                    <p><input class="orange_btn" type="button" value="立即推荐" /></p>
+                </dd>
+            </dl>
+        </div>
+    </div>  
+    <!--二手房推荐-->
+    <div class="wrapper cf">
+    	<h2 class="index_title cf"><span class="left">二手房推荐</span><a class="orange" href="old_house_list.html">+更多</a></h2>
+        <ul class="index_picList house_width cf">
+            <li>
+                <div>
+                    <img src="images/upload/未标题-1.jpg" alt="">
+                    <p class="mask_txt">37.56平米&nbsp;&nbsp;<span class="orange_color">90万</span></p>
+                    <em class="pic_mask"></em>
+                    <a href="old_house_detail.html">查看详情</a>    
+                </div>
+                <a class="pic_txt" href="javascript:;">赞成香颂-临平</a>
+            </li>
+            <li>
+                <div>
+                    <img src="images/upload/未标题-2.jpg" alt="">
+                    <p class="mask_txt">37.56平米&nbsp;&nbsp;<span class="orange_color">90万</span></p>
+                    <em class="pic_mask"></em>
+                    <a href="javascript:;">查看详情</a>    
+                </div>
+                <a class="pic_txt" href="javascript:;">赞成香颂-临平</a>
+            </li>
+            <li class="pd_r0">
+                <div>
+                    <img src="images/upload/img_6.jpg" alt="">
+                    <p class="mask_txt">37.56平米&nbsp;&nbsp;<span class="orange_color">90万</span></p>
+                    <em class="pic_mask"></em>
+                    <a href="javascript:;">查看详情</a>    
+                </div>
+                <a class="pic_txt" href="javascript:;">赞成香颂-临平</a>
+            </li>
+        </ul>
+        <h2 class="index_title cf"><span class="left">租房推荐</span><a class="orange" href="rent_house_list.html">+更多</a></h2>
+        <ul class="index_picList house_width cf">
+            <li>
+                <div>
+                    <img src="images/upload/img_6.jpg" alt="">
+                    <p class="mask_txt">37.56平米&nbsp;&nbsp;<span class="orange_color">6000/月</span></p>
+                    <em class="pic_mask"></em>
+                    <a href="rent_house_detail.html">查看详情</a>    
+                </div>
+                <a class="pic_txt" href="javascript:;">赞成香颂-临平</a>
+            </li>
+            <li>
+                <div>
+                    <img src="images/upload/img_6.jpg" alt="">
+                    <p class="mask_txt">37.56平米&nbsp;&nbsp;<span class="orange_color">6000/月</span></p>
+                    <em class="pic_mask"></em>
+                    <a href="javascript:;">查看详情</a>    
+                </div>
+                <a class="pic_txt" href="javascript:;">赞成香颂-临平</a>
+            </li>
+            <li class="pd_r0">
+                <div>
+                    <img src="images/upload/img_6.jpg" alt="">
+                    <p class="mask_txt">37.56平米&nbsp;&nbsp;<span class="orange_color">6000/月</span></p>
+                    <em class="pic_mask"></em>
+                    <a href="javascript:;">查看详情</a>    
+                </div>
+                <a class="pic_txt" href="javascript:;">赞成香颂-临平</a>
+            </li>
+        </ul>
+    </div>
+    <!--content end-->
+
+    <!--footer start-->
+    <div class="footer_wrapper1">
+        <div class="footer cf">
+            <dl>
+                <dt><a href="help.html#security">绿城保障</a></dt>
+                <dd><a href="help.html#security">品牌地产合作</a></dd>
+                <dd><a href="help.html#security">专业服务团队</a></dd>
+            </dl>
+            <dl>
+                <dt><a href="help.html#question">使用帮助</a></dt>
+                <dd><a href="help.html#question">注册常见问题</a></dd>
+            </dl>
+            <dl>
+                <dt><a href="help.html#agent">经纪人模式</a></dt>
+                <dd><a href="help.html#agent">经纪人说明</a></dd>
+                <dd><a href="help.html#agent">经纪人常见问题</a></dd>
+                <dd><a href="help.html#agent">如何推荐客户</a></dd>
+                <dd><a href="help.html#agent">经纪人佣金报酬</a></dd>
+                <dd><a href="help.html#agent">佣金常见问题</a></dd> 
+            </dl>
+            <dl>
+                <dt>提供服务</dt>
+                <dd><a href="javascript:;">绿城独家特惠楼盘</a></dd>
+                <dd><a href="javascript:;">促成推荐用户成交</a></dd>
+                <dd><a href="javascript:;">经纪人佣金发放</a></dd>
+            </dl>
+            <dl>
+                <dt><a href="help.html#contact_us">联系我们</a></dt>
+                <dd class="last">
+                    <p>客服热线:<br><span>400-180-8116</span><p>
+                    <a class="f_msg_icon" href="javascript:;"></a>
+                    <a class="f_serv_icon" href="javascript:;"></a>
+                    <a class="f_sina_icon" href="javascript:;"></a>
+                    <a class="f_wx_icon" href="javascript:;"></a>
+                    <a class="f_wl_icon" href="javascript:;"></a> 
+                </dd>
+            </dl>
+        </div>    
+    </div>        
+    <div class="footer_wrapper2">
+        <div class="footer">       
+            <p class="f_nav">
+                <a href="help.html#contact_us">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="help.html#service">服务声明</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="help.html#links">友情链接</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="help.html#question">常见问题</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="help.html#map">网站地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="help.html#recruitment">人才招聘</a>
+            </p>
+            <i> © 绿城房地产集团有限公司 浙ICP备05064294号-1</i>
+        </div>   
+    </div>
+    <!--footer end-->
+    <!--悬浮菜单 start-->
+    <ul class="menu_list">
+    	<li><a id="menu" class="m_icon_1" href="javascript:;"></a></li>
+        <!--<li><a class="m_icon_2" href="javascript:;"></a></li>
+        <li><a class="m_icon_3" href="javascript:;"></a></li>-->
+        <li><a class="m_icon_4" href="javascript:;"></a></li> 
+        <li><a class="m_icon_5" href="javascript:;"></a></li> 
+        <!--<li><a class="m_icon_6" href="javascript:;"></a></li>
+        <li><a class="m_icon_7" href="javascript:;"></a></li>-->
+        <li><a class="m_icon_8" href="javascript:;"></a><img src="images/upload/code.jpg" alt=""/></li>
+    </ul>
+    <!--悬浮菜单 end-->
+</body>
+</html>

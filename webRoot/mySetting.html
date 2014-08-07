@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>个人设置</title>
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/confirm.js"></script>
+<script type="text/javascript">
+$(function(){
+	//下拉选择事件
+	(function(){
+		var $select = $("select.os_list");
+		$select.off().on("change",function(){
+			var index = $(this).get(0).selectedIndex;
+			$(this).prev().find("span").html($(this).find("option").eq(index).text());
+		});
+	})();
+	
+	//增加邻里按钮
+	$(".set_addbtn a").click(function(){
+		$(this).parent().hide();
+		$(".set_addcont").show();
+	})
+	//保存增加邻里
+	$(".baoc_set").click(function(){
+		$(".set_addcont").hide();
+		$(".set_addbtn").show();
+		var $City=$("#city span").html();
+		var $Area=$("#area span").html();
+		var $Plot=$("#plot span").html();
+		var $Site=$(".xxwz_set").val();
+		$(".table_list_t tbody").append("<tr><td>"+$City+"</td><td>"+$Area+"</td><td>"+$Plot+"</td><td>"+$Site+"</td><td><a href='javascript:;'>删除</a></td</tr>");
+	})
+	//取消增加邻里
+	$(".qux_set").click(function(){
+		$(".set_addcont").hide();
+		$(".set_addbtn").show();
+	})
+	//删除邻里项
+	$(document).on("click",".table_list_t td a",function(){
+		$(this).parent().parent().remove();
+	})
+		
+	//性别选项自定义效果
+	$(".sel_sex span").click(function(){
+		$(this).addClass("active").siblings().removeClass("active");
+	})
+	//爱好增加按钮
+	$(".hob_addbtn").click(function(){
+		$(this).hide();
+		$(".hobby_add").show();
+	})
+	//取消爱好设置
+	$(".qux_set").click(function(){
+		$(".hobby_add").hide();
+		$(".hob_addbtn").show();
+	})
+	//删除爱好项
+	$(document).on("click",".hobbox i em",function(){
+		$(this).parent().remove();
+	})
+	//保存爱好设置
+	$(".baoc_set2").click(function(){
+		$(".hobby_add").hide();
+		$(".hob_addbtn").show();
+		var $Val=$(".hobby_add p span").html();
+		$(".hob_addbtn").before("<i>"+$Val+"<em></em></i>");
+	})
+	
+})
+</script>
+</head>
+<body class="w687">
+	<dl class="myGreenCity_dl border_0 mr_t50 cf"> 
+        <dt class="title_s">个人资料</dt>
+        <dd>
+            <div class="img_box img_box_t">
+                <p class="set_img2 left">
+                    <img alt="" src="images/upload/img_4.jpg">
+                    <span></span>
+                </p>
+                <span class="up_btn">修改头像<input class="file" type="file" /></span>
+            </div>
+            <div class="info_box info_box_t">
+                <dl class="import cf">
+                    <dt><em>：</em>姓&nbsp;&nbsp;&nbsp;名</dt>
+                    <dd>陈曦</dd>
+                </dl>
+                <dl class="import cf">
+                    <dt>手机号码：</dt>
+                    <dd>1356543367</dd>
+                </dl>
+                <dl class="import cf">
+                    <dt class="lh"><em>：</em>电子邮箱</dt>
+                    <dd><input type="text" class="input_txt" value="chen@qq.com" /></dd>
+                </dl>
+                <dl class="import cf">
+                    <dt class="lh"><em>：</em>昵&nbsp;&nbsp;&nbsp;&nbsp;称</dt>
+                    <dd><input type="text" class="input_txt" value="程曦" /></dd>
+                </dl>
+                <dl class="import cf">
+                    <dt><em>：</em>性&nbsp;&nbsp;&nbsp;&nbsp;别</dt>
+                    <dd class="sel_sex">
+                        <span>
+							<input type="radio" name="sex" id="male" />
+							<label for="male">男</label>
+						</span>
+						<span class="active">
+							<input type="radio" name="sex" id="female" checked />
+							<label for="female">女</label>
+						</span>
+                    </dd>
+                </dl>
+                <dl class="import cf hobbybox">
+                    <dt class="lh"><em>：</em>爱&nbsp;&nbsp;&nbsp;好</dt>
+                    <dd class="hobby">
+                        <div class="hobbox"><i>阅读<em></em></i><i>音乐<em></em></i><a class="hob_addbtn" href="javascript:;">+增加</a>
+                            <div class="hobby_add">
+                                <div class="selectWrap oSel">
+                                    <p><span>羽毛球</span><strong></strong></p>
+                                    <select class="os_list ">
+                                        <option value="">羽毛球</option>
+                                        <option value="">跑步</option>
+                                        <option value="">游泳</option>
+                                    </select>
+                                </div>
+                                <a class="qux_set" href="javascript:;">取消</a><a class="baoc_set2" href="javascript:;">保存</a>
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="import cf">
+                    <dt><em>：</em>个人简介</dt>
+                    <dd><textarea class="input_text">写点什么介绍一下你自己吧~</textarea></dd>
+                </dl>
+                
+            </div>	
+            <p class="refer_nr refer_nr_t"><input type="button" value="保 存" class="refer_btn"><a class="cancel_btn" href="javascript:;">取消</a></p>
+        </dd>
+    </dl>
+    <dl class="myGreenCity_dl border_0 cf">
+        <dt class="title_s">安全认证</dt>
+        <dd class="safety">
+            <dl class="import cf">
+                <dt>手机认证：</dt>
+                <dd>
+                    <span class="left">1356543367</span>
+                    <a id="phone" class="right orange" href="javascript:;">更改号码</a>
+                </dd>
+            </dl>
+            <dl class="import cf">
+                <dt>佣金认证：</dt>
+                <dd>
+                    <span class="left">领取佣金的唯一认证途径</span>
+                    <a href="javascript:;" class="right orange">立即认证</a>
+                </dd>
+            </dl>
+            <dl class="import cf">
+                <dt>修改密码：</dt>
+                <dd>
+                    <span class="left">请不要使用纯字母或纯数字的密码</span>
+                    <a id="psw" href="javascript:;" class="right orange">修改密码</a>
+                </dd>
+            </dl>
+        </dd>
+    </dl>
+    <!--提示弹框-->
+    <div class="mask"></div>
+    <!--修改手机号码-->
+    <div id="phone_layer" class="layer l_width2">
+        <h2>修改手机号码<a href="javascript:;" class="close_icon close"></a></h2>
+        <div class="layer_box">
+            <dl class="ly_import cf">
+                <dt class="lh">新手机号：</dt>
+                <dd><input type="text" value="15116728982" class="input_txt"></dd>
+            </dl>
+            <dl class="ly_import cf">
+                <dt class="lh">验&nbsp;证&nbsp;码：</dt>
+                <dd><input type="text" value=" " class="input_txt input_w1"><input type="button" value="获取验证码" class="ly_btn_3"></dd>
+            </dl>
+            <p class="align_r">
+                <input class="ly_btn_1" type="button" value="提交" />
+            </p>
+        </div>
+    </div>
+    <!--修改密码-->
+    <div class="layer l_width2" id ="psw_layer">
+        <h2>修改密码<a href="javascript:;" class="close_icon close"></a></h2>
+        <div class="layer_box">
+            <dl class="ly_import cf">
+                <dt class="lh">旧&nbsp;&nbsp;密&nbsp;&nbsp;码：</dt>
+                <dd><input type="password" value="" class="input_txt"></dd>
+            </dl>
+            <dl class="ly_import cf">
+                <dt class="lh">新&nbsp;&nbsp;密&nbsp;&nbsp;码：</dt>
+                <dd><input type="password" value="" class="input_txt"></dd>
+            </dl>
+             <dl class="ly_import cf">
+                <dt class="lh">确认新密码：</dt>
+                <dd><input type="password" value="" class="input_txt"></dd>
+            </dl>
+           
+            <p class="align_r">
+                <input class="ly_btn_1" type="button" value="提交" />
+            </p>
+        </div>
+    </div>
+</body>
+</html>

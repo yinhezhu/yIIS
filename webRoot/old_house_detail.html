@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script>
+$(function (){
+	//查看详情
+	(function(){
+		$(".renth_list ul li").off().on("mouseenter",function(){
+		var $this = $(this);
+		$this.find("div").find("a").show().stop().animate({bottom:"50%"},500);
+		}).on("mouseleave",function(){
+		var $this = $(this);
+		$this.find("div").find("a").stop().animate({bottom:"-33px"},500);
+		});
+	})();
+	//地图弹窗
+
+	$(document).on('click','.big_map',function (){
+
+		$('.mapShow').show();
+
+		$('body').css('overflow','hidden');
+
+	}).on('click','.mapClose',function (){
+		
+		$('.mapShow').hide();
+
+		$('body').css('overflow','auto');
+	});
+
+	$(window).on('resize',function (){
+	
+		$('.mapPic').find('img').width($(window).width()).height($(window).height()-$('.mapHeadBar').outerHeight());
+
+	});
+
+	//图片切换
+	(function(){
+		$('div.nclList ul').on('click','li',function (){
+				
+			$(this).addClass('nclActive').siblings().removeClass('nclActive');
+			$('div.nclImg').find('img').attr('src',$(this).find('img').attr('src'));
+		});
+		var $aLi=$('div.nclList ul li');
+		var $Ul_width=$aLi.length*($aLi.width()+22);
+		var iNum=0;
+		var move = false;
+		var right = false;
+		var left = true;
+		$("input.prev_t").addClass("show");
+		if($aLi.length<=5){
+			$('div.nclMain input').hide();
+		}else{
+			$('div.nclMain input').show();
+		}
+		$('div.nclList ul').width($Ul_width);
+		$("input.next_t").on('click',function(){
+			if(!move&&!right){
+				move = true;
+				iNum++;
+				if(iNum==$aLi.length-5){
+					$(this).addClass('show');
+					right = true;
+				}else{
+					$("input.prev_t").removeClass('show');
+					left = false;
+				}
+				$('div.nclList ul').animate({'left':-iNum*($aLi.width()+22)},500,function(){
+					move = false;
+				});
+			}
+		});
+		$("input.prev_t").on('click',function(){
+			if(!move&&!left){
+				move = true;	
+				iNum--;		
+				if(iNum==0){
+					$(this).addClass('show');
+					left = true;
+				}else{
+					$("input.next_t").removeClass('show');
+					right = false;
+				}
+				$('div.nclList ul').animate({'left':-iNum*($aLi.width()+22)},500,function(){
+					move = false;
+				});
+			}
+		});	
+	})();
+
+	//收藏成功
+
+	(function divShow(button,layer){
+			var $oMark = $(".mask");
+			var $Close = $(".close");
+			$(button).click(function(){
+				$(layer).show();
+				$(layer).css({marginTop:-$(layer).height()/2,marginLeft:-$(layer).width()/2,zIndex:200});
+				if($oMark.size()){
+					$oMark.show().css("position","fixed");
+					
+				}else{
+					$oMark.appendTo($("body"));
+					$oMark.css("position","fixed");
+				}
+			});
+			// 窗口大小改变时，弹出层的位置也相应改变
+			$(window).on("resize",function(){
+				$oMark.css({
+					width : Math.max($('body').width(),$(window).width()) + 'px' ,
+					height: Math.max($('body').height(),$(window).height()) + 'px'
+				});
+				$(layer).css({
+					marginTop: -$(layer).height()/2 + 'px' , 
+					marginLeft: -$(layer).width()/2 + 'px'  
+				});
+			});
+			//关闭弹框
+			$Close.click(function(){
+				$oMark.hide();
+				$(layer).hide();	
+			});
+			$oMark.click(function(){
+				$(this).hide();
+				$(layer).hide();	
+			});
+		})('#suCol','#col_layer');
+
+});
+</script>
+<title>二手房详情页</title>
+</head>
+<body>
+
+<!--header start-->
+    <div class="top_wrapper">
+        <dl class="top">
+            <dd>
+                <a class="serv_icon" href="javascript:;"></a>
+                <a class="sina_icon" href="javascript:;"></a>
+                <a class="wx_icon" href="javascript:;"></a>
+                <a class="wl_icon" href="javascript:;"></a>
+            </dd>
+            <dt>
+                <a href="login.html">登录</a><a href="register.html">注册</a>
+            </dt>
+        </dl>   
+    </div>
+    <dl class="search_wrapper search_new cf">
+        <dt>
+            <a href="index.html">绿城在线置业</a>
+        </dt>
+        <dd class="cf">
+        	<ul class="search_nav">
+            	<li class="active">新房</li>
+                <li>二手房</li>
+                <li>租房</li>
+            </ul>
+        	<div class="s_dis">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+            <div class="s_dis" style="display:none;">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+            <div class="s_dis" style="display:none;">
+                <div class="search_c">
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>热点区域</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>上城区</li>
+                            <li>下城区</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>产品类型</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>低层</li>
+                            <li>多层</li>
+                        </ul>
+                    </div>
+                    <div class="selectWrap s_sel">
+                        <p>
+                            <span>价格范围</span>
+                            <strong></strong>
+                        </p>
+                        <ul>
+                            <li>全部</li>
+                            <li>6000以下</li>
+                            <li>6000-8000</li>
+                        </ul>
+                    </div>
+                </div>   
+                <div class="search">
+                    <p>
+                        <input type="text" value="输入搜索关键字">
+                    </p>
+                    <input class="search_btn" type="button">
+                </div>
+            </div>
+
+        </dd>
+    </dl>  
+    <div class="nav_wrapper nav_new">
+        <dl>
+        	<dt>
+                <div class="change_city">
+                    <p>
+                        <span>杭州</span><em>[切换城市]</em><strong></strong>
+                    </p>
+                    <div class="city_box">
+                    	<dl class="cf">
+                        	<dt>华北东北</dt>
+                            <dd>
+                            	<a href="javascript:;">北京</a>
+                                <a href="javascript:;">济南</a>
+                                <a href="javascript:;">青岛</a>
+                                <a href="javascript:;">新泰</a>
+                                <a href="javascript:;">胶州</a>
+                                <a href="javascript:;">东营</a>
+                                <a href="javascript:;">唐山</a>
+                                <a href="javascript:;">沈阳</a>
+                                <a href="javascript:;">大连</a>
+                                <a href="javascript:;">天津</a>
+                                <a href="javascript:;">长沙 </a>
+                                <a href="javascript:;">郑州</a>
+                                <a href="javascript:;">新疆</a>
+                                <a href="javascript:;">海南</a>
+                            </dd>
+                        </dl>
+                        <dl class="cf">
+                        	<dt>华北东北</dt>
+                            <dd>
+                            	<a href="javascript:;">北京</a>
+                                <a href="javascript:;">济南</a>
+                                <a href="javascript:;">青岛</a>
+                                <a href="javascript:;">新泰</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>    
+            </dt>
+            <dd>
+                <ul class="nav cf">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="house_list.html">新房</a></li>
+                    <li><a class="on" href="old_house_list.html">二手房</a></li>
+                    <li><a href="rent_house_list.html">租房</a></li>
+                    <li><a href="inform.html">资讯</a></li>
+                    <li><a href="broker.html">经纪人</a></li>
+                    <li><a href="green_city_identify.html">我的绿城</a></li>
+                </ul>
+            </dd>  
+        </dl>
+
+    </div>
+    <!--header end-->
+
+	<!-- nhDetail start -->
+
+	<div class="ldsPw">
+		<p class="path">当前位置：<a href="index.html">首页</a>&nbsp;&gt;&nbsp;<a href="#">杭州二手房</a>&nbsp;&gt;&nbsp;温馨人家</p> 
+	</div>
+
+	<div class="ldsPw nhdCaro cf">
+		<div class="nhdCaroLeft left">
+			<div class="nclTop cf h68">
+				<p class="left">
+					<span class="houseName left">绿城-明月江南97平米精装修2室2厅1卫-整租</span>
+				</p>
+                <p class="bhsj left pdt12"><span>房源编号：LC86172713</span><span>发布时间：2014-3-10</span></p>
+			</div>
+			<div class="nclMain">
+                <input type="button" value="" class="prev_t" />
+                <input type="button" value="" class="next_t" />
+				<div class="nclImg">
+					<a href="#">
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+					</a>
+				</div>
+				<div class="nclList"><ul class="cf">
+					<li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+					<li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+					<li class="nclActive">
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+					<li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+					<li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+                    <li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+					<li>
+						<img src="images/upload/nclImg-1.jpg" alt="" />
+						<em></em>
+					</li>
+				</ul></div>
+			</div>
+		</div>
+		<div class="nhdCaroRight right">
+			<div class="ncrTop pdt12 ncrtop_t">
+				<p class="left">绿城热线竭诚为您服务</p>
+				<em class="right">400-111-3900</em>
+			</div>
+			<div class="ncrMain">
+				<div class="nrmBar">
+					<p class="nrmPrice left nrmprice_t">总价：<em>298</em><span>&nbsp;&nbsp;万（18780元/平米）</span></p>
+					<p id="suCol" class="nrmColl right nrmcoll_t"><em class="left"></em><span class="left">收藏</span></p>
+				</div>
+				<ul class="nrmList cf nrmlist_t">
+					<li>
+						<span>户 型</span>
+						<em>：</em>
+						<strong>绿城-明月江南</strong>
+					</li>
+					<li>
+						<span>产 权</span>
+						<em>：</em>
+						<strong>2室 2厅 1卫    100㎡    普通住宅    中等装修    朝向南北</strong>
+					</li>
+					<li>
+						<span>类 型</span>
+						<em>：</em>
+						<strong>未定</strong></li>
+					<li>
+						<span>装 修</span>
+						<em>：</em>
+						<strong>未定</strong>
+					</li>
+					<li>
+						<span>位 置</span>
+						<em>：</em>
+						<strong>杭州中房西溪置业有限公司</strong>
+					</li>
+					<li>
+						<span>地 址</span>
+						<em>：</em>
+						<strong>西湖区文一西路花蒋路口<a href="#">[查看地图]</a></strong>
+					</li>
+					<li>
+						<span>时 间</span>
+						<em>：</em>
+						<strong>随时看房</strong>
+					</li>
+				</ul>
+				<div class="nrmBtn">
+                    <input class="left recmdBtn no_click" type="button" value="" />
+					<input class="right shareBtn" type="button" value="" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="nhdMap house_ms">
+    	<div class="ldsPw">
+        	<h3>房源描述</h3>
+            <div class="house_msl left">
+            	<span>房源信息：</span>
+                <p>2室 2厅 1卫    100㎡    普通住宅    中等装修    朝向南北</p>
+                <span>小区地址：</span>
+                <p>勾仁大道附近布置大型商业设施在勾仁大道附近布置大型商业设施向南北</p>
+                <span>配套设置：</span>
+                <p>2室 2厅 1卫    100㎡    普通住宅    中等装修    朝向南北</p>
+            </div>
+            <div class="house_msr right">
+            	<span>小区简介：</span>
+                <p>沃尔玛购物中心(约1000平方米)；市政府将在勾仁大道附近布置大型商业设施，建设高标准商业建筑</p>
+                <span>周边公园：</span>
+                <p>文体娱在勾仁大道附近布置大型商业设施在勾仁大道附近布置大型商业设施在勾仁大道附近布置大型商业设施</p>
+                <span>看房免费班车：</span>
+                <p>在勾仁大道附近布置大型商业设施在勾仁大道附近布置大型商业设施在勾仁大道附近布置大型商业设施</p>
+
+            </div>
+        </div>
+    </div>
+	<div class="ldsPw house_pic cf">
+    	<h3>房源图片</h3>
+        <div class="leftbox pic_list">
+        	<img src="images/upload/pic1.jpg" alt="" />
+            <img src="images/upload/pic1.jpg" alt="" />
+            <img src="images/upload/pic1.jpg" alt="" />
+            <p><a href="#">+更多</a></p>
+        </div>
+        <div class="rightbox renth_list">
+        	<img src="images/upload/pic2.jpg" alt="" />
+            <h4 class="mgt14">同价位二手房</h4>
+            <ul>
+            	<li>
+                	<div><img src="images/upload/hd3d1.png" alt="" /><em class="pic_mask"></em><a href="javascript:;">查看详情</a></div>
+                    <p><a href="#">杭州绿城之江玫瑰花园</a></p><span>3室2厅<em>4800元/月</em></span>
+                </li>
+                <li>
+                	<div><img src="images/upload/hd3d1.png" alt="" /><em class="pic_mask"></em><a href="javascript:;">查看详情</a></div>
+                    <p><a href="#">杭州绿城之江玫瑰花园</a></p><span>3室2厅<em>4800元/月</em></span>
+                </li>
+            </ul>
+            <p class="more"><a href="#">+更多</a></p>
+            <h4 class="mgt14">同类型二手房</h4>
+            <ul>
+            	<li>
+                	<div><img src="images/upload/hd3d1.png" alt="" /><em class="pic_mask"></em><a href="javascript:;">查看详情</a></div>
+                    <p><a href="#">杭州绿城之江玫瑰花园</a></p><span>3室2厅<em>4800元/月</em></span>
+                </li>
+                <li>
+                	<div><img src="images/upload/hd3d1.png" alt="" /><em class="pic_mask"></em><a href="javascript:;">查看详情</a></div>
+                    <p><a href="#">杭州绿城之江玫瑰花园</a></p><span>3室2厅<em>4800元/月</em></span>
+                </li>
+            </ul>
+            <p class="more"><a href="#">+更多</a></p>
+        </div>
+    </div>
+    <div class="ldsPw house_map cf">
+    	<h3>房源地图</h3>
+        <p class="trf_bus">交通公交：328、379、305、315、345、419、618、809、 344、355、602等多路公交车</p>
+        <div class="leftbox look_map">
+        	<img src="images/upload/map1.jpg" alt="" />
+        </div>
+        <div class="rightbox look_zb">
+        	<h4>可选择查看周边</h4>
+            <ul>
+                <li><label><input type="checkbox" name="link" value="周边楼盘"/>周边楼盘</label></li>
+                <li><label><input type="checkbox" name="link" value="公交站点"/>公交站点</label></li>
+                <li><label><input type="checkbox" name="link" value="餐饮"/>餐饮</label></li>
+                <li><label><input type="checkbox" name="link" value="银行"/>银行</label></li>
+                <li><label><input type="checkbox" name="link" value="超市"/>超市</label></li>
+                <li><label><input type="checkbox" name="link" value="商场"/>商场</label></li>
+                <li><label><input type="checkbox" name="link" value="学校"/>学校</label></li>
+                <li><label><input type="checkbox" name="link" value="医院"/>医院</label></li>
+                <li><label><input type="checkbox" name="link" value="家居卖场"/>家居卖场</label></li>
+                <li><label><input type="checkbox" name="link" value="装饰公司"/>装饰公司</label></li>
+                <li><label><input type="checkbox" name="link" value="加油站"/>加油站</label></li>
+            </ul>
+            <p class="ckdt"><a class="big_map" href="javascript:"></a><a class="jiuc" href="#">纠错</a></p>
+        </div>
+    </div>
+
+	<!-- hsDetail end -->
+
+	 <!--footer start-->
+    <div class="footer_wrapper1">
+        <div class="footer cf">
+            <dl>
+                <dt>绿城保障</dt>
+                <dd><a href="#">资源优势特惠楼盘</a></dd>
+                <dd><a href="#">品牌地产合作</a></dd>
+                <dd><a href="#">专业服务团队</a></dd>
+            </dl>
+            <dl>
+                <dt>使用帮助</dt>
+                <dd><a href="#">帮助中心</a></dd>
+                <dd><a href="#">注册常见问题</a></dd>
+                <dd><a href="#">经纪人常见问题</a></dd>
+                <dd><a href="#">佣金常见问题</a></dd>
+            </dl>
+            <dl>
+                <dt>经纪人模式</dt>
+                <dd><a href="#">经纪人说明</a></dd>
+                <dd><a href="#">经纪人佣金报酬</a></dd>
+                <dd><a href="#">如何推荐客户</a></dd>
+            </dl>
+            <dl>
+                <dt>提供服务</dt>
+                <dd><a href="#">绿城独家特惠楼盘</a></dd>
+                <dd><a href="#">促成推荐用户成交</a></dd>
+                <dd><a href="#">经纪人佣金发放</a></dd>
+            </dl>
+            <dl>
+                <dt>联系我们</dt>
+                <dd class="last">
+                    <p>客服热线:<br><span>400-180-8116</span><p>
+                    <a class="f_msg_icon" href="javascript:;"></a>
+                    <a class="f_serv_icon" href="javascript:;"></a>
+                    <a class="f_sina_icon" href="javascript:;"></a>
+                    <a class="f_wx_icon" href="javascript:;"></a>
+                    <a class="f_wl_icon" href="javascript:;"></a> 
+                </dd>
+            </dl>
+        </div>    
+    </div>        
+    <div class="footer_wrapper2">
+        <div class="footer">       
+            <p class="f_nav">
+                <a href="#">关于我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">服务声明</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">友情链接</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">常见问题</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">网站地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">人才招聘</a>
+            </p>
+            <i> © 绿城房地产集团有限公司 浙ICP备05064294号-1</i>
+        </div>   
+    </div>
+    <!--footer end-->
+    <!--悬浮菜单 start-->
+    <ul class="menu_list">
+    	<li><a id="menu" class="m_icon_1" href="javascript:;"></a></li>
+        <!--<li><a class="m_icon_2" href="javascript:;"></a></li>
+        <li><a class="m_icon_3" href="javascript:;"></a></li>-->
+        <li><a class="m_icon_4" href="javascript:;"></a></li> 
+        <li><a class="m_icon_5" href="javascript:;"></a></li> 
+        <!--<li><a class="m_icon_6" href="javascript:;"></a></li>
+        <li><a class="m_icon_7" href="javascript:;"></a></li>-->
+        <li><a class="m_icon_8" href="javascript:;"></a><img src="images/upload/code.jpg" alt=""/></li>
+    </ul>
+    <!--悬浮菜单 end-->
+
+	<!-- 地图弹层 -->
+
+	<div class="mapShow">
+		<div class="mapHeadBar cf">
+			<p class="left">绿城西溪国际地图</p>
+			<p class="right mapClose">退出全屏</p>
+		</div>
+		<div class="mapPic">
+			<img src="images/upload/bdMap.png" alt="" />
+		</div>
+	</div>
+
+	<!-- 地图弹层 -->
+
+	<!--提示弹框-->
+    <div class="mask"></div>
+	<!-- 收藏 -->
+	<div id="col_layer" class="layer l_width1">
+        <h2>提示</h2>
+        <div class="layer_box hd_btn_bg">
+            <p class="layer_nr">收藏成功！</p>
+            <p class="align_r">
+				<input class="ly_btn_2 close" type="button" value="确定" />
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

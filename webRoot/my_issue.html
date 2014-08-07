@@ -1,0 +1,417 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>我的发布</title>
+<link type="text/css" href="css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript">
+$(function(){
+	//下拉选择事件
+	(function(){
+		var $select = $("select.os_list");
+		$select.off().on("change",function(){
+			var index = $(this).get(0).selectedIndex;
+			$(this).prev().find("span").html($(this).find("option").eq(index).text());
+		});
+	})();
+	
+	//分页下拉选择事件
+	(function(){
+		var $select = $(".neighbor_page select");
+		$select.off().on("change",function(){
+			var index = $(this).get(0).selectedIndex;
+			$(this).prev("em").html($(this).find("option").eq(index).text());
+		});
+	})();
+
+	(function(){
+		//我的发布切换
+		$(".neighbor_nav li").off().on("click",function(){
+			var index = $(this).index();
+			$(".neighbor_nav li").removeClass("active");
+			$(this).addClass("active");
+			$(".neighbor_dis").css("display","none");
+			$(".neighbor_dis").eq(index).css("display","block");
+			
+		})
+		//我的发布二级切换
+		$(".neighbor_dis").each(function(index){
+			var $sub_li = $(".neighbor_dis").eq(index).find(".neighbor_nav2 li"); 
+			var $sub_div = $(".neighbor_dis").eq(index).find(".neighbor_dis2"); 
+         	$sub_li.off().on("click",function(){
+				var index2 = $(this).index();
+				$sub_li.removeClass("active");
+				$(this).addClass("active");
+				$sub_div.css("display","none");
+				$sub_div.eq(index2).css("display","block");
+				
+			})   
+        });
+
+		/*评论弹框*/
+		$(".msg_pop").off().on("click",function(){
+			var oDiv = $(this).next("div.msg_layer");
+			if(oDiv.css("display")=="none"){
+				oDiv.css("display","block");	
+			}else{
+				oDiv.css("display","none");
+			}
+			
+		});
+	})();
+	
+})
+</script>
+</head>
+<body>
+	<div class="cf">
+        <dl class="approve_dl cf">
+            <dt class="lh">我的房产：</dt>
+            <dd>
+                <div class="oSel w_218">
+                    <p>
+                        <span>绿城巧园2期4栋2单元6128</span>
+                        <strong></strong>
+                    </p>
+                    <select class="os_list">
+                        <option value="">绿城巧园2期4栋2单元6128</option>
+                        <option value="">绿城巧园2期4栋2单元6328</option>
+                    </select>
+                </div>
+            </dd>
+        </dl>
+        <ul class="neighbor_nav cf">
+            <li class="active">我的发布</li>
+            <li>房产发布</li>
+        </ul>
+    </div>
+    <!--我的发布start-->
+    <div class="neighbor_dis">	
+        <ul class="neighbor_nav2 cf">
+            <li class="active">全部</li>
+            <li>图片</li>
+            <li>阅读</li>
+            <li>运动</li>
+        </ul>
+        <!-- 全部-->
+        <div class="neighbor_dis2">
+            <dl class="neighbor_dl cf">
+                <dt><img src="images/upload/img_10.jpg" /></dt>
+                <dd>
+                    <h2 class="neighbor_title">古巨基</h2>
+                    <span class="neighbor_sort">#阅读#</span>
+                    <p>重新创造了音乐搜索功能，体验一下第四代音乐产品的奇妙。快来体验吧，我正在使JingF- Web App。</p>
+                    <p><img src="images/upload/img_11.jpg" /></p>
+                    <ul class="msg_nr cf">
+                        <li class="left">32分钟前</li>
+                        <li class="right">
+                            <a href="javascript:;">赞(<span>53</span>)</a><a class="msg_pop" href="javascript:;">评论(<span>1</span>)</a>
+                            <div class="msg_layer">
+                                <div class="msg_layer_con">
+                                    <input class="msg_layer_txt" type="text" value="" />   
+                                    <p class="msg_layer_font">
+                                        <span class="msg_font">还可以输入<em>64</em>字</span><input type="button" value="发 布" class="msg_btn">
+                                    </p>
+                                    <div class="msg_layer_box">
+                                        <dl class="msg_layer_dl cf">
+                                            <dt><img src="images/upload/img_10.jpg" /></dt>
+                                            <dd>
+                                                <p><span class="msg_tag">古巨基</span>：作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，与有荣焉（<span>30分钟</span>前）</p>
+                                                <p class="align_r">
+                                                    <a href="javascript:;">赞(<span>53</span>)</a><a href="javascript:;">回复(<span>1</span>)</a>
+                                                </p>
+                                            </dd>
+                                        </dl> 
+                                        <dl class="msg_layer_dl cf">
+                                            <dt><img src="images/upload/img_10.jpg" /></dt>
+                                            <dd>
+                                                <p><span class="msg_tag">古巨基</span>：作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，与有荣焉（<span>30分钟</span>前）</p>
+                                                <p class="align_r">
+                                                    <a href="javascript:;">赞(<span>53</span>)</a><a href="javascript:;">回复(<span>1</span>)</a>
+                                                </p>
+                                            </dd>
+                                        </dl> 
+                                    </div>
+                                </div>
+                                <em class="msg_icon2"></em>	
+                            </div>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl class="neighbor_dl cf">
+                <dt><img src="images/upload/img_10.jpg" /></dt>
+                <dd>
+                    <h2 class="neighbor_title">古巨基</h2>
+                    <span class="neighbor_sort">#阅读#</span>
+                    <p>重新创造了音乐搜索功能，体验一下第四代音乐产品的奇妙。快来体验吧，我正在使JingF- Web App。</p>
+                    <p><img src="images/upload/img_11.jpg" /></p>
+                    <ul class="msg_nr cf">
+                        <li class="left">32分钟前</li>
+                        <li class="right">
+                            <a href="javascript:;">赞(<span>53</span>)</a><a class="msg_pop" href="javascript:;">评论(<span>1</span>)</a>
+                            <div class="msg_layer">
+                                <div class="msg_layer_con">
+                                    <input class="msg_layer_txt" type="text" value="" />   
+                                    <p class="msg_layer_font">
+                                        <span class="msg_font">还可以输入<em>64</em>字</span><input type="button" value="发 布" class="msg_btn">
+                                    </p>
+                                    <div class="msg_layer_box">
+                                        <dl class="msg_layer_dl cf">
+                                            <dt><img src="images/upload/img_10.jpg" /></dt>
+                                            <dd>
+                                                <p><span class="msg_tag">古巨基</span>：作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，与有荣焉（<span>30分钟</span>前）</p>
+                                                <p class="align_r">
+                                                    <a href="javascript:;">赞(<span>53</span>)</a><a href="javascript:;">回复(<span>1</span>)</a>
+                                                </p>
+                                            </dd>
+                                        </dl> 
+                                        <dl class="msg_layer_dl cf">
+                                            <dt><img src="images/upload/img_10.jpg" /></dt>
+                                            <dd>
+                                                <p><span class="msg_tag">古巨基</span>：作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，与有荣焉（<span>30分钟</span>前）</p>
+                                                <p class="align_r">
+                                                    <a href="javascript:;">赞(<span>53</span>)</a><a href="javascript:;">回复(<span>1</span>)</a>
+                                                </p>
+                                            </dd>
+                                        </dl> 
+                                    </div>
+                                </div>
+                                <em class="msg_icon2"></em>	
+                            </div>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <p class="neighbor_page">
+                <span>
+                	<em>第1页</em>
+                    <select>
+                    	<option value="">第2页</option>
+                        <option value="">第3页</option>
+                    </select>
+                </span><input type="button" class="gray_btn2 btn3" value="下一页">
+            </p>
+        </div>
+        <!--图片-->
+        <div class="neighbor_dis2" style="display:none;">
+            <dl class="neighbor_dl cf">
+                <dt><img src="images/upload/img_10.jpg" /></dt>
+                <dd>
+                    <h2 class="neighbor_title">古巨基</h2>
+                    <span class="neighbor_sort">#阅读#</span>
+                    <p>重新创造了音乐搜索功能，体验一下第四代音乐产品的奇妙。快来体验吧，我正在使JingF- Web App。</p>
+                    <p><img src="images/upload/img_11.jpg" /></p>
+                    <ul class="msg_nr cf">
+                        <li class="left">32分钟前</li>
+                        <li class="right">
+                            <a href="javascript:;">赞(<span>53</span>)</a><a class="msg_pop" href="javascript:;">评论(<span>1</span>)</a>
+                            <div class="msg_layer">
+                                <div class="msg_layer_con">
+                                    <input class="msg_layer_txt" type="text" value="" />   
+                                    <p class="msg_layer_font">
+                                        <span class="msg_font">还可以输入<em>64</em>字</span><input type="button" value="发 布" class="msg_btn">
+                                    </p>
+                                    <div class="msg_layer_box">
+                                        <dl class="msg_layer_dl cf">
+                                            <dt><img src="images/upload/img_10.jpg" /></dt>
+                                            <dd>
+                                                <p><span class="msg_tag">古巨基</span>：作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，与有荣焉（<span>30分钟</span>前）</p>
+                                                <p class="align_r">
+                                                    <a href="javascript:;">赞(<span>53</span>)</a><a href="javascript:;">回复(<span>1</span>)</a>
+                                                </p>
+                                            </dd>
+                                        </dl> 
+                                        <dl class="msg_layer_dl cf">
+                                            <dt><img src="images/upload/img_10.jpg" /></dt>
+                                            <dd>
+                                                <p><span class="msg_tag">古巨基</span>：作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，与有荣焉（<span>30分钟</span>前）</p>
+                                                <p class="align_r">
+                                                    <a href="javascript:;">赞(<span>53</span>)</a><a href="javascript:;">回复(<span>1</span>)</a>
+                                                </p>
+                                            </dd>
+                                        </dl> 
+                                    </div>
+                                </div>
+                                <em class="msg_icon2"></em>	
+                            </div>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <p class="neighbor_page">
+                <span>
+                	<em>第1页</em>
+                    <select>
+                    	<option value="">第2页</option>
+                        <option value="">第3页</option>
+                    </select>
+                </span><input type="button" class="gray_btn2 btn3" value="下一页">
+            </p>
+        </div>
+        <!--阅读-->
+        <div class="neighbor_dis2" style="display:none;">
+            <dl class="neighbor_dl cf">
+                <dt><img src="images/upload/img_10.jpg" /></dt>
+                <dd>
+                    <h2 class="neighbor_title">古巨基</h2>
+                    <span class="neighbor_sort">#阅读#</span>
+                    <p>重新创造了音乐搜索功能，体验一下第四代音乐产品的奇妙。快来体验吧，我正在使JingF- Web App。</p>
+                    <p><img src="images/upload/img_11.jpg" /></p>
+                    <ul class="msg_nr cf">
+                        <li class="left">32分钟前</li>
+                        <li class="right">
+                            <a href="javascript:;">赞(<span>53</span>)</a><a class="msg_pop" href="javascript:;">评论(<span>1</span>)</a>
+                            <div class="msg_layer">
+                                <div class="msg_layer_con">
+                                    <input class="msg_layer_txt" type="text" value="" />   
+                                    <p class="msg_layer_font">
+                                        <span class="msg_font">还可以输入<em>64</em>字</span><input type="button" value="发 布" class="msg_btn">
+                                    </p>
+                                    <div class="msg_layer_box">
+                                        <dl class="msg_layer_dl cf">
+                                            <dt><img src="images/upload/img_10.jpg" /></dt>
+                                            <dd>
+                                                <p><span class="msg_tag">古巨基</span>：作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，与有荣焉（<span>30分钟</span>前）</p>
+                                                <p class="align_r">
+                                                    <a href="javascript:;">赞(<span>53</span>)</a><a href="javascript:;">回复(<span>1</span>)</a>
+                                                </p>
+                                            </dd>
+                                        </dl> 
+                                        <dl class="msg_layer_dl cf">
+                                            <dt><img src="images/upload/img_10.jpg" /></dt>
+                                            <dd>
+                                                <p><span class="msg_tag">古巨基</span>：作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，与有荣焉（<span>30分钟</span>前）</p>
+                                                <p class="align_r">
+                                                    <a href="javascript:;">赞(<span>53</span>)</a><a href="javascript:;">回复(<span>1</span>)</a>
+                                                </p>
+                                            </dd>
+                                        </dl> 
+                                    </div>
+                                </div>
+                                <em class="msg_icon2"></em>	
+                            </div>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <p class="neighbor_page">
+                <span>
+                	<em>第1页</em>
+                    <select>
+                    	<option value="">第2页</option>
+                        <option value="">第3页</option>
+                    </select>
+                </span><input type="button" class="gray_btn2 btn3" value="下一页">
+            </p>
+        </div>
+        <!--运动-->
+        <div class="neighbor_dis2" style="display:none;">
+            <dl class="neighbor_dl cf">
+                <dt><img src="images/upload/img_10.jpg" /></dt>
+                <dd>
+                    <h2 class="neighbor_title">古巨基</h2>
+                    <span class="neighbor_sort">#阅读#</span>
+                    <p>重新创造了音乐搜索功能，体验一下第四代音乐产品的奇妙。快来体验吧，我正在使JingF- Web App。</p>
+                    <p><img src="images/upload/img_11.jpg" /></p>
+                    <ul class="msg_nr cf">
+                        <li class="left">32分钟前</li>
+                        <li class="right">
+                            <a href="javascript:;">赞(<span>53</span>)</a><a class="msg_pop" href="javascript:;">评论(<span>1</span>)</a>
+                            <div class="msg_layer">
+                                <div class="msg_layer_con">
+                                    <input class="msg_layer_txt" type="text" value="" />   
+                                    <p class="msg_layer_font">
+                                        <span class="msg_font">还可以输入<em>64</em>字</span><input type="button" value="发 布" class="msg_btn">
+                                    </p>
+                                    <div class="msg_layer_box">
+                                        <dl class="msg_layer_dl cf">
+                                            <dt><img src="images/upload/img_10.jpg" /></dt>
+                                            <dd>
+                                                <p><span class="msg_tag">古巨基</span>：作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，与有荣焉（<span>30分钟</span>前）</p>
+                                                <p class="align_r">
+                                                    <a href="javascript:;">赞(<span>53</span>)</a><a href="javascript:;">回复(<span>1</span>)</a>
+                                                </p>
+                                            </dd>
+                                        </dl> 
+                                        <dl class="msg_layer_dl cf">
+                                            <dt><img src="images/upload/img_10.jpg" /></dt>
+                                            <dd>
+                                                <p><span class="msg_tag">古巨基</span>：作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，作为礼物的组成部分，与有荣焉（<span>30分钟</span>前）</p>
+                                                <p class="align_r">
+                                                    <a href="javascript:;">赞(<span>53</span>)</a><a href="javascript:;">回复(<span>1</span>)</a>
+                                                </p>
+                                            </dd>
+                                        </dl> 
+                                    </div>
+                                </div>
+                                <em class="msg_icon2"></em>	
+                            </div>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <p class="neighbor_page">
+                <span>
+                	<em>第1页</em>
+                    <select>
+                    	<option value="">第2页</option>
+                        <option value="">第3页</option>
+                    </select>
+                </span><input type="button" class="gray_btn2 btn3" value="下一页">
+            </p>
+        </div>
+      
+    </div>
+    <!--我的发布end-->
+    <!--房产发布start-->
+	<div class="neighbor_dis" style="display:none;">
+    	<dl class="myGreenCity_dl border_0">
+            <dd>
+                <table class="table_list">
+                    <colgroup>
+                        <col class="w_25" />
+                        <col class="w_25" />
+                        <col class="w_25" />
+                        <col class="w_25" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>分类</th>
+                            <th>信息</th>
+                            <th>时间</th>
+                            <th>状态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--列表循环开始-->
+                        <tr>
+                            <td>二手房出售</td>
+                            <td>
+                                <p class="txt_w1"><a class="blue" href="old_house_detail.html" target="_parent">温馨人家,满五年,东边套只要298万拎包入住</a></p>
+                            </td>
+                            <td>2014-03-04</td>
+                            <td>已发布</td>
+                        </tr>
+                       	<tr>
+                            <td>二手房出售</td>
+                            <td>
+                                <p class="txt_w1"><a class="blue" href="#">温馨人家,满五年,东边套只要298万拎包入住</a></p>
+                            </td>
+                            <td>2014-03-04</td>
+                            <td>已发布</td>
+                        </tr>
+                        <!--列表循环结束-->
+                    </tbody>
+                </table>
+            </dd>
+        </dl>
+        
+    </div>
+    <!--房产发布end-->
+    <div class="neighbor_div">&nbsp;</div>
+</body>
+</html>
